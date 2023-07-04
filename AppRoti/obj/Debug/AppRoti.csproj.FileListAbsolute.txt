@@ -1,0 +1,17 @@
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\AppRoti.exe.config
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\AppRoti.exe
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\AppRoti.pdb
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.AssemblyReference.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.SuggestedBindingRedirects.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.MainForm.resources
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Properties.Resources.resources
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.MuroPedidos.resources
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.GenerateResource.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.CoreCompileInputs.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.exe
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.pdb
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.dll
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.xml
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.dll.config
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.CopyComplete

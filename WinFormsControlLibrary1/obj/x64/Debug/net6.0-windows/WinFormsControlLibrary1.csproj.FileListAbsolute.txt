@@ -1,0 +1,14 @@
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\bin\x64\Debug\net6.0-windows\WinFormsControlLibrary1.deps.json
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\bin\x64\Debug\net6.0-windows\WinFormsControlLibrary1.dll
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\bin\x64\Debug\net6.0-windows\WinFormsControlLibrary1.pdb
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.csproj.AssemblyReference.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.UserControl1.resources
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.csproj.GenerateResource.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.AssemblyInfoInputs.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.AssemblyInfo.cs
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.dll
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\refint\WinFormsControlLibrary1.dll
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\WinFormsControlLibrary1.pdb
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary1\obj\x64\Debug\net6.0-windows\ref\WinFormsControlLibrary1.dll
