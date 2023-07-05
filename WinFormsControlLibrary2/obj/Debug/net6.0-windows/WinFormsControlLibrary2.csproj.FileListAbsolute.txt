@@ -1,7 +1,0 @@
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary2\obj\Debug\net6.0-windows\WinFormsControlLibrary2.csproj.AssemblyReference.cache
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary2\obj\Debug\net6.0-windows\WinFormsControlLibrary2.UserControl1.resources
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary2\obj\Debug\net6.0-windows\WinFormsControlLibrary2.csproj.GenerateResource.cache
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary2\obj\Debug\net6.0-windows\WinFormsControlLibrary2.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary2\obj\Debug\net6.0-windows\WinFormsControlLibrary2.AssemblyInfoInputs.cache
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary2\obj\Debug\net6.0-windows\WinFormsControlLibrary2.AssemblyInfo.cs
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\WinFormsControlLibrary2\obj\Debug\net6.0-windows\WinFormsControlLibrary2.csproj.CoreCompileInputs.cache

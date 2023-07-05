@@ -57,11 +57,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vistas\Comandero.cs">
+    <Compile Include="Vistas\FrmMuroPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Comandero.Designer.cs">
-      <DependentUpon>Comandero.cs</DependentUpon>
+    <Compile Include="Vistas\FrmMuroPedidos.Designer.cs">
+      <DependentUpon>FrmMuroPedidos.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -75,8 +75,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Vistas\Comandero.resx">
-      <DependentUpon>Comandero.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\FrmMuroPedidos.resx">
+      <DependentUpon>FrmMuroPedidos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

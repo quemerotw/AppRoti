@@ -4,18 +4,18 @@
         <name>WindowsFormsApp1</name>
     </assembly>
     <members>
-        <member name="F:WindowsFormsApp1.Controls.UserControl1.components">
+        <member name="F:WindowsFormsApp1.Controls.CtrPedido.components">
             <summary> 
             Variable del diseñador necesaria.
             </summary>
         </member>
-        <member name="M:WindowsFormsApp1.Controls.UserControl1.Dispose(System.Boolean)">
+        <member name="M:WindowsFormsApp1.Controls.CtrPedido.Dispose(System.Boolean)">
             <summary> 
             Limpiar los recursos que se estén usando.
             </summary>
             <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         </member>
-        <member name="M:WindowsFormsApp1.Controls.UserControl1.InitializeComponent">
+        <member name="M:WindowsFormsApp1.Controls.CtrPedido.InitializeComponent">
             <summary> 
             Método necesario para admitir el Diseñador. No se puede modificar
             el contenido de este método con el editor de código.

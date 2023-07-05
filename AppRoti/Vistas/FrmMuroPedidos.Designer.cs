@@ -1,6 +1,6 @@
 ﻿namespace AppRoti.Vistas
 {
-    partial class MuroPedidos
+    partial class FrmMuroPedidos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.userControl11 = new WindowsFormsApp1.Controls.UserControl1();
+            this.ctrPedido1 = new WindowsFormsApp1.Controls.CtrPedido();
             this.SuspendLayout();
             // 
-            // userControl11
+            // ctrPedido1
             // 
-            this.userControl11.Location = new System.Drawing.Point(123, 41);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(150, 150);
-            this.userControl11.TabIndex = 0;
-            this.userControl11.Load += new System.EventHandler(this.userControl11_Load);
+            this.ctrPedido1.BackColor = System.Drawing.Color.LawnGreen;
+            this.ctrPedido1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ctrPedido1.Location = new System.Drawing.Point(46, 121);
+            this.ctrPedido1.Name = "ctrPedido1";
+            this.ctrPedido1.Size = new System.Drawing.Size(134, 159);
+            this.ctrPedido1.TabIndex = 0;
+            this.ctrPedido1.Load += new System.EventHandler(this.ctrPedido1_Load);
+            this.ctrPedido1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ctrPedido1_MouseDown);
+            this.ctrPedido1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ctrPedido1_MouseMove);
+            this.ctrPedido1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ctrPedido1_MouseUp);
             // 
-            // MuroPedidos
+            // FrmMuroPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.userControl11);
-            this.Name = "MuroPedidos";
+            this.Controls.Add(this.ctrPedido1);
+            this.Name = "FrmMuroPedidos";
             this.Text = "Muro de pedidos";
-            this.Load += new System.EventHandler(this.MuroPedidos_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private WindowsFormsApp1.Controls.UserControl1 userControl11;
+        private WindowsFormsApp1.Controls.CtrPedido ctrPedido1;
     }
 }
