@@ -28,28 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrPedido1 = new WindowsFormsApp1.Controls.CtrPedido();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ctrPedido1
+            // button1
             // 
-            this.ctrPedido1.BackColor = System.Drawing.Color.LawnGreen;
-            this.ctrPedido1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ctrPedido1.Location = new System.Drawing.Point(46, 121);
-            this.ctrPedido1.Name = "ctrPedido1";
-            this.ctrPedido1.Size = new System.Drawing.Size(134, 159);
-            this.ctrPedido1.TabIndex = 0;
-            this.ctrPedido1.Load += new System.EventHandler(this.ctrPedido1_Load);
-            this.ctrPedido1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ctrPedido1_MouseDown);
-            this.ctrPedido1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ctrPedido1_MouseMove);
-            this.ctrPedido1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ctrPedido1_MouseUp);
+            this.button1.Location = new System.Drawing.Point(223, 118);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmMuroPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ctrPedido1);
+            this.Controls.Add(this.button1);
             this.Name = "FrmMuroPedidos";
             this.Text = "Muro de pedidos";
             this.ResumeLayout(false);
@@ -58,6 +55,6 @@
 
         #endregion
 
-        private WindowsFormsApp1.Controls.CtrPedido ctrPedido1;
+        private System.Windows.Forms.Button button1;
     }
 }

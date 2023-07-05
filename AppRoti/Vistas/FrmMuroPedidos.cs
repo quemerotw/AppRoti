@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AppRoti;
+using AppRoti.Clases;
 
 namespace AppRoti.Vistas
 {
     public partial class FrmMuroPedidos : Form
     {
-        private bool aux =false;
+        private List<CPedido> listadoPedidos =  new List<CPedido>();
+
         public FrmMuroPedidos()
         {
             InitializeComponent();
@@ -23,23 +26,12 @@ namespace AppRoti.Vistas
 
         }
 
-        private void ctrPedido1_MouseDown(object sender, MouseEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            aux = true;
-        }
-
-        private void ctrPedido1_MouseMove(object sender, MouseEventArgs e)
-        {
-            Point m = this.PointToClient(Cursor.Position);
-            if (aux)
-            {
-                (sender as Control).Location = m;
-            }
-        }
-
-        private void ctrPedido1_MouseUp(object sender, MouseEventArgs e)
-        {
-            aux = false;
+            CPedido pedido = new CPedido();
+            listadoPedidos.Add(pedido);
+            
+            this.Controls.Add(pedido.ControlAsociado);
         }
     }
 }
