@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\CPedido.cs" />
+    <Compile Include="Clases\CProducto.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +64,12 @@
     </Compile>
     <Compile Include="Vistas\FrmMuroPedidos.Designer.cs">
       <DependentUpon>FrmMuroPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\PedidoAM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\PedidoAM.Designer.cs">
+      <DependentUpon>PedidoAM.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -78,6 +85,9 @@
     </Compile>
     <EmbeddedResource Include="Vistas\FrmMuroPedidos.resx">
       <DependentUpon>FrmMuroPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\PedidoAM.resx">
+      <DependentUpon>PedidoAM.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

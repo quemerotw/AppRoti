@@ -30,28 +30,8 @@ namespace AppRoti.Clases
             _controlAsoc.Location = new System.Drawing.Point(0, 0);
             _controlAsoc.Name = _nombre;
             _controlAsoc.Size = new System.Drawing.Size(134, 159);
-            _controlAsoc.MouseDown += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseDown);
-            _controlAsoc.MouseMove += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseMove);
-            _controlAsoc.MouseUp += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseUp);
+            _controlAsoc.Controls[0].Text += string.Format("{0}", numPedido);
             numPedido++;
-        }
-        private void ctrPedido1_MouseDown(object sender, MouseEventArgs e)
-        {
-            aux = true;
-        }
-
-        private void ctrPedido1_MouseMove(object sender, MouseEventArgs e)
-        {
-            Point m = (sender as Control).PointToClient(Cursor.Position);
-            if (aux)
-            {
-                (sender as Control).Location = m;
-            }
-        }
-
-        private void ctrPedido1_MouseUp(object sender, MouseEventArgs e)
-        {
-            aux = false;
         }
     }
 }

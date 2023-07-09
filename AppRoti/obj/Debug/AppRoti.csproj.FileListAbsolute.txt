@@ -15,3 +15,4 @@ C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.dll.config
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.CopyComplete
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.FrmMuroPedidos.resources
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.PedidoAM.resources

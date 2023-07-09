@@ -28,25 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.AgregarPedidoBtn = new System.Windows.Forms.Button();
+            this.ParedFlLy = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // button1
+            // AgregarPedidoBtn
             // 
-            this.button1.Location = new System.Drawing.Point(223, 118);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.AgregarPedidoBtn.Location = new System.Drawing.Point(647, 12);
+            this.AgregarPedidoBtn.Name = "AgregarPedidoBtn";
+            this.AgregarPedidoBtn.Size = new System.Drawing.Size(130, 46);
+            this.AgregarPedidoBtn.TabIndex = 0;
+            this.AgregarPedidoBtn.Text = "Agregar Pedido";
+            this.AgregarPedidoBtn.UseVisualStyleBackColor = true;
+            this.AgregarPedidoBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // ParedFlLy
+            // 
+            this.ParedFlLy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ParedFlLy.Location = new System.Drawing.Point(13, 12);
+            this.ParedFlLy.Name = "ParedFlLy";
+            this.ParedFlLy.Padding = new System.Windows.Forms.Padding(10);
+            this.ParedFlLy.Size = new System.Drawing.Size(628, 417);
+            this.ParedFlLy.TabIndex = 1;
+            this.ParedFlLy.WrapContents = false;
             // 
             // FrmMuroPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ParedFlLy);
+            this.Controls.Add(this.AgregarPedidoBtn);
             this.Name = "FrmMuroPedidos";
             this.Text = "Muro de pedidos";
             this.ResumeLayout(false);
@@ -55,6 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AgregarPedidoBtn;
+        private System.Windows.Forms.FlowLayoutPanel ParedFlLy;
     }
 }
