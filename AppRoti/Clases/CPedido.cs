@@ -11,9 +11,11 @@ namespace AppRoti.Clases
 {
     internal class CPedido
     {
-        private bool aux = false;
+        private bool esDelivery = false;
         private WindowsFormsApp1.Controls.CtrPedido _controlAsoc;
         private static int numPedido=1;
+        private double subtotal;
+        private double total;
 
         public WindowsFormsApp1.Controls.CtrPedido ControlAsociado
 

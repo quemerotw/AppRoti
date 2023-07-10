@@ -14,6 +14,7 @@ namespace AppRoti.Vistas
 {
     public partial class FrmMuroPedidos : Form
     {
+        private Point ultimo = new Point();
         private List<CPedido> listadoPedidos = new List<CPedido>();
         bool aux = false;
 
@@ -41,8 +42,14 @@ namespace AppRoti.Vistas
             pedido.ControlAsociado.MouseDown += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseDown);
             pedido.ControlAsociado.MouseMove += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseMove);
             pedido.ControlAsociado.MouseUp += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseUp);
+            pedido.ControlAsociado.Anchor = AnchorStyles.Top;
+            if (PedidosPanel.Controls.Count>0) {
+                Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;
+                posAnt.X += pedido.ControlAsociado.Size.Width;
+                pedido.ControlAsociado.Location = posAnt;
+            }
             listadoPedidos.Add(pedido);
-            this.ParedFlLy.Controls.Add(pedido.ControlAsociado);
+            PedidosPanel.Controls.Add(pedido.ControlAsociado);
         }
 
         private void ctrPedido1_MouseDown(object sender, MouseEventArgs e)
@@ -52,17 +59,38 @@ namespace AppRoti.Vistas
 
         private void ctrPedido1_MouseMove(object sender, MouseEventArgs e)
         {
-            
-            if (aux)
-            {
-                Point m = (sender as Control).TopLevelControl.PointToClient(Cursor.Position);
-                (sender as Control).Location = m;
+            if (aux) {
+                Control controlAux = (sender as Control);
+                Point m = controlAux.TopLevelControl.PointToClient(Cursor.Position);
+                m.X -= controlAux.TopLevelControl.Location.X;
+                m.Y -= controlAux.TopLevelControl.Location.Y;
+                controlAux.Location = m;
+                bool teEncontrePuto = false;
+                foreach (Control item in PedidosPanel.Controls) {
+                    if (!item.Equals(controlAux)) {
+                        if (item.Bounds.IntersectsWith(controlAux.Bounds)) {
+                            teEncontrePuto = true;
+                            ultimo = item.Location;
+                            controlAux.Location = ultimo;
+                            ultimo.X += item.Width;
+                            ultimo.Y = controlAux.ClientRectangle.Top;
+                            item.Location = ultimo;
+                        }
+                    }
+                }
             }
         }
 
         private void ctrPedido1_MouseUp(object sender, MouseEventArgs e)
         {
             aux = false;
+            Control controlAux = (sender as Control);
+            ultimo.X -= controlAux.Width;
+            controlAux.Location = ultimo;
+        }
+
+        private void FrmMuroPedidos_Load(object sender, EventArgs e) {
+            
         }
     }
 }

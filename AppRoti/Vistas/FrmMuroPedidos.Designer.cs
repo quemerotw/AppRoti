@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.AgregarPedidoBtn = new System.Windows.Forms.Button();
-            this.ParedFlLy = new System.Windows.Forms.FlowLayoutPanel();
+            this.PedidosPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // AgregarPedidoBtn
@@ -42,25 +42,26 @@
             this.AgregarPedidoBtn.UseVisualStyleBackColor = true;
             this.AgregarPedidoBtn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ParedFlLy
+            // PedidosPanel
             // 
-            this.ParedFlLy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ParedFlLy.Location = new System.Drawing.Point(13, 12);
-            this.ParedFlLy.Name = "ParedFlLy";
-            this.ParedFlLy.Padding = new System.Windows.Forms.Padding(10);
-            this.ParedFlLy.Size = new System.Drawing.Size(628, 417);
-            this.ParedFlLy.TabIndex = 1;
-            this.ParedFlLy.WrapContents = false;
+            this.PedidosPanel.AutoScroll = true;
+            this.PedidosPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.PedidosPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PedidosPanel.Location = new System.Drawing.Point(13, 13);
+            this.PedidosPanel.Name = "PedidosPanel";
+            this.PedidosPanel.Size = new System.Drawing.Size(611, 368);
+            this.PedidosPanel.TabIndex = 1;
             // 
             // FrmMuroPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ParedFlLy);
+            this.Controls.Add(this.PedidosPanel);
             this.Controls.Add(this.AgregarPedidoBtn);
             this.Name = "FrmMuroPedidos";
             this.Text = "Muro de pedidos";
+            this.Load += new System.EventHandler(this.FrmMuroPedidos_Load);
             this.ResumeLayout(false);
 
         }
@@ -68,6 +69,6 @@
         #endregion
 
         private System.Windows.Forms.Button AgregarPedidoBtn;
-        private System.Windows.Forms.FlowLayoutPanel ParedFlLy;
+        private System.Windows.Forms.Panel PedidosPanel;
     }
 }
