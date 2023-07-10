@@ -15,6 +15,7 @@ namespace AppRoti.Vistas
     public partial class FrmMuroPedidos : Form
     {
         private Point ultimo = new Point();
+        private Point selec = new Point();
         private List<CPedido> listadoPedidos = new List<CPedido>();
         bool aux = false;
 
@@ -37,13 +38,16 @@ namespace AppRoti.Vistas
         }
 
         private void A_FormClosing(object sender, FormClosingEventArgs e)
+        //Instanciar una CPedido cuando el formulario de carga de info se cierra
         {
             CPedido pedido = new CPedido();
-            pedido.ControlAsociado.MouseDown += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseDown);
-            pedido.ControlAsociado.MouseMove += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseMove);
-            pedido.ControlAsociado.MouseUp += new System.Windows.Forms.MouseEventHandler(ctrPedido1_MouseUp);
+            pedido.ControlAsociado.MouseDown += new MouseEventHandler(ctrPedido1_MouseDown);
+            pedido.ControlAsociado.MouseMove += new MouseEventHandler(ctrPedido1_MouseMove);
+            pedido.ControlAsociado.MouseUp += new MouseEventHandler(ctrPedido1_MouseUp);
+            pedido.ControlAsociado.MouseEnter += new EventHandler(ctrPedido1_MouseEnter);
             pedido.ControlAsociado.Anchor = AnchorStyles.Top;
             if (PedidosPanel.Controls.Count>0) {
+                //buscar la ubicacion del ultimo ControlAsociado del panel
                 Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;
                 posAnt.X += pedido.ControlAsociado.Size.Width;
                 pedido.ControlAsociado.Location = posAnt;
@@ -64,6 +68,7 @@ namespace AppRoti.Vistas
                 Point m = controlAux.TopLevelControl.PointToClient(Cursor.Position);
                 m.X -= controlAux.TopLevelControl.Location.X;
                 m.Y -= controlAux.TopLevelControl.Location.Y;
+                selec = controlAux.Location;
                 controlAux.Location = m;
                 bool teEncontrePuto = false;
                 foreach (Control item in PedidosPanel.Controls) {
@@ -71,12 +76,25 @@ namespace AppRoti.Vistas
                         if (item.Bounds.IntersectsWith(controlAux.Bounds)) {
                             teEncontrePuto = true;
                             ultimo = item.Location;
-                            controlAux.Location = ultimo;
                             ultimo.X += item.Width;
-                            ultimo.Y = controlAux.ClientRectangle.Top;
-                            item.Location = ultimo;
+                            controlAux.Location = ultimo;
                         }
                     }
+                }
+            }
+        }
+
+        private void ctrPedido1_MouseEnter(object sender, EventArgs e) {
+            if (aux) {
+                Control controlAux = (sender as Control);
+                if (selec.X > controlAux.Location.X) {
+                    selec.X -= controlAux.Width;
+                    selec.Y = controlAux.ClientRectangle.Top;
+                    controlAux.Location = selec;
+                }
+                else {
+                    selec.X = 0;
+                    controlAux.Location = selec;
                 }
             }
         }
@@ -85,8 +103,8 @@ namespace AppRoti.Vistas
         {
             aux = false;
             Control controlAux = (sender as Control);
-            ultimo.X -= controlAux.Width;
-            controlAux.Location = ultimo;
+            //ultimo.X -= controlAux.Width;
+            //controlAux.Location = ultimo;
         }
 
         private void FrmMuroPedidos_Load(object sender, EventArgs e) {
