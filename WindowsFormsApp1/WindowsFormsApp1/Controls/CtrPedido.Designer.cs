@@ -31,12 +31,14 @@
             this.CancelarBtn = new System.Windows.Forms.Button();
             this.CompletadoBtn = new System.Windows.Forms.Button();
             this.NroPedidoLbl = new System.Windows.Forms.Label();
+            this.DetalleList = new System.Windows.Forms.ListBox();
+            this.idPedidoLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CancelarBtn
             // 
             this.CancelarBtn.BackColor = System.Drawing.Color.DarkRed;
-            this.CancelarBtn.Location = new System.Drawing.Point(21, 103);
+            this.CancelarBtn.Location = new System.Drawing.Point(9, 117);
             this.CancelarBtn.Name = "CancelarBtn";
             this.CancelarBtn.Size = new System.Drawing.Size(33, 32);
             this.CancelarBtn.TabIndex = 0;
@@ -48,9 +50,9 @@
             this.CompletadoBtn.BackColor = System.Drawing.Color.DarkGreen;
             this.CompletadoBtn.Font = new System.Drawing.Font("Webdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.CompletadoBtn.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.CompletadoBtn.Location = new System.Drawing.Point(85, 103);
+            this.CompletadoBtn.Location = new System.Drawing.Point(95, 117);
             this.CompletadoBtn.Name = "CompletadoBtn";
-            this.CompletadoBtn.Size = new System.Drawing.Size(36, 32);
+            this.CompletadoBtn.Size = new System.Drawing.Size(33, 32);
             this.CompletadoBtn.TabIndex = 1;
             this.CompletadoBtn.UseVisualStyleBackColor = false;
             this.CompletadoBtn.Click += new System.EventHandler(this.CompletadoBtn_Click);
@@ -58,11 +60,27 @@
             // NroPedidoLbl
             // 
             this.NroPedidoLbl.AutoSize = true;
-            this.NroPedidoLbl.Location = new System.Drawing.Point(21, 21);
+            this.NroPedidoLbl.Location = new System.Drawing.Point(3, 10);
             this.NroPedidoLbl.Name = "NroPedidoLbl";
             this.NroPedidoLbl.Size = new System.Drawing.Size(62, 13);
             this.NroPedidoLbl.TabIndex = 2;
             this.NroPedidoLbl.Text = "Pedido nro°";
+            // 
+            // DetalleList
+            // 
+            this.DetalleList.FormattingEnabled = true;
+            this.DetalleList.Location = new System.Drawing.Point(3, 55);
+            this.DetalleList.Name = "DetalleList";
+            this.DetalleList.Size = new System.Drawing.Size(134, 56);
+            this.DetalleList.TabIndex = 3;
+            // 
+            // idPedidoLbl
+            // 
+            this.idPedidoLbl.AutoSize = true;
+            this.idPedidoLbl.Location = new System.Drawing.Point(6, 27);
+            this.idPedidoLbl.Name = "idPedidoLbl";
+            this.idPedidoLbl.Size = new System.Drawing.Size(0, 13);
+            this.idPedidoLbl.TabIndex = 4;
             // 
             // CtrPedido
             // 
@@ -70,6 +88,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LawnGreen;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.idPedidoLbl);
+            this.Controls.Add(this.DetalleList);
             this.Controls.Add(this.NroPedidoLbl);
             this.Controls.Add(this.CompletadoBtn);
             this.Controls.Add(this.CancelarBtn);
@@ -86,5 +106,7 @@
         private System.Windows.Forms.Button CancelarBtn;
         private System.Windows.Forms.Button CompletadoBtn;
         private System.Windows.Forms.Label NroPedidoLbl;
+        private System.Windows.Forms.ListBox DetalleList;
+        private System.Windows.Forms.Label idPedidoLbl;
     }
 }

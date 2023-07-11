@@ -19,7 +19,7 @@ namespace AppRoti {
             set { _listadoClientes = value; }
         }
 
-        static internal List<CProducto> _listadoProductos;
+        static private List<CProducto> _listadoProductos = new List<CProducto>();
 
         static internal List<CProducto> ListadoProductos {
             get { return _listadoProductos; }

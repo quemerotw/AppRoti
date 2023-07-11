@@ -16,8 +16,10 @@ namespace AppRoti.Vistas
     {
         private Point ultimo = new Point();
         private Point selec = new Point();
-        private List<CPedido> listadoPedidos = new List<CPedido>();
         bool aux = false;
+
+        static internal List<CPedido> listadoPedidos = new List<CPedido>();
+ 
 
         public FrmMuroPedidos()
         {
@@ -40,22 +42,27 @@ namespace AppRoti.Vistas
         private void A_FormClosing(object sender, FormClosingEventArgs e)
         //Instanciar una CPedido cuando el formulario de carga de info se cierra
         {
-            PedidoAM frm = (sender as PedidoAM);
-            CPedido pedido = new CPedido(new CCliente());
-            pedido.ControlAsociado.MouseDown += new MouseEventHandler(ctrPedido1_MouseDown);
-            pedido.ControlAsociado.MouseMove += new MouseEventHandler(ctrPedido1_MouseMove);
-            pedido.ControlAsociado.MouseUp += new MouseEventHandler(ctrPedido1_MouseUp);
-            pedido.ControlAsociado.MouseEnter += new EventHandler(ctrPedido1_MouseEnter);
-            pedido.ControlAsociado.Anchor = AnchorStyles.Top;
-            if (PedidosPanel.Controls.Count>0) {
-                //buscar la ubicacion del ultimo ControlAsociado del panel
-                Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;
-                posAnt.X += pedido.ControlAsociado.Size.Width;
-                pedido.ControlAsociado.Location = posAnt;
+            CPedido pedido;
+            if (listadoPedidos.Count > 0) {
+                pedido = listadoPedidos[listadoPedidos.Count - 1];
+                pedido.ControlAsociado.MouseEnter += ctrPedido1_MouseEnter;
+                pedido.ControlAsociado.MouseMove += ctrPedido1_MouseMove;
+                pedido.ControlAsociado.MouseUp += ctrPedido1_MouseUp;
+                pedido.ControlAsociado.MouseDown += ctrPedido1_MouseDown;
+                (pedido.ControlAsociado.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
+                if (PedidosPanel.Controls.Count > 0) {
+                    //buscar la ubicacion del ultimo ControlAsociado del panel
+                    Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;
+                    posAnt.X += pedido.ControlAsociado.Size.Width;
+                    pedido.ControlAsociado.Location = posAnt;
+                }
+                pedido.ControlAsociado.Anchor = AnchorStyles.Top;
+                listadoPedidos.Remove(pedido);
+                listadoPedidos.Add(pedido);
+                PedidosPanel.Controls.Add(pedido.ControlAsociado);
             }
-            listadoPedidos.Add(pedido);
-            PedidosPanel.Controls.Add(pedido.ControlAsociado);
         }
+
 
         private void ctrPedido1_MouseDown(object sender, MouseEventArgs e)
         {

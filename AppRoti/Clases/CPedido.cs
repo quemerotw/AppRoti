@@ -13,8 +13,28 @@ namespace AppRoti.Clases
     internal class CPedido
     {
         private static int _numPedido=1;
+
+        private double _recargo;
+
+        public double Recargo {
+            get { return _recargo; }
+            set { _recargo = value; }
+        }
+
         private double _descuento;
-        private double _total;
+
+        public double Descuento {
+            get { return _descuento; }
+            set { _descuento = value; }
+        }
+
+        private double _subTotal;
+
+        public double Subtotal {
+            get { return _subTotal; }
+            set { _subTotal = value; }
+        }
+
         public CCliente Cliente { get;}
         private WindowsFormsApp1.Controls.CtrPedido _controlAsoc;
 
@@ -42,9 +62,17 @@ namespace AppRoti.Clases
             _controlAsoc.Location = new System.Drawing.Point(0, 0);
             _controlAsoc.Name = _nombre;
             _controlAsoc.Size = new System.Drawing.Size(134, 159);
-            _controlAsoc.Controls[0].Text += string.Format("{0}", _numPedido);
+            (_controlAsoc.Controls.Find("NroPedidoLbl",false)[0] as Label).Text += string.Format("{0}", _numPedido);
+            (_controlAsoc.Controls.Find("idPedidoLbl", false)[0] as Label).Text += string.Format("{0}", cliente.ToString());
             _numPedido++;
             Cliente = cliente;
+        }
+        public double CalcularSubtotal() {
+            double resultado = 0;
+            foreach (CProducto item in this.DetallePedido) {
+                resultado += item.PrecioVenta;
+            }
+            return resultado;
         }
     }
 }
