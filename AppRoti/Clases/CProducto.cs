@@ -10,16 +10,16 @@ namespace AppRoti.Clases
     public class CProducto
     {
         public string Nombre { get; set; }
-        public int PrecioVenta { get; set; }
-        public int PrecioCosto { get; set; }
+        public double PrecioVenta { get; set; }
+        public double PrecioCosto { get; set; }
         public string Descripcion { get; set; }
 
         public override string ToString()
         {
-            return this.Nombre; 
+            return this.Nombre +" $"+  this.PrecioVenta; 
         }
 
-        public int CalcularGanancia() {
+        public double CalcularGanancia() {
             return this.PrecioVenta - this.PrecioCosto;
         }
     }

@@ -36,14 +36,16 @@
             this.OrdenesList = new System.Windows.Forms.CheckedListBox();
             this.ConEnvioChk = new System.Windows.Forms.CheckBox();
             this.AceptarBtn = new System.Windows.Forms.Button();
+            this.PrecioEnvioNUP = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.PrecioEnvioNUP)).BeginInit();
             this.SuspendLayout();
             // 
             // ProductosListWv
             // 
             this.ProductosListWv.HideSelection = false;
-            this.ProductosListWv.Location = new System.Drawing.Point(215, 8);
+            this.ProductosListWv.Location = new System.Drawing.Point(374, 27);
             this.ProductosListWv.Name = "ProductosListWv";
-            this.ProductosListWv.Size = new System.Drawing.Size(517, 329);
+            this.ProductosListWv.Size = new System.Drawing.Size(358, 310);
             this.ProductosListWv.TabIndex = 0;
             this.ProductosListWv.UseCompatibleStateImageBehavior = false;
             this.ProductosListWv.ItemActivate += new System.EventHandler(this.ProductosListWv_ItemActivate);
@@ -85,9 +87,9 @@
             // OrdenesList
             // 
             this.OrdenesList.FormattingEnabled = true;
-            this.OrdenesList.Location = new System.Drawing.Point(66, 138);
+            this.OrdenesList.Location = new System.Drawing.Point(211, 27);
             this.OrdenesList.Name = "OrdenesList";
-            this.OrdenesList.Size = new System.Drawing.Size(121, 199);
+            this.OrdenesList.Size = new System.Drawing.Size(157, 199);
             this.OrdenesList.TabIndex = 7;
             // 
             // ConEnvioChk
@@ -101,6 +103,7 @@
             this.ConEnvioChk.TabIndex = 8;
             this.ConEnvioChk.Text = "Con envio";
             this.ConEnvioChk.UseVisualStyleBackColor = true;
+            this.ConEnvioChk.CheckedChanged += new System.EventHandler(this.ConEnvioChk_CheckedChanged);
             // 
             // AceptarBtn
             // 
@@ -112,11 +115,39 @@
             this.AceptarBtn.UseVisualStyleBackColor = true;
             this.AceptarBtn.Click += new System.EventHandler(this.AceptarBtn_Click);
             // 
+            // PrecioEnvioNUP
+            // 
+            this.PrecioEnvioNUP.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.PrecioEnvioNUP.Location = new System.Drawing.Point(96, 64);
+            this.PrecioEnvioNUP.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.PrecioEnvioNUP.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.PrecioEnvioNUP.Name = "PrecioEnvioNUP";
+            this.PrecioEnvioNUP.Size = new System.Drawing.Size(91, 20);
+            this.PrecioEnvioNUP.TabIndex = 10;
+            this.PrecioEnvioNUP.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            // 
             // PedidoAM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 373);
+            this.Controls.Add(this.PrecioEnvioNUP);
             this.Controls.Add(this.AceptarBtn);
             this.Controls.Add(this.ConEnvioChk);
             this.Controls.Add(this.OrdenesList);
@@ -128,6 +159,7 @@
             this.Name = "PedidoAM";
             this.Text = "PedidoAM";
             this.Load += new System.EventHandler(this.PedidoAM_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PrecioEnvioNUP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +175,6 @@
         private System.Windows.Forms.CheckedListBox OrdenesList;
         private System.Windows.Forms.CheckBox ConEnvioChk;
         private System.Windows.Forms.Button AceptarBtn;
+        private System.Windows.Forms.NumericUpDown PrecioEnvioNUP;
     }
 }

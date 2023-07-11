@@ -33,12 +33,14 @@
             this.NroPedidoLbl = new System.Windows.Forms.Label();
             this.DetalleList = new System.Windows.Forms.ListBox();
             this.idPedidoLbl = new System.Windows.Forms.Label();
+            this.DireccionLbl = new System.Windows.Forms.Label();
+            this.TotalLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CancelarBtn
             // 
             this.CancelarBtn.BackColor = System.Drawing.Color.DarkRed;
-            this.CancelarBtn.Location = new System.Drawing.Point(9, 117);
+            this.CancelarBtn.Location = new System.Drawing.Point(84, 139);
             this.CancelarBtn.Name = "CancelarBtn";
             this.CancelarBtn.Size = new System.Drawing.Size(33, 32);
             this.CancelarBtn.TabIndex = 0;
@@ -50,7 +52,7 @@
             this.CompletadoBtn.BackColor = System.Drawing.Color.DarkGreen;
             this.CompletadoBtn.Font = new System.Drawing.Font("Webdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.CompletadoBtn.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.CompletadoBtn.Location = new System.Drawing.Point(95, 117);
+            this.CompletadoBtn.Location = new System.Drawing.Point(123, 139);
             this.CompletadoBtn.Name = "CompletadoBtn";
             this.CompletadoBtn.Size = new System.Drawing.Size(33, 32);
             this.CompletadoBtn.TabIndex = 1;
@@ -69,18 +71,39 @@
             // DetalleList
             // 
             this.DetalleList.FormattingEnabled = true;
-            this.DetalleList.Location = new System.Drawing.Point(3, 55);
+            this.DetalleList.Location = new System.Drawing.Point(3, 67);
             this.DetalleList.Name = "DetalleList";
-            this.DetalleList.Size = new System.Drawing.Size(134, 56);
+            this.DetalleList.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.DetalleList.Size = new System.Drawing.Size(166, 56);
             this.DetalleList.TabIndex = 3;
             // 
             // idPedidoLbl
             // 
             this.idPedidoLbl.AutoSize = true;
-            this.idPedidoLbl.Location = new System.Drawing.Point(6, 27);
+            this.idPedidoLbl.Location = new System.Drawing.Point(3, 29);
             this.idPedidoLbl.Name = "idPedidoLbl";
-            this.idPedidoLbl.Size = new System.Drawing.Size(0, 13);
+            this.idPedidoLbl.Size = new System.Drawing.Size(45, 13);
             this.idPedidoLbl.TabIndex = 4;
+            this.idPedidoLbl.Text = "Cliente: ";
+            // 
+            // DireccionLbl
+            // 
+            this.DireccionLbl.AutoSize = true;
+            this.DireccionLbl.Location = new System.Drawing.Point(2, 48);
+            this.DireccionLbl.Name = "DireccionLbl";
+            this.DireccionLbl.Size = new System.Drawing.Size(55, 13);
+            this.DireccionLbl.TabIndex = 5;
+            this.DireccionLbl.Text = "Direccion:";
+            this.DireccionLbl.Visible = false;
+            // 
+            // TotalLbl
+            // 
+            this.TotalLbl.AutoSize = true;
+            this.TotalLbl.Location = new System.Drawing.Point(3, 139);
+            this.TotalLbl.Name = "TotalLbl";
+            this.TotalLbl.Size = new System.Drawing.Size(43, 13);
+            this.TotalLbl.TabIndex = 6;
+            this.TotalLbl.Text = "Total: $";
             // 
             // CtrPedido
             // 
@@ -88,13 +111,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LawnGreen;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.TotalLbl);
+            this.Controls.Add(this.DireccionLbl);
             this.Controls.Add(this.idPedidoLbl);
             this.Controls.Add(this.DetalleList);
             this.Controls.Add(this.NroPedidoLbl);
             this.Controls.Add(this.CompletadoBtn);
             this.Controls.Add(this.CancelarBtn);
             this.Name = "CtrPedido";
-            this.Size = new System.Drawing.Size(140, 162);
+            this.Size = new System.Drawing.Size(172, 184);
             this.Load += new System.EventHandler(this.CtrPedido_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -108,5 +133,7 @@
         private System.Windows.Forms.Label NroPedidoLbl;
         private System.Windows.Forms.ListBox DetalleList;
         private System.Windows.Forms.Label idPedidoLbl;
+        private System.Windows.Forms.Label DireccionLbl;
+        private System.Windows.Forms.Label TotalLbl;
     }
 }

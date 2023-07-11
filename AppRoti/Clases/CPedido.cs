@@ -61,8 +61,8 @@ namespace AppRoti.Clases
             _controlAsoc.BackColor = System.Drawing.Color.LawnGreen;
             _controlAsoc.Location = new System.Drawing.Point(0, 0);
             _controlAsoc.Name = _nombre;
-            _controlAsoc.Size = new System.Drawing.Size(134, 159);
-            (_controlAsoc.Controls.Find("NroPedidoLbl",false)[0] as Label).Text += string.Format("{0}", _numPedido);
+            _controlAsoc.Size = new System.Drawing.Size(176, 190);
+            (_controlAsoc.Controls.Find("NroPedidoLbl",false)[0] as Label).Text += string.Format("{0} - hora {1}:{2}", _numPedido,DateTime.Now.TimeOfDay.Hours,DateTime.Now.TimeOfDay.Minutes);
             (_controlAsoc.Controls.Find("idPedidoLbl", false)[0] as Label).Text += string.Format("{0}", cliente.ToString());
             _numPedido++;
             Cliente = cliente;

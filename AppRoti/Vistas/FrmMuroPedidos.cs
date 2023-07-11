@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,7 @@ namespace AppRoti.Vistas
                 pedido.ControlAsociado.MouseUp += ctrPedido1_MouseUp;
                 pedido.ControlAsociado.MouseDown += ctrPedido1_MouseDown;
                 (pedido.ControlAsociado.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
+                (pedido.ControlAsociado.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Subtotal + pedido.Descuento);
                 if (PedidosPanel.Controls.Count > 0) {
                     //buscar la ubicacion del ultimo ControlAsociado del panel
                     Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;

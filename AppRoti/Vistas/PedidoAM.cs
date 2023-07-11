@@ -33,8 +33,13 @@ namespace AppRoti.Vistas
             DireccionCbo.Text = "";
 
             CProducto p = new CProducto();
-            p.Nombre = "pizza";
+            p.Nombre = "Notti";
+            p.PrecioVenta = 2000.0;
+            CProducto p2 = new CProducto();
+            p2.Nombre = "muzza";
+            p2.PrecioVenta = 1000.0;
             Program.ListadoProductos.Add(p);
+            Program.ListadoProductos.Add(p2);
             foreach (CProducto prodAux in Program.ListadoProductos)
             {
                 ListViewItem item = new ListViewItem();
@@ -50,25 +55,50 @@ namespace AppRoti.Vistas
         }
 
         private void AceptarBtn_Click(object sender, EventArgs e) {
-            CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text); ;
-            CPedido pedido;
-            if (ClienteCbo.SelectedIndex <0) {
-                if (MessageBox.Show("Crear nuevo cliente?","cliente nuevo",MessageBoxButtons.OKCancel) == DialogResult.OK) {
-                    Program.ListadoClientes.Add(cliente);
+            if (ClienteCbo.Text != "" ){
+                if (OrdenesList.Items.Count>0) {
+                    CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text); ;
+                    CPedido pedido;
+                    if (ClienteCbo.SelectedIndex < 0) {
+                        if (MessageBox.Show("Crear nuevo cliente?", "cliente nuevo", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+                            Program.ListadoClientes.Add(cliente);
+                        }
+                    }
+                    else {
+                        cliente = ClienteCbo.SelectedItem as CCliente;
+                    }
+                    if (ConEnvioChk.Checked) {
+                        pedido = new CPedidoDelivery(cliente, cliente.Direccion);
+                        CProducto envio = new CProducto();
+                        envio.Nombre = "Envio";
+                        envio.PrecioVenta = (double)PrecioEnvioNUP.Value;
+                        pedido.DetallePedido.Add(envio);
+                    }
+                    else {
+                        pedido = new CPedido(cliente);
+                        pedido.Subtotal = 0;
+                    }
+                    foreach (string aux in OrdenesList.CheckedItems) {
+                        pedido.DetallePedido.Add(Program.ListadoProductos.Find(x => x.Nombre == aux));
+                    }
+                    pedido.DetallePedido.Sort((x,y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
+                    pedido.Subtotal += pedido.CalcularSubtotal();
+                    pedido.Descuento = 0;
+                    FrmMuroPedidos.listadoPedidos.Add(pedido);
+                    this.Close();
+                }
+                else {
+                    MessageBox.Show("Pedido Vacio");
                 }
             }
             else {
-                cliente = ClienteCbo.SelectedItem as CCliente;
+                MessageBox.Show("Cliente Vacio");
+                ClienteCbo.Focus();
             }
-            pedido = new CPedido(cliente);
-            foreach (string aux in OrdenesList.Items) {
-                pedido.DetallePedido.Add(Program.ListadoProductos.Find(x => x.Nombre == aux));
-            }
-            pedido.Subtotal = pedido.CalcularSubtotal();
-            pedido.Descuento = 0;
-            MessageBox.Show(pedido.Cliente.ToString()+pedido.Subtotal);
-            FrmMuroPedidos.listadoPedidos.Add(pedido);
-            this.Close();
+        }
+
+        private void ConEnvioChk_CheckedChanged(object sender, EventArgs e) {
+            PrecioEnvioNUP.Enabled = ConEnvioChk.Checked;
         }
     }
 }
