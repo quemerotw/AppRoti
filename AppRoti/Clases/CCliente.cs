@@ -18,5 +18,15 @@ namespace AppRoti.Clases {
         {
             this.Nombres = nombre;
         }
+
+        public CCliente(string nombre,string direccion)
+        {
+            this.Direccion = direccion;
+            this.Nombres = nombre;
+        }
+
+        public override string ToString() {
+            return this.Nombres;
+        }
     }
 }

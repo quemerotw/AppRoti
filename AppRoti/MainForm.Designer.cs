@@ -160,6 +160,7 @@
             this.Controls.Add(this.MainMenuStrip);
             this.Name = "MainForm";
             this.Text = "Roti";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             this.ResumeLayout(false);

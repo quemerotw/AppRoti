@@ -110,6 +110,7 @@
             this.AceptarBtn.TabIndex = 9;
             this.AceptarBtn.Text = "Aceptar";
             this.AceptarBtn.UseVisualStyleBackColor = true;
+            this.AceptarBtn.Click += new System.EventHandler(this.AceptarBtn_Click);
             // 
             // PedidoAM
             // 

@@ -14,22 +14,20 @@ namespace AppRoti
 {
     public partial class MainForm : Form
     {
-        static private List<CCliente> _listadoClientes;
-
-        static internal List<CCliente> ListadoClientes {
-            get { return _listadoClientes; }
-            set { _listadoClientes = value; }
-        }
+        
 
         public MainForm()
         {
             InitializeComponent();
-            ListadoClientes.Add(new CCliente("ALejo"));
         }
 
         private void auxToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FrmMuroPedidos().Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e) {
+
         }
     }
 }
