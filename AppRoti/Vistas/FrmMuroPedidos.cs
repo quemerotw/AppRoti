@@ -40,7 +40,8 @@ namespace AppRoti.Vistas
         private void A_FormClosing(object sender, FormClosingEventArgs e)
         //Instanciar una CPedido cuando el formulario de carga de info se cierra
         {
-            CPedido pedido = new CPedido();
+            PedidoAM frm = (sender as PedidoAM);
+            CPedido pedido = new CPedido(new CCliente());
             pedido.ControlAsociado.MouseDown += new MouseEventHandler(ctrPedido1_MouseDown);
             pedido.ControlAsociado.MouseMove += new MouseEventHandler(ctrPedido1_MouseMove);
             pedido.ControlAsociado.MouseUp += new MouseEventHandler(ctrPedido1_MouseUp);
@@ -90,10 +91,6 @@ namespace AppRoti.Vistas
                 if (selec.X > controlAux.Location.X) {
                     selec.X -= controlAux.Width;
                     selec.Y = controlAux.ClientRectangle.Top;
-                    controlAux.Location = selec;
-                }
-                else {
-                    selec.X = 0;
                     controlAux.Location = selec;
                 }
             }

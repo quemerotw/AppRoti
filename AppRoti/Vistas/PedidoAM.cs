@@ -21,6 +21,7 @@ namespace AppRoti.Vistas
 
         private void PedidoAM_Load(object sender, EventArgs e)
         {
+            ClienteCbo.DataSource = MainForm.ListadoClientes;
             CProducto a= new CProducto();
             a.Nombre = "Pizza - $2000";
             _listaPoductos.Add(a);

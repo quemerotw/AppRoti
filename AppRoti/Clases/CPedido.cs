@@ -9,13 +9,22 @@ using AppRoti;
 
 namespace AppRoti.Clases
 {
+    [Serializable]
     internal class CPedido
     {
-        private bool esDelivery = false;
+        private static int _numPedido=1;
+        private double _descuento;
+        private double _total;
+        public CCliente Cliente { get;}
         private WindowsFormsApp1.Controls.CtrPedido _controlAsoc;
-        private static int numPedido=1;
-        private double subtotal;
-        private double total;
+
+        private List<CProducto> _detallePedido;
+
+        public List<CProducto> DetallePedido {
+            get { return _detallePedido; }
+            set { _detallePedido = value; }
+        }
+
 
         public WindowsFormsApp1.Controls.CtrPedido ControlAsociado
 
@@ -24,16 +33,18 @@ namespace AppRoti.Clases
             set { _controlAsoc = value; }
         }
 
-        public CPedido() {
-            string _nombre = string.Format("pedido{0}", numPedido);
+        public CPedido(CCliente cliente) {
+            string _nombre = string.Format("pedido{0}", _numPedido);
+            _detallePedido = new List<CProducto>();
             _controlAsoc = new WindowsFormsApp1.Controls.CtrPedido();
             _controlAsoc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             _controlAsoc.BackColor = System.Drawing.Color.LawnGreen;
             _controlAsoc.Location = new System.Drawing.Point(0, 0);
             _controlAsoc.Name = _nombre;
             _controlAsoc.Size = new System.Drawing.Size(134, 159);
-            _controlAsoc.Controls[0].Text += string.Format("{0}", numPedido);
-            numPedido++;
+            _controlAsoc.Controls[0].Text += string.Format("{0}", _numPedido);
+            _numPedido++;
+            Cliente = cliente;
         }
     }
 }
