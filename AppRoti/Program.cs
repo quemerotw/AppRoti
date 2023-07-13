@@ -39,6 +39,14 @@ namespace AppRoti {
         }
 
         static private void LoadArch() {
+            CProducto p = new CProducto();
+            p.Nombre = "Notti";
+            p.PrecioVenta = 2000.0;
+            CProducto p2 = new CProducto();
+            p2.Nombre = "muzza";
+            p2.PrecioVenta = 1000.0;
+            Program.ListadoProductos.Add(p);
+            Program.ListadoProductos.Add(p2);
             BinaryFormatter f = new BinaryFormatter();
             try {
                 FileStream file = new FileStream("arch.bin", FileMode.Open);

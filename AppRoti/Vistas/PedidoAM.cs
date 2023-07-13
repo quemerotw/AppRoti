@@ -13,7 +13,6 @@ namespace AppRoti.Vistas
 {
     public partial class PedidoAM : Form
     {
-        
         public PedidoAM()
         {
             InitializeComponent();
@@ -32,19 +31,12 @@ namespace AppRoti.Vistas
             DireccionCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
             DireccionCbo.Text = "";
 
-            CProducto p = new CProducto();
-            p.Nombre = "Notti";
-            p.PrecioVenta = 2000.0;
-            CProducto p2 = new CProducto();
-            p2.Nombre = "muzza";
-            p2.PrecioVenta = 1000.0;
-            Program.ListadoProductos.Add(p);
-            Program.ListadoProductos.Add(p2);
-            foreach (CProducto prodAux in Program.ListadoProductos)
-            {
+
+            foreach (CProducto prodAux in Program.ListadoProductos) {
                 ListViewItem item = new ListViewItem();
+
                 item.Name = prodAux.Nombre;
-                item.Text = prodAux.Nombre;
+                item.Text = string.Format("{0} - ${1}", prodAux.Nombre, prodAux.PrecioVenta); 
                 ProductosListWv.Items.Add(item);
             }
         }
@@ -56,7 +48,7 @@ namespace AppRoti.Vistas
 
         private void AceptarBtn_Click(object sender, EventArgs e) {
             if (ClienteCbo.Text != "" ){
-                if (OrdenesList.Items.Count>0) {
+                if (OrdenesList.Items.Count > 0) {
                     CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text); ;
                     CPedido pedido;
                     if (ClienteCbo.SelectedIndex < 0) {
@@ -72,16 +64,16 @@ namespace AppRoti.Vistas
                         CProducto envio = new CProducto();
                         envio.Nombre = "Envio";
                         envio.PrecioVenta = (double)PrecioEnvioNUP.Value;
+                        (pedido as CPedidoDelivery).PrecioEnvio = 0;
                         pedido.DetallePedido.Add(envio);
                     }
                     else {
                         pedido = new CPedido(cliente);
-                        pedido.Subtotal = 0;
                     }
                     foreach (string aux in OrdenesList.CheckedItems) {
                         pedido.DetallePedido.Add(Program.ListadoProductos.Find(x => x.Nombre == aux));
                     }
-                    pedido.DetallePedido.Sort((x,y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
+                    pedido.DetallePedido.Sort((x, y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
                     pedido.Subtotal += pedido.CalcularSubtotal();
                     pedido.Descuento = 0;
                     FrmMuroPedidos.listadoPedidos.Add(pedido);
@@ -99,6 +91,28 @@ namespace AppRoti.Vistas
 
         private void ConEnvioChk_CheckedChanged(object sender, EventArgs e) {
             PrecioEnvioNUP.Enabled = ConEnvioChk.Checked;
+        }
+
+        private void DescChk_CheckedChanged(object sender, EventArgs e) {
+            DescTxt.Enabled = DescChk.Checked;
+        }
+
+        private void RecargoChk_CheckedChanged(object sender, EventArgs e) {
+            RecargoTxt.Enabled = RecargoChk.Checked;
+        }
+
+        private void DescTxt_KeyPress(object sender, KeyPressEventArgs e) { 
+            if (!char.IsDigit(e.KeyChar) && (((short)e.KeyChar) != 8))
+                e.Handled = true;
+        }
+
+        private void RecargoTxt_KeyPress(object sender, KeyPressEventArgs e) {
+            if (!char.IsDigit(e.KeyChar) && (((short)e.KeyChar) != 8))
+                e.Handled = true;
+        }
+
+        private void CancelarBtn_Click(object sender, EventArgs e) {
+            this.Close();
         }
     }
 }
