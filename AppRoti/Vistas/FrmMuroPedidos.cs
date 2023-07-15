@@ -35,34 +35,8 @@ namespace AppRoti.Vistas
         private void button1_Click(object sender, EventArgs e)
         {
            PedidoAM a = new PedidoAM();
-            a.FormClosing += A_FormClosing;
+            a.FormComplete += new FormEvent(f_FormComplete);
             a.ShowIngresoPedido();
-           
-        }
-
-        private void A_FormClosing(object sender, FormClosingEventArgs e)
-        //Instanciar una CPedido cuando el formulario de carga de info se cierra
-        {
-            CPedido pedido;
-            if (listadoPedidos.Count > 0) {
-                pedido = listadoPedidos[listadoPedidos.Count - 1];
-                pedido.ControlAsociado.MouseEnter += ctrPedido1_MouseEnter;
-                pedido.ControlAsociado.MouseMove += ctrPedido1_MouseMove;
-                pedido.ControlAsociado.MouseUp += ctrPedido1_MouseUp;
-                pedido.ControlAsociado.MouseDown += ctrPedido1_MouseDown;
-                (pedido.ControlAsociado.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
-                (pedido.ControlAsociado.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Subtotal + pedido.Descuento);
-                if (PedidosPanel.Controls.Count > 0) {
-                    //buscar la ubicacion del ultimo ControlAsociado del panel
-                    Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;
-                    posAnt.X += pedido.ControlAsociado.Size.Width;
-                    pedido.ControlAsociado.Location = posAnt;
-                }
-                pedido.ControlAsociado.Anchor = AnchorStyles.Top;
-                listadoPedidos.Remove(pedido);
-                listadoPedidos.Add(pedido);
-                PedidosPanel.Controls.Add(pedido.ControlAsociado);
-            }
         }
 
 
@@ -115,6 +89,31 @@ namespace AppRoti.Vistas
 
         private void FrmMuroPedidos_Load(object sender, EventArgs e) {
             
+        }
+
+        internal void f_FormComplete(object sender, EventArgDom ev) {
+            if (ev.Status == CompleteStatus.completed) {
+                CPedido pedido;
+                pedido = ev.ObjProcess as CPedido;
+                pedido.ControlAsociado.MouseEnter += ctrPedido1_MouseEnter;
+                pedido.ControlAsociado.MouseMove += ctrPedido1_MouseMove;
+                pedido.ControlAsociado.MouseUp += ctrPedido1_MouseUp;
+                pedido.ControlAsociado.MouseDown += ctrPedido1_MouseDown;
+                (pedido.ControlAsociado.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
+                (pedido.ControlAsociado.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Subtotal + pedido.Descuento);
+                if (PedidosPanel.Controls.Count > 0) {
+                    //buscar la ubicacion del ultimo ControlAsociado del panel
+                    Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;
+                    posAnt.X += pedido.ControlAsociado.Size.Width;
+                    pedido.ControlAsociado.Location = posAnt;
+                }
+                pedido.ControlAsociado.Anchor = AnchorStyles.Top;
+                listadoPedidos.Add(pedido);
+                PedidosPanel.Controls.Add(pedido.ControlAsociado);
+            }
+            else {
+                MessageBox.Show("Test");
+            }
         }
     }
 }

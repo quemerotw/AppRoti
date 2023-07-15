@@ -23,11 +23,18 @@ namespace AppRoti
 
         private void auxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FrmMuroPedidos().Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
 
+        }
+
+        private void StartShiftBtn_Click(object sender, EventArgs e) {
+            new FrmMuroPedidos().Show();
+        }
+
+        private void ListadosBtn_Click(object sender, EventArgs e) {
+            new ListSelector().Show();
         }
     }
 }

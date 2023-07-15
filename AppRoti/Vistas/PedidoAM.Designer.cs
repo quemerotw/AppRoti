@@ -148,10 +148,11 @@
             this.ConEnvioChk.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ConEnvioChk.Location = new System.Drawing.Point(8, 55);
             this.ConEnvioChk.Name = "ConEnvioChk";
-            this.ConEnvioChk.Size = new System.Drawing.Size(74, 17);
+            this.ConEnvioChk.Size = new System.Drawing.Size(81, 21);
             this.ConEnvioChk.TabIndex = 20;
             this.ConEnvioChk.Text = "Con envio";
             this.ConEnvioChk.UseVisualStyleBackColor = true;
+            this.ConEnvioChk.CheckedChanged += new System.EventHandler(this.ConEnvioChk_CheckedChanged);
             // 
             // DireccionCbo
             // 
@@ -204,7 +205,7 @@
             this.RecargoChk.AutoSize = true;
             this.RecargoChk.Location = new System.Drawing.Point(7, 42);
             this.RecargoChk.Name = "RecargoChk";
-            this.RecargoChk.Size = new System.Drawing.Size(67, 17);
+            this.RecargoChk.Size = new System.Drawing.Size(74, 21);
             this.RecargoChk.TabIndex = 3;
             this.RecargoChk.Text = "Recargo";
             this.RecargoChk.UseVisualStyleBackColor = true;
@@ -224,7 +225,7 @@
             this.DescChk.AutoSize = true;
             this.DescChk.Location = new System.Drawing.Point(8, 15);
             this.DescChk.Name = "DescChk";
-            this.DescChk.Size = new System.Drawing.Size(78, 17);
+            this.DescChk.Size = new System.Drawing.Size(85, 21);
             this.DescChk.TabIndex = 1;
             this.DescChk.Text = "Descuento";
             this.DescChk.UseVisualStyleBackColor = true;
@@ -246,7 +247,7 @@
             this.OrdenesList.FormattingEnabled = true;
             this.OrdenesList.Location = new System.Drawing.Point(202, 43);
             this.OrdenesList.Name = "OrdenesList";
-            this.OrdenesList.Size = new System.Drawing.Size(157, 191);
+            this.OrdenesList.Size = new System.Drawing.Size(157, 166);
             this.OrdenesList.TabIndex = 7;
             // 
             // PedidoAM

@@ -42,16 +42,20 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartShiftBtn = new System.Windows.Forms.Button();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.ListadosBtn = new System.Windows.Forms.Button();
             this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMenuStrip
             // 
+            this.MainMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(800, 24);
+            this.MainMenuStrip.Size = new System.Drawing.Size(692, 24);
             this.MainMenuStrip.TabIndex = 0;
             this.MainMenuStrip.Text = "menuStrip1";
             // 
@@ -151,12 +155,43 @@
             this.auxToolStripMenuItem.Text = "aux";
             this.auxToolStripMenuItem.Click += new System.EventHandler(this.auxToolStripMenuItem_Click);
             // 
+            // StartShiftBtn
+            // 
+            this.StartShiftBtn.Location = new System.Drawing.Point(80, 42);
+            this.StartShiftBtn.Name = "StartShiftBtn";
+            this.StartShiftBtn.Size = new System.Drawing.Size(136, 129);
+            this.StartShiftBtn.TabIndex = 1;
+            this.StartShiftBtn.Text = "Comenzar Turno";
+            this.StartShiftBtn.UseVisualStyleBackColor = true;
+            this.StartShiftBtn.Click += new System.EventHandler(this.StartShiftBtn_Click);
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Enabled = false;
+            this.monthCalendar1.Location = new System.Drawing.Point(228, 42);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 2;
+            this.monthCalendar1.TodayDate = new System.DateTime(2023, 7, 15, 0, 0, 0, 0);
+            // 
+            // ListadosBtn
+            // 
+            this.ListadosBtn.Location = new System.Drawing.Point(488, 42);
+            this.ListadosBtn.Name = "ListadosBtn";
+            this.ListadosBtn.Size = new System.Drawing.Size(136, 129);
+            this.ListadosBtn.TabIndex = 3;
+            this.ListadosBtn.Text = "Listados";
+            this.ListadosBtn.UseVisualStyleBackColor = true;
+            this.ListadosBtn.Click += new System.EventHandler(this.ListadosBtn_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(692, 450);
+            this.Controls.Add(this.ListadosBtn);
+            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.StartShiftBtn);
             this.Controls.Add(this.MainMenuStrip);
             this.Name = "MainForm";
             this.Text = "Roti";
@@ -183,6 +218,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auxToolStripMenuItem;
+        private System.Windows.Forms.Button StartShiftBtn;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Button ListadosBtn;
     }
 }
 

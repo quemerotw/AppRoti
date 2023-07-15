@@ -11,16 +11,15 @@ using AppRoti.Clases;
 
 namespace AppRoti.Vistas
 {
-    public partial class PedidoAM : BaseForm
-    {
+    public partial class PedidoAM : BaseForm {
         public override event FormEvent FormComplete;
-        public PedidoAM()
-        {
+        internal CPedido _pedidoModif = null;
+
+        public PedidoAM() {
             InitializeComponent();
         }
 
-        private void PedidoAM_Load(object sender, EventArgs e)
-        {
+        private void PedidoAM_Load(object sender, EventArgs e) {
             ClienteCbo.DataSource = Program.ListadoClientes;
             ClienteCbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             ClienteCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -37,57 +36,66 @@ namespace AppRoti.Vistas
                 ListViewItem item = new ListViewItem();
 
                 item.Name = prodAux.Nombre;
-                item.Text = string.Format("{0} - ${1}", prodAux.Nombre, prodAux.PrecioVenta); 
+                item.Text = string.Format("{0} - ${1}", prodAux.Nombre, prodAux.PrecioVenta);
                 ProductosListWv.Items.Add(item);
             }
         }
 
-        private void ProductosListWv_ItemActivate(object sender, EventArgs e)
-        {
-            OrdenesList.Items.Add((sender as ListView).FocusedItem.Name,true);
+        private void ProductosListWv_ItemActivate(object sender, EventArgs e) {
+            OrdenesList.Items.Add((sender as ListView).FocusedItem.Name, true);
         }
 
         private void AceptarBtn_Click(object sender, EventArgs e) {
-            if (ClienteCbo.Text != "" ){
-                if (OrdenesList.Items.Count > 0) {
-                    CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text); ;
-                    CPedido pedido;
-                    if (ClienteCbo.SelectedIndex < 0) {
-                        if (MessageBox.Show("Crear nuevo cliente?", "cliente nuevo", MessageBoxButtons.OKCancel) == DialogResult.OK) {
-                            Program.ListadoClientes.Add(cliente);
-                        }
-                    }
-                    else {
-                        cliente = ClienteCbo.SelectedItem as CCliente;
-                    }
-                    if (ConEnvioChk.Checked) {
-                        pedido = new CPedidoDelivery(cliente, cliente.Direccion);
-                        CProducto envio = new CProducto();
-                        envio.Nombre = "Envio";
-                        envio.PrecioVenta = (double)PrecioEnvioNUP.Value;
-                        (pedido as CPedidoDelivery).PrecioEnvio = 0;
-                        pedido.DetallePedido.Add(envio);
-                    }
-                    else {
-                        pedido = new CPedido(cliente);
-                    }
-                    foreach (string aux in OrdenesList.CheckedItems) {
-                        pedido.DetallePedido.Add(Program.ListadoProductos.Find(x => x.Nombre == aux));
-                    }
-                    pedido.DetallePedido.Sort((x, y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
-                    pedido.Subtotal += pedido.CalcularSubtotal();
-                    pedido.Descuento = 0;
-                    FrmMuroPedidos.listadoPedidos.Add(pedido);
-                    this.Close();
-                }
-                else {
-                    MessageBox.Show("Pedido Vacio");
+            if (OrdenesList.Items.Count < 0) {
+                MessageBox.Show("Por favor seleccione los productos del pedido", "Error, Pedido Vacio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (ClienteCbo.Text == "") {
+                MessageBox.Show("Por favor seleccione el cliente o escriba el nombre de un nuevo cliente", "Error, Cliente Vacio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ClienteCbo.Focus();
+                return;
+            }
+            if (DireccionCbo.Text == "" && ConEnvioChk.Checked) {
+                MessageBox.Show("por favor seleecione o escriba una direccion", "Error, Direccion vacia para pedido con envio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DireccionCbo.Focus();
+                return;
+            }
+            CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text); ;
+            CPedido pedido;
+            if (ClienteCbo.SelectedIndex < 0) {
+                if (MessageBox.Show("Crear nuevo cliente?", "cliente nuevo", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+                    Program.ListadoClientes.Add(cliente);
                 }
             }
             else {
-                MessageBox.Show("Cliente Vacio");
-                ClienteCbo.Focus();
+                cliente = ClienteCbo.SelectedItem as CCliente;
             }
+            if (ConEnvioChk.Checked) {
+                pedido = new CPedidoDelivery(cliente, cliente.Direccion);
+                CProducto envio = new CProducto();
+                envio.Nombre = "Envio";
+                envio.PrecioVenta = (double)PrecioEnvioNUP.Value;
+                (pedido as CPedidoDelivery).PrecioEnvio = 0;
+                pedido.DetallePedido.Add(envio);
+            }
+            else {
+                pedido = new CPedido(cliente);
+            }
+            foreach (string aux in OrdenesList.CheckedItems) {
+                pedido.DetallePedido.Add(Program.ListadoProductos.Find(x => x.Nombre == aux));
+            }
+            pedido.DetallePedido.Sort((x, y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
+            pedido.Subtotal += pedido.CalcularSubtotal();
+            pedido.Descuento = 0;
+            if (FormComplete != null) {
+                if (true) { // implementar mensaje de error
+                    FormComplete(pedido, new EventArgDom { ObjProcess = pedido, Status = CompleteStatus.completed });
+                }
+                else {
+                    FormComplete(pedido, new EventArgDom { ObjProcess = pedido, Status = CompleteStatus.error, Msj = "Err" });
+                }
+            }
+            this.Close();
         }
 
         public override FrmOperacion OperacionForm {
@@ -95,7 +103,7 @@ namespace AppRoti.Vistas
             set {
                 base.OperacionForm = value;
                 if (value == FrmOperacion.frmAlta) {
-                    this.Text = "Creando Pedido";
+                    this.Text = "Nuevo Pedido";
                 }
             }
         }
@@ -112,9 +120,7 @@ namespace AppRoti.Vistas
         }
 
 
-        private void ConEnvioChk_CheckedChanged(object sender, EventArgs e) {
-            PrecioEnvioNUP.Enabled = ConEnvioChk.Checked;
-        }
+
 
         private void DescChk_CheckedChanged(object sender, EventArgs e) {
             DescTxt.Enabled = DescChk.Checked;
@@ -124,7 +130,7 @@ namespace AppRoti.Vistas
             RecargoTxt.Enabled = RecargoChk.Checked;
         }
 
-        private void DescTxt_KeyPress(object sender, KeyPressEventArgs e) { 
+        private void DescTxt_KeyPress(object sender, KeyPressEventArgs e) {
             if (!char.IsDigit(e.KeyChar) && (((short)e.KeyChar) != 8))
                 e.Handled = true;
         }
@@ -136,6 +142,11 @@ namespace AppRoti.Vistas
 
         private void CancelarBtn_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void ConEnvioChk_CheckedChanged(object sender, EventArgs e) {
+            PrecioEnvioNUP.Enabled = ConEnvioChk.Checked;
+            DireccionCbo.Enabled = ConEnvioChk.Checked;
         }
     }
 }
