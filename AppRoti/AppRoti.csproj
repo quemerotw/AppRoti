@@ -49,10 +49,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Orm\BaseClass.cs" />
     <Compile Include="Clases\CCliente.cs" />
     <Compile Include="Clases\CPedido.cs" />
     <Compile Include="Clases\CPedidoDelivery.cs" />
     <Compile Include="Clases\CProducto.cs" />
+    <Compile Include="Clases\Orm\MetaDataClasses.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +63,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\BaseForm.cs" />
+    <Compile Include="Vistas\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmMuroPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Refer\de\Npgsql.resources.dll" />
+    <Content Include="Refer\es\Npgsql.resources.dll" />
+    <Content Include="Refer\fi\Npgsql.resources.dll" />
+    <Content Include="Refer\fr\Npgsql.resources.dll" />
+    <Content Include="Refer\ja\Npgsql.resources.dll" />
+    <Content Include="Refer\Mono.Security.dll" />
+    <Content Include="Refer\Newtonsoft.Json.dll" />
+    <Content Include="Refer\Newtonsoft.Json.pdb" />
+    <Content Include="Refer\Newtonsoft.Json.xml" />
+    <Content Include="Refer\Npgsql.dll" />
+    <Content Include="Refer\Npgsql.pdb" />
+    <Content Include="Refer\Npgsql.XML" />
+    <Content Include="Refer\zh-CN\Npgsql.resources.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AppRoti.Clases.Orm;
 
-namespace AppRoti.Clases {
+namespace AppRoti.Clases{
     [Serializable]
-    internal class CCliente {
+    internal class CCliente : BaseClass {
         private static int numConst = 0;
         private int id { get; }
         public string Nombres { get; set; }

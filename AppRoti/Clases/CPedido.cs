@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppRoti;
+using AppRoti.Clases.Orm;
 
-namespace AppRoti.Clases
+
+namespace AppRoti.Clases 
 {
     [Serializable]
-    internal class CPedido
-    {
+    internal class CPedido : BaseClass {
         private static int _numPedido=1;
 
         private double _recargo;

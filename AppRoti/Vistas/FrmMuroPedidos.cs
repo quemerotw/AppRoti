@@ -13,7 +13,7 @@ using AppRoti.Clases;
 
 namespace AppRoti.Vistas
 {
-    public partial class FrmMuroPedidos : Form
+    public partial class FrmMuroPedidos : BaseForm
     {
         private Point ultimo = new Point();
         private Point selec = new Point();
@@ -35,8 +35,8 @@ namespace AppRoti.Vistas
         private void button1_Click(object sender, EventArgs e)
         {
            PedidoAM a = new PedidoAM();
-            a.Show();
             a.FormClosing += A_FormClosing;
+            a.ShowIngresoPedido();
            
         }
 

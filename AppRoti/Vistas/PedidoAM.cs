@@ -11,8 +11,9 @@ using AppRoti.Clases;
 
 namespace AppRoti.Vistas
 {
-    public partial class PedidoAM : Form
+    public partial class PedidoAM : BaseForm
     {
+        public override event FormEvent FormComplete;
         public PedidoAM()
         {
             InitializeComponent();
@@ -88,6 +89,28 @@ namespace AppRoti.Vistas
                 ClienteCbo.Focus();
             }
         }
+
+        public override FrmOperacion OperacionForm {
+            get { return base.OperacionForm; }
+            set {
+                base.OperacionForm = value;
+                if (value == FrmOperacion.frmAlta) {
+                    this.Text = "Creando Pedido";
+                }
+            }
+        }
+
+        public void ShowIngresoPedido(BaseForm invoker) {
+            this.InvokerForm = invoker;
+            this.OperacionForm = FrmOperacion.frmAlta;
+            this.ShowDialog();
+        }
+        public void ShowIngresoPedido() {
+            this.InvokerForm = null;
+            this.OperacionForm = FrmOperacion.frmAlta;
+            this.ShowDialog();
+        }
+
 
         private void ConEnvioChk_CheckedChanged(object sender, EventArgs e) {
             PrecioEnvioNUP.Enabled = ConEnvioChk.Checked;
