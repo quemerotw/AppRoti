@@ -18,12 +18,42 @@ namespace AppRoti.Clases
             set { _stock = value; }
         }
 
+        private bool _isDivisible;
+
+        public bool IsDivisible {
+            get { return _isDivisible; }
+            set { _isDivisible = value; }
+        }
 
 
-        public string Nombre { get; set; }
-        public double PrecioVenta { get; set; }
-        public double PrecioCosto { get; set; }
-        public string Descripcion { get; set; }
+        private string _nombre;
+
+        public string Nombre {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+
+        private double _precioVenta;
+
+        public double PrecioVenta {
+            get { return _precioVenta; }
+            set { _precioVenta = value; }
+        }
+
+        private double _precioCosto;
+
+        public double PrecioCosto {
+            get { return _precioCosto; }
+            set { _precioCosto = value; }
+        }
+
+        private string _descripcion;
+
+        public string Descripcion {
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+
 
 
         public CProducto(string nombre, double precioVenta) {
@@ -31,11 +61,13 @@ namespace AppRoti.Clases
             PrecioVenta = precioVenta;
         }
 
-        public CProducto(double stock, string nombre, double precioVenta, double precioCosto, string descripcion) {
+        public CProducto(double stock, string nombre, double precioVenta, double precioCosto, string descripcion, bool isDivisible) {
             Stock = stock;
-            Nombre = nombre;
-            PrecioVenta = precioVenta;
-            PrecioCosto = precioCosto;
+            _nombre = nombre;
+            _precioVenta = precioVenta;
+            _precioCosto = precioCosto;
+            _descripcion = descripcion;
+            _isDivisible = isDivisible;
         }
 
         public override string ToString()
@@ -48,7 +80,8 @@ namespace AppRoti.Clases
         }
 
         public CProducto GenerarVenta(double cant) {
-            return new CProducto(cant,this.Nombre,this.PrecioVenta*cant,this.PrecioCosto,this.Descripcion);
+            this.Stock -= cant;
+            return new CProducto(cant,this._nombre,this._precioVenta*cant,this._precioCosto,this._descripcion,this._isDivisible);
         }
     }
 }

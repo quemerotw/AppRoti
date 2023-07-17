@@ -96,6 +96,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Vistas\FrmMuroPedidos.resx">
       <DependentUpon>FrmMuroPedidos.cs</DependentUpon>
@@ -123,6 +124,8 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\pizza-3-32.ico" />
+    <None Include="Properties\taco-32.ico" />
     <Content Include="Refer\de\Npgsql.resources.dll" />
     <Content Include="Refer\es\Npgsql.resources.dll" />
     <Content Include="Refer\fi\Npgsql.resources.dll" />
@@ -136,6 +139,7 @@
     <Content Include="Refer\Npgsql.pdb" />
     <Content Include="Refer\Npgsql.XML" />
     <Content Include="Refer\zh-CN\Npgsql.resources.dll" />
+    <None Include="Resources\Pizza.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

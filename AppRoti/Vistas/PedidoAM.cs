@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,10 +37,21 @@ namespace AppRoti.Vistas
             DireccionCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
             DireccionCbo.Text = "";
 
+            OrdenesListView.AutoGenerateColumns = false;
+
+            ImageList imageL = new ImageList();
+            imageL.ImageSize = new Size(30,30);
+            imageL.Images.Add(AppRoti.Properties.Resources.pizza_3_32);
+            imageL.Images.Add(AppRoti.Properties.Resources.taco_32);
+            ProductosListWv.View = View.LargeIcon;
+            ProductosListWv.LargeImageList = imageL;
 
             foreach (CProducto prodAux in Program.ListadoProductos) {
                 ListViewItem item = new ListViewItem();
-
+                item.ImageIndex = 0;
+                if (prodAux.Nombre == "Empanada") {
+                    item.ImageIndex = 1;
+                }
                 item.Name = prodAux.Nombre;
                 item.Text = string.Format("{0} - ${1}", prodAux.Nombre, prodAux.PrecioVenta);
                 item.Tag = prodAux;
@@ -159,8 +171,12 @@ namespace AppRoti.Vistas
 
         private void ProductosListWv_MouseDoubleClick(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
-                ListViewItem s = ProductosListWv.FocusedItem;
-                OrdenesList.Add((s.Tag as CProducto).GenerarVenta(1));
+                CProducto productoSeleccionado = ProductosListWv.FocusedItem.Tag as CProducto;
+                if (productoSeleccionado.Stock < 1) {
+                    MessageBox.Show("no hay mas "+productoSeleccionado.Nombre);
+                    return;
+                }
+                OrdenesList.Add(productoSeleccionado.GenerarVenta(1));
                 _bindingList = new BindingList<CProducto>(OrdenesList);
                 _bindingSource = new BindingSource(_bindingList, null);
                 OrdenesListView.DataSource = _bindingSource;
@@ -174,13 +190,22 @@ namespace AppRoti.Vistas
         }
 
         private void ProductoContextMenu_Opening(object sender, CancelEventArgs e) {
-
+            if (!(ProductosListWv.FocusedItem.Tag as CProducto).IsDivisible) {
+                ProductoContextMenu.Items.Find("MediaPizzaCM", false)[0].Visible =false;
+            }
+            else {
+                ProductoContextMenu.Items.Find("MediaPizzaCM", false)[0].Visible = true;
+            }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e) {
+        private void mediaPizza_Click(object sender, EventArgs e) {
             _half = !_half;
-            ListViewItem s = ProductosListWv.FocusedItem;
-            OrdenesList.Add((s.Tag as CProducto).GenerarVenta(0.5));
+            CProducto productoSeleccionado = ProductosListWv.FocusedItem.Tag as CProducto;
+            if (productoSeleccionado.Stock < 0.5) {
+                MessageBox.Show("no hay mas " + productoSeleccionado.Nombre);
+                return;
+            }
+            OrdenesList.Add(productoSeleccionado.GenerarVenta(0.5));
             _bindingList = new BindingList<CProducto>(OrdenesList);
             _bindingSource = new BindingSource(_bindingList,null);
             OrdenesListView.DataSource = _bindingSource;

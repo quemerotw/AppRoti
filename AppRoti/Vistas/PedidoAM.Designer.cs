@@ -42,15 +42,20 @@
             this.DireccionLbl = new System.Windows.Forms.Label();
             this.ClienteLbl = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TransferRadioButton = new System.Windows.Forms.RadioButton();
+            this.EfectivoRadioBtn = new System.Windows.Forms.RadioButton();
             this.RecargoChk = new System.Windows.Forms.CheckBox();
             this.RecargoTxt = new System.Windows.Forms.TextBox();
             this.DescChk = new System.Windows.Forms.CheckBox();
             this.DescTxt = new System.Windows.Forms.TextBox();
             this.ProductoContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MediaPizzaCM = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.OrdenesListView = new System.Windows.Forms.DataGridView();
+            this.CantidadCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioEnvioNUP)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -61,8 +66,9 @@
             // ProductosListWv
             // 
             this.ProductosListWv.HideSelection = false;
-            this.ProductosListWv.Location = new System.Drawing.Point(374, 43);
+            this.ProductosListWv.Location = new System.Drawing.Point(203, 43);
             this.ProductosListWv.Name = "ProductosListWv";
+            this.ProductosListWv.ShowGroups = false;
             this.ProductosListWv.Size = new System.Drawing.Size(358, 199);
             this.ProductosListWv.TabIndex = 0;
             this.ProductosListWv.UseCompatibleStateImageBehavior = false;
@@ -83,7 +89,7 @@
             // ProdAgregadosLbl
             // 
             this.ProdAgregadosLbl.AutoSize = true;
-            this.ProdAgregadosLbl.Location = new System.Drawing.Point(199, 27);
+            this.ProdAgregadosLbl.Location = new System.Drawing.Point(566, 27);
             this.ProdAgregadosLbl.Name = "ProdAgregadosLbl";
             this.ProdAgregadosLbl.Size = new System.Drawing.Size(109, 13);
             this.ProdAgregadosLbl.TabIndex = 11;
@@ -92,7 +98,7 @@
             // CartaLbl
             // 
             this.CartaLbl.AutoSize = true;
-            this.CartaLbl.Location = new System.Drawing.Point(371, 27);
+            this.CartaLbl.Location = new System.Drawing.Point(200, 27);
             this.CartaLbl.Name = "CartaLbl";
             this.CartaLbl.Size = new System.Drawing.Size(98, 13);
             this.CartaLbl.TabIndex = 16;
@@ -199,20 +205,44 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.TransferRadioButton);
+            this.groupBox2.Controls.Add(this.EfectivoRadioBtn);
             this.groupBox2.Controls.Add(this.RecargoChk);
             this.groupBox2.Controls.Add(this.RecargoTxt);
             this.groupBox2.Controls.Add(this.DescChk);
             this.groupBox2.Controls.Add(this.DescTxt);
-            this.groupBox2.Location = new System.Drawing.Point(8, 142);
+            this.groupBox2.Location = new System.Drawing.Point(8, 135);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(185, 71);
+            this.groupBox2.Size = new System.Drawing.Size(185, 78);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
+            // 
+            // TransferRadioButton
+            // 
+            this.TransferRadioButton.AutoSize = true;
+            this.TransferRadioButton.Location = new System.Drawing.Point(88, 55);
+            this.TransferRadioButton.Name = "TransferRadioButton";
+            this.TransferRadioButton.Size = new System.Drawing.Size(90, 17);
+            this.TransferRadioButton.TabIndex = 5;
+            this.TransferRadioButton.Text = "Transferencia";
+            this.TransferRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // EfectivoRadioBtn
+            // 
+            this.EfectivoRadioBtn.AutoSize = true;
+            this.EfectivoRadioBtn.Checked = true;
+            this.EfectivoRadioBtn.Location = new System.Drawing.Point(8, 55);
+            this.EfectivoRadioBtn.Name = "EfectivoRadioBtn";
+            this.EfectivoRadioBtn.Size = new System.Drawing.Size(64, 17);
+            this.EfectivoRadioBtn.TabIndex = 4;
+            this.EfectivoRadioBtn.TabStop = true;
+            this.EfectivoRadioBtn.Text = "Efectivo";
+            this.EfectivoRadioBtn.UseVisualStyleBackColor = true;
             // 
             // RecargoChk
             // 
             this.RecargoChk.AutoSize = true;
-            this.RecargoChk.Location = new System.Drawing.Point(7, 42);
+            this.RecargoChk.Location = new System.Drawing.Point(8, 34);
             this.RecargoChk.Name = "RecargoChk";
             this.RecargoChk.Size = new System.Drawing.Size(67, 17);
             this.RecargoChk.TabIndex = 3;
@@ -223,16 +253,16 @@
             // RecargoTxt
             // 
             this.RecargoTxt.Enabled = false;
-            this.RecargoTxt.Location = new System.Drawing.Point(87, 40);
+            this.RecargoTxt.Location = new System.Drawing.Point(88, 32);
             this.RecargoTxt.Name = "RecargoTxt";
-            this.RecargoTxt.Size = new System.Drawing.Size(91, 20);
+            this.RecargoTxt.Size = new System.Drawing.Size(90, 20);
             this.RecargoTxt.TabIndex = 2;
             this.RecargoTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RecargoTxt_KeyPress);
             // 
             // DescChk
             // 
             this.DescChk.AutoSize = true;
-            this.DescChk.Location = new System.Drawing.Point(8, 15);
+            this.DescChk.Location = new System.Drawing.Point(8, 10);
             this.DescChk.Name = "DescChk";
             this.DescChk.Size = new System.Drawing.Size(78, 17);
             this.DescChk.TabIndex = 1;
@@ -243,7 +273,7 @@
             // DescTxt
             // 
             this.DescTxt.Enabled = false;
-            this.DescTxt.Location = new System.Drawing.Point(88, 13);
+            this.DescTxt.Location = new System.Drawing.Point(88, 8);
             this.DescTxt.Name = "DescTxt";
             this.DescTxt.Size = new System.Drawing.Size(91, 20);
             this.DescTxt.TabIndex = 0;
@@ -252,19 +282,19 @@
             // ProductoContextMenu
             // 
             this.ProductoContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.MediaPizzaCM,
             this.toolStripMenuItem2,
             this.toolStripMenuItem4});
             this.ProductoContextMenu.Name = "ProductoContextMenu";
             this.ProductoContextMenu.Size = new System.Drawing.Size(92, 70);
             this.ProductoContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ProductoContextMenu_Opening);
             // 
-            // toolStripMenuItem1
+            // MediaPizzaCM
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(91, 22);
-            this.toolStripMenuItem1.Text = "1/2";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.MediaPizzaCM.Name = "MediaPizzaCM";
+            this.MediaPizzaCM.Size = new System.Drawing.Size(91, 22);
+            this.MediaPizzaCM.Text = "1/2";
+            this.MediaPizzaCM.Click += new System.EventHandler(this.mediaPizza_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -280,11 +310,51 @@
             // 
             // OrdenesListView
             // 
+            this.OrdenesListView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.OrdenesListView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.OrdenesListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.OrdenesListView.Location = new System.Drawing.Point(200, 43);
+            this.OrdenesListView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CantidadCol,
+            this.Nombre,
+            this.Precio});
+            this.OrdenesListView.Location = new System.Drawing.Point(567, 43);
             this.OrdenesListView.Name = "OrdenesListView";
+            this.OrdenesListView.RowHeadersVisible = false;
+            this.OrdenesListView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.OrdenesListView.Size = new System.Drawing.Size(168, 199);
             this.OrdenesListView.TabIndex = 20;
+            // 
+            // CantidadCol
+            // 
+            this.CantidadCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CantidadCol.DataPropertyName = "Stock";
+            this.CantidadCol.Frozen = true;
+            this.CantidadCol.HeaderText = "Cant";
+            this.CantidadCol.Name = "CantidadCol";
+            this.CantidadCol.ReadOnly = true;
+            this.CantidadCol.Width = 30;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nombre.Width = 80;
+            // 
+            // Precio
+            // 
+            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Precio.DataPropertyName = "PrecioVenta";
+            this.Precio.Frozen = true;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Precio.Width = 62;
             // 
             // PedidoAM
             // 
@@ -334,9 +404,16 @@
         private System.Windows.Forms.CheckBox DescChk;
         private System.Windows.Forms.TextBox DescTxt;
         private System.Windows.Forms.ContextMenuStrip ProductoContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem MediaPizzaCM;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.DataGridView OrdenesListView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioCol;
+        private System.Windows.Forms.RadioButton TransferRadioButton;
+        private System.Windows.Forms.RadioButton EfectivoRadioBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
     }
 }
