@@ -45,6 +45,7 @@
             this.StartShiftBtn = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.ListadosBtn = new System.Windows.Forms.Button();
+            this.CrearProductosBtn = new System.Windows.Forms.Button();
             this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,12 +184,22 @@
             this.ListadosBtn.UseVisualStyleBackColor = true;
             this.ListadosBtn.Click += new System.EventHandler(this.ListadosBtn_Click);
             // 
+            // CrearProductosBtn
+            // 
+            this.CrearProductosBtn.Location = new System.Drawing.Point(80, 177);
+            this.CrearProductosBtn.Name = "CrearProductosBtn";
+            this.CrearProductosBtn.Size = new System.Drawing.Size(136, 129);
+            this.CrearProductosBtn.TabIndex = 4;
+            this.CrearProductosBtn.Text = "Crear Productos";
+            this.CrearProductosBtn.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 450);
+            this.Controls.Add(this.CrearProductosBtn);
             this.Controls.Add(this.ListadosBtn);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.StartShiftBtn);
@@ -221,6 +232,7 @@
         private System.Windows.Forms.Button StartShiftBtn;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button ListadosBtn;
+        private System.Windows.Forms.Button CrearProductosBtn;
     }
 }
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,10 @@ namespace AppRoti.Vistas
     public partial class PedidoAM : BaseForm {
         public override event FormEvent FormComplete;
         internal CPedido _pedidoModif = null;
+        private List<CProducto> OrdenesList= new List<CProducto>();
+        private BindingList<CProducto> _bindingList;
+        private BindingSource _bindingSource;
+        private bool _half = false;
 
         public PedidoAM() {
             InitializeComponent();
@@ -37,16 +42,21 @@ namespace AppRoti.Vistas
 
                 item.Name = prodAux.Nombre;
                 item.Text = string.Format("{0} - ${1}", prodAux.Nombre, prodAux.PrecioVenta);
+                item.Tag = prodAux;
                 ProductosListWv.Items.Add(item);
             }
         }
 
         private void ProductosListWv_ItemActivate(object sender, EventArgs e) {
-            OrdenesList.Items.Add((sender as ListView).FocusedItem.Name, true);
+
         }
 
         private void AceptarBtn_Click(object sender, EventArgs e) {
-            if (OrdenesList.Items.Count < 0) {
+            if (_half) {
+                MessageBox.Show("Hay Una mitad de pizza suelta");
+                return;
+            }
+            if (OrdenesListView.Rows.Count < 0) {
                 MessageBox.Show("Por favor seleccione los productos del pedido", "Error, Pedido Vacio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -72,17 +82,15 @@ namespace AppRoti.Vistas
             }
             if (ConEnvioChk.Checked) {
                 pedido = new CPedidoDelivery(cliente, cliente.Direccion);
-                CProducto envio = new CProducto();
-                envio.Nombre = "Envio";
-                envio.PrecioVenta = (double)PrecioEnvioNUP.Value;
+                CProducto envio = new CProducto("Envio", (double)PrecioEnvioNUP.Value);
                 (pedido as CPedidoDelivery).PrecioEnvio = 0;
                 pedido.DetallePedido.Add(envio);
             }
             else {
                 pedido = new CPedido(cliente);
             }
-            foreach (string aux in OrdenesList.CheckedItems) {
-                pedido.DetallePedido.Add(Program.ListadoProductos.Find(x => x.Nombre == aux));
+            foreach (CProducto aux in OrdenesList) {
+                pedido.DetallePedido.Add(aux);
             }
             pedido.DetallePedido.Sort((x, y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
             pedido.Subtotal += pedido.CalcularSubtotal();
@@ -147,6 +155,35 @@ namespace AppRoti.Vistas
         private void ConEnvioChk_CheckedChanged(object sender, EventArgs e) {
             PrecioEnvioNUP.Enabled = ConEnvioChk.Checked;
             DireccionCbo.Enabled = ConEnvioChk.Checked;
+        }
+
+        private void ProductosListWv_MouseDoubleClick(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
+                ListViewItem s = ProductosListWv.FocusedItem;
+                OrdenesList.Add((s.Tag as CProducto).GenerarVenta(1));
+                _bindingList = new BindingList<CProducto>(OrdenesList);
+                _bindingSource = new BindingSource(_bindingList, null);
+                OrdenesListView.DataSource = _bindingSource;
+            }
+        }
+
+        private void ProductosListWv_MouseClick(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                ProductoContextMenu.Show(sender as Control,e.Location);
+            }
+        }
+
+        private void ProductoContextMenu_Opening(object sender, CancelEventArgs e) {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e) {
+            _half = !_half;
+            ListViewItem s = ProductosListWv.FocusedItem;
+            OrdenesList.Add((s.Tag as CProducto).GenerarVenta(0.5));
+            _bindingList = new BindingList<CProducto>(OrdenesList);
+            _bindingSource = new BindingSource(_bindingList,null);
+            OrdenesListView.DataSource = _bindingSource;
         }
     }
 }

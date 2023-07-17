@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ProductosListWv = new System.Windows.Forms.ListView();
             this.AceptarBtn = new System.Windows.Forms.Button();
             this.ProdAgregadosLbl = new System.Windows.Forms.Label();
@@ -45,10 +46,16 @@
             this.RecargoTxt = new System.Windows.Forms.TextBox();
             this.DescChk = new System.Windows.Forms.CheckBox();
             this.DescTxt = new System.Windows.Forms.TextBox();
-            this.OrdenesList = new System.Windows.Forms.CheckedListBox();
+            this.ProductoContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrdenesListView = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioEnvioNUP)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.ProductoContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdenesListView)).BeginInit();
             this.SuspendLayout();
             // 
             // ProductosListWv
@@ -60,6 +67,8 @@
             this.ProductosListWv.TabIndex = 0;
             this.ProductosListWv.UseCompatibleStateImageBehavior = false;
             this.ProductosListWv.ItemActivate += new System.EventHandler(this.ProductosListWv_ItemActivate);
+            this.ProductosListWv.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ProductosListWv_MouseClick);
+            this.ProductosListWv.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ProductosListWv_MouseDoubleClick);
             // 
             // AceptarBtn
             // 
@@ -148,7 +157,7 @@
             this.ConEnvioChk.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ConEnvioChk.Location = new System.Drawing.Point(8, 55);
             this.ConEnvioChk.Name = "ConEnvioChk";
-            this.ConEnvioChk.Size = new System.Drawing.Size(81, 21);
+            this.ConEnvioChk.Size = new System.Drawing.Size(74, 17);
             this.ConEnvioChk.TabIndex = 20;
             this.ConEnvioChk.Text = "Con envio";
             this.ConEnvioChk.UseVisualStyleBackColor = true;
@@ -205,7 +214,7 @@
             this.RecargoChk.AutoSize = true;
             this.RecargoChk.Location = new System.Drawing.Point(7, 42);
             this.RecargoChk.Name = "RecargoChk";
-            this.RecargoChk.Size = new System.Drawing.Size(74, 21);
+            this.RecargoChk.Size = new System.Drawing.Size(67, 17);
             this.RecargoChk.TabIndex = 3;
             this.RecargoChk.Text = "Recargo";
             this.RecargoChk.UseVisualStyleBackColor = true;
@@ -225,7 +234,7 @@
             this.DescChk.AutoSize = true;
             this.DescChk.Location = new System.Drawing.Point(8, 15);
             this.DescChk.Name = "DescChk";
-            this.DescChk.Size = new System.Drawing.Size(85, 21);
+            this.DescChk.Size = new System.Drawing.Size(78, 17);
             this.DescChk.TabIndex = 1;
             this.DescChk.Text = "Descuento";
             this.DescChk.UseVisualStyleBackColor = true;
@@ -240,28 +249,55 @@
             this.DescTxt.TabIndex = 0;
             this.DescTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescTxt_KeyPress);
             // 
-            // OrdenesList
+            // ProductoContextMenu
             // 
-            this.OrdenesList.ColumnWidth = 70;
-            this.OrdenesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrdenesList.FormattingEnabled = true;
-            this.OrdenesList.Location = new System.Drawing.Point(202, 43);
-            this.OrdenesList.Name = "OrdenesList";
-            this.OrdenesList.Size = new System.Drawing.Size(157, 166);
-            this.OrdenesList.TabIndex = 7;
+            this.ProductoContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem4});
+            this.ProductoContextMenu.Name = "ProductoContextMenu";
+            this.ProductoContextMenu.Size = new System.Drawing.Size(92, 70);
+            this.ProductoContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ProductoContextMenu_Opening);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(91, 22);
+            this.toolStripMenuItem1.Text = "1/2";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(91, 22);
+            this.toolStripMenuItem2.Text = "2";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(91, 22);
+            this.toolStripMenuItem4.Text = "3";
+            // 
+            // OrdenesListView
+            // 
+            this.OrdenesListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrdenesListView.Location = new System.Drawing.Point(200, 43);
+            this.OrdenesListView.Name = "OrdenesListView";
+            this.OrdenesListView.Size = new System.Drawing.Size(168, 199);
+            this.OrdenesListView.TabIndex = 20;
             // 
             // PedidoAM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 262);
+            this.Controls.Add(this.OrdenesListView);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CancelarBtn);
             this.Controls.Add(this.CartaLbl);
             this.Controls.Add(this.ProdAgregadosLbl);
             this.Controls.Add(this.AceptarBtn);
-            this.Controls.Add(this.OrdenesList);
             this.Controls.Add(this.ProductosListWv);
             this.Name = "PedidoAM";
             this.Text = "PedidoAM";
@@ -271,6 +307,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PrecioEnvioNUP)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.ProductoContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OrdenesListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,6 +333,10 @@
         private System.Windows.Forms.TextBox RecargoTxt;
         private System.Windows.Forms.CheckBox DescChk;
         private System.Windows.Forms.TextBox DescTxt;
-        private System.Windows.Forms.CheckedListBox OrdenesList;
+        private System.Windows.Forms.ContextMenuStrip ProductoContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.DataGridView OrdenesListView;
     }
 }

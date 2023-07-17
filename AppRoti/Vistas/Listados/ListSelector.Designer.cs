@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             this.ClientesGrBx = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ClientesBtn = new System.Windows.Forms.Button();
             this.ClientesGridView = new System.Windows.Forms.DataGridView();
             this.ProductosGrBx = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ProductosBtn = new System.Windows.Forms.Button();
             this.ProdGridView = new System.Windows.Forms.DataGridView();
             this.VentasGrBx = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.VentasBtn = new System.Windows.Forms.Button();
             this.VentasGridView = new System.Windows.Forms.DataGridView();
             this.ClientesGrBx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClientesGridView)).BeginInit();
@@ -42,7 +42,7 @@
             // 
             // ClientesGrBx
             // 
-            this.ClientesGrBx.Controls.Add(this.button1);
+            this.ClientesGrBx.Controls.Add(this.ClientesBtn);
             this.ClientesGrBx.Controls.Add(this.ClientesGridView);
             this.ClientesGrBx.Location = new System.Drawing.Point(13, 13);
             this.ClientesGrBx.Name = "ClientesGrBx";
@@ -51,14 +51,14 @@
             this.ClientesGrBx.TabStop = false;
             this.ClientesGrBx.Text = "Clientes";
             // 
-            // button1
+            // ClientesBtn
             // 
-            this.button1.Location = new System.Drawing.Point(7, 316);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(259, 103);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ClientesBtn.Location = new System.Drawing.Point(7, 316);
+            this.ClientesBtn.Name = "ClientesBtn";
+            this.ClientesBtn.Size = new System.Drawing.Size(259, 103);
+            this.ClientesBtn.TabIndex = 1;
+            this.ClientesBtn.Text = "Mostrar Todos";
+            this.ClientesBtn.UseVisualStyleBackColor = true;
             // 
             // ClientesGridView
             // 
@@ -70,7 +70,7 @@
             // 
             // ProductosGrBx
             // 
-            this.ProductosGrBx.Controls.Add(this.button2);
+            this.ProductosGrBx.Controls.Add(this.ProductosBtn);
             this.ProductosGrBx.Controls.Add(this.ProdGridView);
             this.ProductosGrBx.Location = new System.Drawing.Point(291, 13);
             this.ProductosGrBx.Name = "ProductosGrBx";
@@ -79,14 +79,14 @@
             this.ProductosGrBx.TabStop = false;
             this.ProductosGrBx.Text = "Productos";
             // 
-            // button2
+            // ProductosBtn
             // 
-            this.button2.Location = new System.Drawing.Point(6, 315);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(259, 103);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ProductosBtn.Location = new System.Drawing.Point(6, 315);
+            this.ProductosBtn.Name = "ProductosBtn";
+            this.ProductosBtn.Size = new System.Drawing.Size(259, 103);
+            this.ProductosBtn.TabIndex = 2;
+            this.ProductosBtn.Text = "Mostrar Todos";
+            this.ProductosBtn.UseVisualStyleBackColor = true;
             // 
             // ProdGridView
             // 
@@ -98,7 +98,7 @@
             // 
             // VentasGrBx
             // 
-            this.VentasGrBx.Controls.Add(this.button3);
+            this.VentasGrBx.Controls.Add(this.VentasBtn);
             this.VentasGrBx.Controls.Add(this.VentasGridView);
             this.VentasGrBx.Location = new System.Drawing.Point(569, 13);
             this.VentasGrBx.Name = "VentasGrBx";
@@ -107,14 +107,14 @@
             this.VentasGrBx.TabStop = false;
             this.VentasGrBx.Text = "Ventas";
             // 
-            // button3
+            // VentasBtn
             // 
-            this.button3.Location = new System.Drawing.Point(6, 315);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(259, 103);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.VentasBtn.Location = new System.Drawing.Point(6, 315);
+            this.VentasBtn.Name = "VentasBtn";
+            this.VentasBtn.Size = new System.Drawing.Size(259, 103);
+            this.VentasBtn.TabIndex = 3;
+            this.VentasBtn.Text = "Mostrar Todos";
+            this.VentasBtn.UseVisualStyleBackColor = true;
             // 
             // VentasGridView
             // 
@@ -150,11 +150,11 @@
         private System.Windows.Forms.GroupBox ClientesGrBx;
         private System.Windows.Forms.GroupBox ProductosGrBx;
         private System.Windows.Forms.GroupBox VentasGrBx;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ClientesBtn;
         private System.Windows.Forms.DataGridView ClientesGridView;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ProductosBtn;
         private System.Windows.Forms.DataGridView ProdGridView;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button VentasBtn;
         private System.Windows.Forms.DataGridView VentasGridView;
     }
 }
