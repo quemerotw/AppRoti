@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppRoti.Clases;
 using AppRoti.Vistas;
+using AppRoti.Vistas.Creadores;
 
 namespace AppRoti
 {
@@ -35,6 +36,10 @@ namespace AppRoti
 
         private void ListadosBtn_Click(object sender, EventArgs e) {
             new ListSelector().Show();
+        }
+
+        private void CrearProductosBtn_Click(object sender, EventArgs e) {
+            new ProductoAM().Show();
         }
     }
 }

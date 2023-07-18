@@ -29,22 +29,18 @@ namespace AppRoti.Vistas
             ClienteCbo.DataSource = Program.ListadoClientes;
             ClienteCbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             ClienteCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
-            ClienteCbo.Text = "";
+ 
 
             DireccionCbo.DataSource = Program.ListadoClientes;
             DireccionCbo.ValueMember = "Direccion";
             DireccionCbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             DireccionCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
-            DireccionCbo.Text = "";
+
 
             OrdenesListView.AutoGenerateColumns = false;
 
-            ImageList imageL = new ImageList();
-            imageL.ImageSize = new Size(30,30);
-            imageL.Images.Add(AppRoti.Properties.Resources.pizza_3_32);
-            imageL.Images.Add(AppRoti.Properties.Resources.taco_32);
             ProductosListWv.View = View.LargeIcon;
-            ProductosListWv.LargeImageList = imageL;
+            ProductosListWv.LargeImageList = Program.ImageList;
 
             foreach (CProducto prodAux in Program.ListadoProductos) {
                 ListViewItem item = new ListViewItem();
@@ -53,10 +49,12 @@ namespace AppRoti.Vistas
                     item.ImageIndex = 1;
                 }
                 item.Name = prodAux.Nombre;
-                item.Text = string.Format("{0} - ${1}", prodAux.Nombre, prodAux.PrecioVenta);
+                item.Text = string.Format("{0} - ${1} \n Stock: {2}", prodAux.Nombre, prodAux.PrecioVenta,prodAux.Stock);
                 item.Tag = prodAux;
                 ProductosListWv.Items.Add(item);
             }
+            DireccionCbo.Text = "";
+            ClienteCbo.Text = "";
         }
 
         private void ProductosListWv_ItemActivate(object sender, EventArgs e) {
@@ -177,6 +175,7 @@ namespace AppRoti.Vistas
                     return;
                 }
                 OrdenesList.Add(productoSeleccionado.GenerarVenta(1));
+                this.RefreshProductos();
                 _bindingList = new BindingList<CProducto>(OrdenesList);
                 _bindingSource = new BindingSource(_bindingList, null);
                 OrdenesListView.DataSource = _bindingSource;
@@ -206,9 +205,31 @@ namespace AppRoti.Vistas
                 return;
             }
             OrdenesList.Add(productoSeleccionado.GenerarVenta(0.5));
+            this.RefreshProductos();
             _bindingList = new BindingList<CProducto>(OrdenesList);
             _bindingSource = new BindingSource(_bindingList,null);
             OrdenesListView.DataSource = _bindingSource;
+        }
+
+
+        private void OrdenesListView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e) {
+            Program.ListadoProductos.Find(x => x.Nombre == e.Row.Cells[1].Value.ToString()).Stock += double.Parse(e.Row.Cells[0].Value.ToString());
+            this.RefreshProductos();
+        }
+
+        private void RefreshProductos() {
+            ProductosListWv.Items.Clear();
+            foreach (CProducto prodAux in Program.ListadoProductos) {
+                ListViewItem item = new ListViewItem();
+                item.ImageIndex = 0;
+                if (prodAux.Nombre == "Empanada") {
+                    item.ImageIndex = 1;
+                }
+                item.Name = prodAux.Nombre;
+                item.Text = string.Format("{0} - ${1} \n Porciones Restantes: {2}", prodAux.Nombre, prodAux.PrecioVenta, prodAux.Stock);
+                item.Tag = prodAux;
+                ProductosListWv.Items.Add(item);
+            }
         }
     }
 }

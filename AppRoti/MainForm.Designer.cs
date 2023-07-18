@@ -192,6 +192,7 @@
             this.CrearProductosBtn.TabIndex = 4;
             this.CrearProductosBtn.Text = "Crear Productos";
             this.CrearProductosBtn.UseVisualStyleBackColor = true;
+            this.CrearProductosBtn.Click += new System.EventHandler(this.CrearProductosBtn_Click);
             // 
             // MainForm
             // 

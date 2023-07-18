@@ -1,6 +1,7 @@
 ﻿using AppRoti.Clases;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -11,8 +12,17 @@ using System.Xml.Serialization;
 
 namespace AppRoti {
     internal static class Program {
-        static private List<CCliente> _listadoClientes = new List<CCliente>();
 
+
+        private static ImageList _imageList;
+
+        internal static ImageList ImageList {
+            get { return _imageList; }
+            set { _imageList = value; }
+        }
+
+
+        static private List<CCliente> _listadoClientes = new List<CCliente>();
 
         static internal List<CCliente> ListadoClientes {
             get { return _listadoClientes; }
@@ -45,6 +55,11 @@ namespace AppRoti {
             Program.ListadoProductos.Add(p);
             Program.ListadoProductos.Add(p2);
             Program.ListadoProductos.Add(p3);
+
+            Program.ImageList = new ImageList();
+            Program.ImageList.ImageSize = new Size(32, 32);
+            Program.ImageList.Images.Add(AppRoti.Properties.Resources.pizza_3_32);
+            Program.ImageList.Images.Add(AppRoti.Properties.Resources.taco_32);
             BinaryFormatter f = new BinaryFormatter();
             try {
                 FileStream file = new FileStream("arch.bin", FileMode.Open);

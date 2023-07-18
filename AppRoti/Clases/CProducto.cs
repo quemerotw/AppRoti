@@ -25,7 +25,6 @@ namespace AppRoti.Clases
             set { _isDivisible = value; }
         }
 
-
         private string _nombre;
 
         public string Nombre {
@@ -53,8 +52,6 @@ namespace AppRoti.Clases
             get { return _descripcion; }
             set { _descripcion = value; }
         }
-
-
 
         public CProducto(string nombre, double precioVenta) {
             Nombre = nombre;

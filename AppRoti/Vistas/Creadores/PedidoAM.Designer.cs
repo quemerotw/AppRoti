@@ -281,6 +281,7 @@
             // 
             // ProductoContextMenu
             // 
+            this.ProductoContextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.ProductoContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MediaPizzaCM,
             this.toolStripMenuItem2,
@@ -323,6 +324,8 @@
             this.OrdenesListView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.OrdenesListView.Size = new System.Drawing.Size(168, 199);
             this.OrdenesListView.TabIndex = 20;
+            
+            this.OrdenesListView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.OrdenesListView_UserDeletingRow);
             // 
             // CantidadCol
             // 
