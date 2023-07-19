@@ -11,7 +11,11 @@ using AppRoti.Clases;
 
 namespace AppRoti.Vistas.Creadores {
     public partial class ProductoAM : BaseForm {
+        public override event FormEvent FormComplete;
+        internal CPedido _pedidoModif = null;
         private ListViewItem VistaPreviaitem = new ListViewItem();
+
+
         public ProductoAM() {
             InitializeComponent();
         }
@@ -31,7 +35,72 @@ namespace AppRoti.Vistas.Creadores {
             VistaPreviaListVw.LargeImageList = Program.ImageList;
         }
 
+        public override FrmOperacion OperacionForm {
+            get { return base.OperacionForm; }
+            set {
+                base.OperacionForm = value;
+                if (value == FrmOperacion.frmAlta) {
+                    this.Text = "Nuevo Producto";
+                }
+            }
+        }
+
+        public void ShowIngresoProducto(BaseForm invoker) {
+            this.InvokerForm = invoker;
+            this.OperacionForm = FrmOperacion.frmAlta;
+            this.ShowDialog();
+        }
+        public void ShowIngresoProducto() {
+            this.InvokerForm = null;
+            this.OperacionForm = FrmOperacion.frmAlta;
+            this.ShowDialog();
+        }
+
         private void AceptarButton_Click(object sender, EventArgs e) {
+            if (NombreTextBox.Text == "") {
+                MessageBox.Show("Nombre del Producto vacio", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                NombreTextBox.Focus();
+                return;
+            }
+            if (PrecioVentatextBox.Text == "") {
+                MessageBox.Show("Precio De Venta del Producto vacio", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PrecioVentatextBox.Focus();
+                return;
+            }
+            if (int.Parse(PrecioVentatextBox.Text) < 0) {
+                MessageBox.Show("Precio de venta incorrecto del Producto", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PrecioVentatextBox.Focus();
+                return;
+            }
+            if (PrecioCostotextBox.Text == "") {
+                MessageBox.Show("Precio De costo del Producto vacio", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PrecioVentatextBox.Focus();
+                return;
+            }
+            if (int.Parse(PrecioCostotextBox.Text) < 0) {
+                MessageBox.Show("Precio de costo incorrecto del Producto", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PrecioVentatextBox.Focus();
+                return;
+            }
+            if (int.Parse(PrecioCostotextBox.Text) < 0) {
+                MessageBox.Show("Precio de costo incorrecto del Producto", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PrecioVentatextBox.Focus();
+                return;
+            }
+            if (VistaPreviaListVw.Items[0].ImageIndex <0) {
+                MessageBox.Show("Seleccione el icono del Producto", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            CProducto prodAux = new CProducto(0,NombreTextBox.Text,double.Parse(PrecioVentatextBox.Text), double.Parse(PrecioCostotextBox.Text),textBox3.Text,IsDivisibleSiradioButton.Checked, VistaPreviaListVw.Items[0].ImageIndex);
+            if (FormComplete != null) {
+                if (true) { // implementar mensaje de error
+                    FormComplete(prodAux, new EventArgDom { ObjProcess = prodAux, Status = CompleteStatus.completed });
+                }
+                else {
+                    FormComplete(prodAux, new EventArgDom { ObjProcess = prodAux, Status = CompleteStatus.error, Msj = "Err" });
+                }
+            }
+            this.Close();
         }
 
         private void IconosListVw_SelectedIndexChanged(object sender, EventArgs e) {

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppRoti;
 using AppRoti.Clases;
+using WindowsFormsApp1.Controls;
 
 namespace AppRoti.Vistas
 {
@@ -87,9 +88,6 @@ namespace AppRoti.Vistas
             //controlAux.Location = ultimo;
         }
 
-        private void FrmMuroPedidos_Load(object sender, EventArgs e) {
-            
-        }
 
         internal void f_FormComplete(object sender, EventArgDom ev) {
             if (ev.Status == CompleteStatus.completed) {
@@ -99,6 +97,10 @@ namespace AppRoti.Vistas
                 pedido.ControlAsociado.MouseMove += ctrPedido1_MouseMove;
                 pedido.ControlAsociado.MouseUp += ctrPedido1_MouseUp;
                 pedido.ControlAsociado.MouseDown += ctrPedido1_MouseDown;
+                (pedido.ControlAsociado.Controls.Find("CancelarBtn", false)[0] as Button).MouseClick += BtnCancelarPedido_MouseClick;
+                (pedido.ControlAsociado.Controls.Find("CancelarBtn", false)[0] as Button).Tag = pedido;
+                (pedido.ControlAsociado.Controls.Find("CompletadoBtn", false)[0] as Button).MouseClick += BtnAceptarPedido_MouseClick;
+                (pedido.ControlAsociado.Controls.Find("CompletadoBtn", false)[0] as Button).Tag = pedido;
                 (pedido.ControlAsociado.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
                 (pedido.ControlAsociado.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Subtotal + pedido.Descuento);
                 if (PedidosPanel.Controls.Count > 0) {
@@ -113,6 +115,21 @@ namespace AppRoti.Vistas
             }
             else {
                 MessageBox.Show("Test");
+            }
+        }
+
+        private void BtnAceptarPedido_MouseClick(object sender, MouseEventArgs e) {
+            Program.ListadoPedidosFinal.Add((CPedido)(sender as Button).Tag);
+        }
+
+        private void BtnCancelarPedido_MouseClick(object sender, MouseEventArgs e) {
+            CPedido pedAux = (CPedido)(sender as Button).Tag;
+        }
+
+        private void FrmMuroPedidos_FormClosing(object sender, FormClosingEventArgs e) {
+            if (PedidosPanel.Controls.Count>0) {
+                MessageBox.Show(string.Format("Imposible cerrar el muro de pedidos todavia quedan {0} pedidos activos, complete los pedidos y luego cierre",PedidosPanel.Controls.Count),"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                e.Cancel = true;
             }
         }
     }

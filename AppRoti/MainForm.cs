@@ -13,7 +13,7 @@ using AppRoti.Vistas.Creadores;
 
 namespace AppRoti
 {
-    public partial class MainForm : Form
+    public partial class MainForm : BaseForm
     {
         
 
@@ -39,7 +39,20 @@ namespace AppRoti
         }
 
         private void CrearProductosBtn_Click(object sender, EventArgs e) {
-            new ProductoAM().Show();
+            ProductoAM fp = new ProductoAM();
+            fp.FormComplete += Fp_FormComplete;
+            fp.ShowIngresoProducto(this);
+        }
+
+        private void Fp_FormComplete(object sender, EventArgDom ev) {
+            if (ev.Status == CompleteStatus.completed) {
+                var x = ev.ObjProcess as CProducto;
+                Program.ListadoProductos.Add(x);
+                MessageBox.Show("Producto Agregado","Exito",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else {
+                MessageBox.Show("Test");
+            }
         }
     }
 }

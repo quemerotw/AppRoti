@@ -36,6 +36,13 @@ namespace AppRoti {
             set { _listadoProductos = value; }
         }
 
+        static private List<CPedido> _listadoPedidosFinal = new List<CPedido>();
+
+        static internal List<CPedido> ListadoPedidosFinal {
+            get { return _listadoPedidosFinal; }
+            set { _listadoPedidosFinal = value; }
+        }
+
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -49,21 +56,18 @@ namespace AppRoti {
         }
 
         static private void LoadArch() {
-            CProducto p = new CProducto(2,"Muzza",1000, 500, "",true);
-            CProducto p2 = new CProducto(2,"Fuga",1200,500,"",true);
-            CProducto p3 = new CProducto(3, "Empanada", 300, 100, "", false);
-            Program.ListadoProductos.Add(p);
-            Program.ListadoProductos.Add(p2);
-            Program.ListadoProductos.Add(p3);
-
             Program.ImageList = new ImageList();
             Program.ImageList.ImageSize = new Size(32, 32);
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.pizza_3_32);
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.taco_32);
             BinaryFormatter f = new BinaryFormatter();
             try {
-                FileStream file = new FileStream("arch.bin", FileMode.Open);
+                FileStream file = new FileStream("archClientes.pds", FileMode.Open);
                 ListadoClientes = (List<CCliente>)f.Deserialize(file);
+                file = new FileStream("archProductos.pds", FileMode.Open);
+                ListadoProductos = (List<CProducto>)f.Deserialize(file);
+                file = new FileStream("archVentas.pds", FileMode.Open);
+                ListadoPedidosFinal = (List<CPedido>)f.Deserialize(file);
             }
             catch (Exception) {
                 MessageBox.Show("Listados Vacios");
@@ -75,8 +79,12 @@ namespace AppRoti {
 
         static private void SaveArch() {
             BinaryFormatter f = new BinaryFormatter();
-            FileStream file = new FileStream("arch.bin", FileMode.OpenOrCreate);
+            FileStream file = new FileStream("archClientes.pds", FileMode.OpenOrCreate);
             f.Serialize(file, ListadoClientes);
+            file = new FileStream("archProductos.pds", FileMode.OpenOrCreate);
+            f.Serialize(file, ListadoProductos);
+            file = new FileStream("archVentas.pds", FileMode.OpenOrCreate);
+            f.Serialize(file, ListadoPedidosFinal);
         }
     }
 }

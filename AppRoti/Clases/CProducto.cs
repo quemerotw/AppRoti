@@ -10,6 +10,13 @@ namespace AppRoti.Clases
     [Serializable]
     public class CProducto : BaseClass {
 
+        private int _icoProducto;
+
+        public int IndexIconoProducto {
+            get { return _icoProducto; }
+            set { _icoProducto = value; }
+        }
+
 
         private double _stock;
 
@@ -58,13 +65,14 @@ namespace AppRoti.Clases
             PrecioVenta = precioVenta;
         }
 
-        public CProducto(double stock, string nombre, double precioVenta, double precioCosto, string descripcion, bool isDivisible) {
+        public CProducto(double stock, string nombre, double precioVenta, double precioCosto, string descripcion, bool isDivisible,int iconIndex) {
             Stock = stock;
             _nombre = nombre;
             _precioVenta = precioVenta;
             _precioCosto = precioCosto;
             _descripcion = descripcion;
             _isDivisible = isDivisible;
+            _icoProducto = iconIndex;
         }
 
         public override string ToString()
@@ -78,7 +86,7 @@ namespace AppRoti.Clases
 
         public CProducto GenerarVenta(double cant) {
             this.Stock -= cant;
-            return new CProducto(cant,this._nombre,this._precioVenta*cant,this._precioCosto,this._descripcion,this._isDivisible);
+            return new CProducto(cant,this._nombre,this._precioVenta*cant,this._precioCosto,this._descripcion,this._isDivisible,this._icoProducto);
         }
     }
 }

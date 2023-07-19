@@ -63,7 +63,7 @@ namespace AppRoti.Vistas
 
         private void AceptarBtn_Click(object sender, EventArgs e) {
             if (_half) {
-                MessageBox.Show("Hay Una mitad de pizza suelta");
+                MessageBox.Show("Hay Una mitad de pizza suelta","Error, Completar El Pedido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (OrdenesListView.Rows.Count < 0) {
