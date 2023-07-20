@@ -91,7 +91,7 @@ namespace AppRoti.Vistas.Creadores {
                 MessageBox.Show("Seleccione el icono del Producto", "Error, Completar El Producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            CProducto prodAux = new CProducto(0,NombreTextBox.Text,double.Parse(PrecioVentatextBox.Text), double.Parse(PrecioCostotextBox.Text),textBox3.Text,IsDivisibleSiradioButton.Checked, VistaPreviaListVw.Items[0].ImageIndex);
+            CProducto prodAux = new CProducto(10,NombreTextBox.Text,double.Parse(PrecioVentatextBox.Text), double.Parse(PrecioCostotextBox.Text),textBox3.Text,IsDivisibleSiradioButton.Checked, VistaPreviaListVw.Items[0].ImageIndex);
             if (FormComplete != null) {
                 if (true) { // implementar mensaje de error
                     FormComplete(prodAux, new EventArgDom { ObjProcess = prodAux, Status = CompleteStatus.completed });

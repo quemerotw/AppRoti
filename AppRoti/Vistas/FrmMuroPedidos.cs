@@ -93,29 +93,31 @@ namespace AppRoti.Vistas
             if (ev.Status == CompleteStatus.completed) {
                 CPedido pedido;
                 pedido = ev.ObjProcess as CPedido;
-                pedido.ControlAsociado.MouseEnter += ctrPedido1_MouseEnter;
-                pedido.ControlAsociado.MouseMove += ctrPedido1_MouseMove;
-                pedido.ControlAsociado.MouseUp += ctrPedido1_MouseUp;
-                pedido.ControlAsociado.MouseDown += ctrPedido1_MouseDown;
-                (pedido.ControlAsociado.Controls.Find("CancelarBtn", false)[0] as Button).MouseClick += BtnCancelarPedido_MouseClick;
-                (pedido.ControlAsociado.Controls.Find("CancelarBtn", false)[0] as Button).Tag = pedido;
-                (pedido.ControlAsociado.Controls.Find("CompletadoBtn", false)[0] as Button).MouseClick += BtnAceptarPedido_MouseClick;
-                (pedido.ControlAsociado.Controls.Find("CompletadoBtn", false)[0] as Button).Tag = pedido;
-                (pedido.ControlAsociado.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
-                (pedido.ControlAsociado.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Subtotal + pedido.Descuento);
+                CtrPedido controlAsoc = pedido.CrearControl(pedido);
+                controlAsoc = AsignarEventos(controlAsoc);
                 if (PedidosPanel.Controls.Count > 0) {
                     //buscar la ubicacion del ultimo ControlAsociado del panel
                     Point posAnt = PedidosPanel.Controls[PedidosPanel.Controls.Count - 1].Location;
-                    posAnt.X += pedido.ControlAsociado.Size.Width;
-                    pedido.ControlAsociado.Location = posAnt;
+                    posAnt.X += controlAsoc.Size.Width;
+                    controlAsoc.Location = posAnt;
                 }
-                pedido.ControlAsociado.Anchor = AnchorStyles.Top;
+                controlAsoc.Anchor = AnchorStyles.Top;
                 listadoPedidos.Add(pedido);
-                PedidosPanel.Controls.Add(pedido.ControlAsociado);
+                PedidosPanel.Controls.Add(controlAsoc);
             }
             else {
                 MessageBox.Show("Test");
             }
+        }
+
+        private CtrPedido AsignarEventos(CtrPedido controlAsoc) {
+            controlAsoc.MouseEnter += ctrPedido1_MouseEnter;
+            controlAsoc.MouseMove += ctrPedido1_MouseMove;
+            controlAsoc.MouseUp += ctrPedido1_MouseUp;
+            controlAsoc.MouseDown += ctrPedido1_MouseDown;
+            (controlAsoc.Controls.Find("CancelarBtn", false)[0] as Button).MouseClick += BtnCancelarPedido_MouseClick;
+            (controlAsoc.Controls.Find("CompletadoBtn", false)[0] as Button).MouseClick += BtnAceptarPedido_MouseClick;
+            return controlAsoc;
         }
 
         private void BtnAceptarPedido_MouseClick(object sender, MouseEventArgs e) {

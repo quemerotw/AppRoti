@@ -62,12 +62,17 @@ namespace AppRoti {
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.taco_32);
             BinaryFormatter f = new BinaryFormatter();
             try {
-                FileStream file = new FileStream("archClientes.pds", FileMode.Open);
-                ListadoClientes = (List<CCliente>)f.Deserialize(file);
-                file = new FileStream("archProductos.pds", FileMode.Open);
-                ListadoProductos = (List<CProducto>)f.Deserialize(file);
-                file = new FileStream("archVentas.pds", FileMode.Open);
-                ListadoPedidosFinal = (List<CPedido>)f.Deserialize(file);
+                using (FileStream file = new FileStream("archClientes.pds", FileMode.Open)) {
+                    ListadoClientes = (List<CCliente>)f.Deserialize(file);
+                }
+                using (FileStream file = new FileStream("archProductos.pds", FileMode.Open)) {
+                    ListadoProductos = (List<CProducto>)f.Deserialize(file);
+                }
+                using (FileStream file = new FileStream("archVentas.pds", FileMode.Open)) {
+                    ListadoPedidosFinal = (List<CPedido>)f.Deserialize(file);
+
+                }
+                
             }
             catch (Exception) {
                 MessageBox.Show("Listados Vacios");

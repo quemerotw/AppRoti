@@ -41,7 +41,7 @@ namespace AppRoti
         private void CrearProductosBtn_Click(object sender, EventArgs e) {
             ProductoAM fp = new ProductoAM();
             fp.FormComplete += Fp_FormComplete;
-            fp.ShowIngresoProducto(this);
+            fp.Show();
         }
 
         private void Fp_FormComplete(object sender, EventArgDom ev) {
