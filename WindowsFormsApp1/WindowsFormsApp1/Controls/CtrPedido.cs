@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1.Controls
 {
+    [Serializable]
     public partial class CtrPedido : UserControl
     {
         public CtrPedido()

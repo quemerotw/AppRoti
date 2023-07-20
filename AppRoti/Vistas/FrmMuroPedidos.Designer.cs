@@ -61,7 +61,7 @@
             this.Controls.Add(this.AgregarPedidoBtn);
             this.Name = "FrmMuroPedidos";
             this.Text = "Muro de pedidos";
-            this.Load += new System.EventHandler(this.FrmMuroPedidos_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMuroPedidos_FormClosing);
             this.ResumeLayout(false);
 
         }

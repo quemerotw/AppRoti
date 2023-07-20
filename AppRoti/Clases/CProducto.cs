@@ -9,10 +9,71 @@ namespace AppRoti.Clases
 {
     [Serializable]
     public class CProducto : BaseClass {
-        public string Nombre { get; set; }
-        public double PrecioVenta { get; set; }
-        public double PrecioCosto { get; set; }
-        public string Descripcion { get; set; }
+
+        private int _icoProducto;
+
+        public int IndexIconoProducto {
+            get { return _icoProducto; }
+            set { _icoProducto = value; }
+        }
+
+
+        private double _stock;
+
+        public double Stock {
+            get { return _stock; }
+            set { _stock = value; }
+        }
+
+        private bool _isDivisible;
+
+        public bool IsDivisible {
+            get { return _isDivisible; }
+            set { _isDivisible = value; }
+        }
+
+        private string _nombre;
+
+        public string Nombre {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+
+        private double _precioVenta;
+
+        public double PrecioVenta {
+            get { return _precioVenta; }
+            set { _precioVenta = value; }
+        }
+
+        private double _precioCosto;
+
+        public double PrecioCosto {
+            get { return _precioCosto; }
+            set { _precioCosto = value; }
+        }
+
+        private string _descripcion;
+
+        public string Descripcion {
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+
+        public CProducto(string nombre, double precioVenta) {
+            Nombre = nombre;
+            PrecioVenta = precioVenta;
+        }
+
+        public CProducto(double stock, string nombre, double precioVenta, double precioCosto, string descripcion, bool isDivisible,int iconIndex) {
+            Stock = stock;
+            _nombre = nombre;
+            _precioVenta = precioVenta;
+            _precioCosto = precioCosto;
+            _descripcion = descripcion;
+            _isDivisible = isDivisible;
+            _icoProducto = iconIndex;
+        }
 
         public override string ToString()
         {
@@ -21,6 +82,11 @@ namespace AppRoti.Clases
 
         public double CalcularGanancia() {
             return this.PrecioVenta - this.PrecioCosto;
+        }
+
+        public CProducto GenerarVenta(double cant) {
+            this.Stock -= cant;
+            return new CProducto(cant,this._nombre,this._precioVenta*cant,this._precioCosto,this._descripcion,this._isDivisible,this._icoProducto);
         }
     }
 }

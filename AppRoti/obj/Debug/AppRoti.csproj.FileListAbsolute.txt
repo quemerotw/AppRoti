@@ -17,3 +17,4 @@ C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.FrmMuroPedidos.resources
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.PedidoAM.resources
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.ListSelector.resources
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.Creadores.ProductoAM.resources

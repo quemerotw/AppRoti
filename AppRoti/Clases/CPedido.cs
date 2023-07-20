@@ -15,6 +15,17 @@ namespace AppRoti.Clases
     internal class CPedido : BaseClass {
         private static int _numPedido=1;
 
+        private DateTime _fecha;
+
+        public DateTime Fecha {
+            get { return _fecha; }
+        }
+
+
+        public static int NumPedido {
+            get { return _numPedido; }
+        }
+
         private double _recargo;
 
         public double Recargo {
@@ -37,7 +48,6 @@ namespace AppRoti.Clases
         }
 
         public CCliente Cliente { get;}
-        private WindowsFormsApp1.Controls.CtrPedido _controlAsoc;
 
         private List<CProducto> _detallePedido;
 
@@ -46,25 +56,9 @@ namespace AppRoti.Clases
             set { _detallePedido = value; }
         }
 
-
-        public WindowsFormsApp1.Controls.CtrPedido ControlAsociado
-
-        {
-            get { return _controlAsoc; }
-            set { _controlAsoc = value; }
-        }
-
         public CPedido(CCliente cliente) {
             string _nombre = string.Format("pedido{0}", _numPedido);
             _detallePedido = new List<CProducto>();
-            _controlAsoc = new WindowsFormsApp1.Controls.CtrPedido();
-            _controlAsoc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            _controlAsoc.BackColor = System.Drawing.Color.LawnGreen;
-            _controlAsoc.Location = new System.Drawing.Point(0, 0);
-            _controlAsoc.Name = _nombre;
-            _controlAsoc.Size = new System.Drawing.Size(176, 190);
-            (_controlAsoc.Controls.Find("NroPedidoLbl",false)[0] as Label).Text += string.Format("{0} - hora {1}:{2}", _numPedido,DateTime.Now.TimeOfDay.Hours,DateTime.Now.TimeOfDay.Minutes);
-            (_controlAsoc.Controls.Find("idPedidoLbl", false)[0] as Label).Text += string.Format("{0}", cliente.ToString());
             _numPedido++;
             Cliente = cliente;
         }
@@ -74,6 +68,29 @@ namespace AppRoti.Clases
                 resultado += item.PrecioVenta;
             }
             return resultado;
+        }
+
+        public WindowsFormsApp1.Controls.CtrPedido CrearControl(CPedido pedido) {
+            WindowsFormsApp1.Controls.CtrPedido controlAsoc = new WindowsFormsApp1.Controls.CtrPedido();
+            controlAsoc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            controlAsoc.BackColor = System.Drawing.Color.LawnGreen;
+            controlAsoc.Location = new System.Drawing.Point(0, 0);
+            if (pedido is CPedidoDelivery) {
+                controlAsoc.BackColor = Color.Gold;
+                controlAsoc.Controls.Find("DireccionLbl", false)[0].Visible = true;
+                (controlAsoc.Controls.Find("DireccionLbl", false)[0] as Label).Text += " " + (pedido as CPedidoDelivery).Direccion;
+            }
+            controlAsoc.Name = string.Format("ctrPedido-{0}", CPedido.NumPedido);
+            controlAsoc.Size = new System.Drawing.Size(176, 190);
+            (controlAsoc.Controls.Find("NroPedidoLbl", false)[0] as Label).Text += string.Format("{0} - hora {1}:{2}", CPedido.NumPedido, DateTime.Now.TimeOfDay.Hours, DateTime.Now.TimeOfDay.Minutes);
+            (controlAsoc.Controls.Find("idPedidoLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Cliente.ToString());
+            controlAsoc.Tag = pedido;
+            (controlAsoc.Controls.Find("CancelarBtn", false)[0] as Button).Tag = pedido;
+            
+            (controlAsoc.Controls.Find("CompletadoBtn", false)[0] as Button).Tag = pedido;
+            (controlAsoc.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
+            (controlAsoc.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Subtotal + pedido.Descuento);
+            return controlAsoc;
         }
     }
 }

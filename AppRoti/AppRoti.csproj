@@ -67,6 +67,12 @@
     <Compile Include="Vistas\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Creadores\ProductoAM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Creadores\ProductoAM.Designer.cs">
+      <DependentUpon>ProductoAM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FrmMuroPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,10 +85,10 @@
     <Compile Include="Vistas\Listados\ListSelector.Designer.cs">
       <DependentUpon>ListSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\PedidoAM.cs">
+    <Compile Include="Vistas\Creadores\PedidoAM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\PedidoAM.Designer.cs">
+    <Compile Include="Vistas\Creadores\PedidoAM.Designer.cs">
       <DependentUpon>PedidoAM.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
@@ -96,14 +102,18 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Vistas\Creadores\ProductoAM.resx">
+      <DependentUpon>ProductoAM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FrmMuroPedidos.resx">
       <DependentUpon>FrmMuroPedidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Listados\ListSelector.resx">
       <DependentUpon>ListSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PedidoAM.resx">
+    <EmbeddedResource Include="Vistas\Creadores\PedidoAM.resx">
       <DependentUpon>PedidoAM.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -123,6 +133,8 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\pizza-3-32.ico" />
+    <None Include="Properties\taco-32.ico" />
     <Content Include="Refer\de\Npgsql.resources.dll" />
     <Content Include="Refer\es\Npgsql.resources.dll" />
     <Content Include="Refer\fi\Npgsql.resources.dll" />
@@ -136,6 +148,7 @@
     <Content Include="Refer\Npgsql.pdb" />
     <Content Include="Refer\Npgsql.XML" />
     <Content Include="Refer\zh-CN\Npgsql.resources.dll" />
+    <None Include="Resources\Pizza.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

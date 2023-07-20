@@ -12,15 +12,25 @@ using System.Windows.Forms;
 namespace AppRoti.Vistas {
     public partial class ListSelector : Form {
         BindingList<CCliente> bindingListCliente;
-        BindingSource bindingSource;
+        BindingSource bindingSourceCliente;
+        BindingList<CPedido> bindingListPedido;
+        BindingSource bindingSourcePedido;
+        BindingList<CProducto> bindingListProducto;
+        BindingSource bindingSourceProducto;
         public ListSelector() {
             InitializeComponent();
         }
 
         private void ListSelector_Load(object sender, EventArgs e) {
             bindingListCliente = new BindingList<CCliente>(Program.ListadoClientes);
-            bindingSource = new BindingSource(bindingListCliente,null);
-            this.ClientesGridView.DataSource = bindingSource;
+            bindingSourceCliente = new BindingSource(bindingListCliente,null);
+            this.ClientesGridView.DataSource = bindingSourceCliente;
+            bindingListPedido = new BindingList<CPedido>(Program.ListadoPedidosFinal);
+            bindingSourcePedido = new BindingSource(bindingListPedido, null);
+            this.VentasGridView.DataSource = bindingSourcePedido;
+            bindingListProducto = new BindingList<CProducto>(Program.ListadoProductos);
+            bindingSourceProducto = new BindingSource(bindingListProducto, null);
+            this.ProdGridView.DataSource = bindingSourceProducto;
         }
     }
 }

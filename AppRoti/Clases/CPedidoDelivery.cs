@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppRoti.Clases {
+
+	[Serializable]
     internal class CPedidoDelivery : CPedido{
 
 		private double _precioEnvio;
@@ -29,10 +31,7 @@ namespace AppRoti.Clases {
 
 
 		public CPedidoDelivery(CCliente cliente, string direccion):base(cliente) {
-			this.ControlAsociado.BackColor = Color.Gold;
 			this._direccion = direccion;
-			this.ControlAsociado.Controls.Find("DireccionLbl", false)[0].Visible = true;
-            (this.ControlAsociado.Controls.Find("DireccionLbl", false)[0] as Label).Text += " " + this._direccion;
         }
     }
 }
