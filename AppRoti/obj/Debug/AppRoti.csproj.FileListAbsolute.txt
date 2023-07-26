@@ -11,7 +11,6 @@ C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.exe
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.pdb
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.dll
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.pdb
-C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.xml
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.dll.config
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.csproj.CopyComplete
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\AppRoti.Vistas.FrmMuroPedidos.resources
@@ -37,3 +36,4 @@ C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\fr\Npgsql.resou
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\ja\Npgsql.resources.dll
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\zh-CN\Npgsql.resources.dll
 C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\obj\Debug\clubApp.Views.FrmLogin.resources
+C:\Users\Queme\OneDrive\Escritorio\Git\AppRoti\AppRoti\bin\Debug\WindowsFormsApp1.xml

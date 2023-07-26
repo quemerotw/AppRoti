@@ -129,12 +129,12 @@ namespace AppRoti.Vistas
         public void ShowIngresoPedido(BaseForm invoker) {
             this.InvokerForm = invoker;
             this.OperacionForm = FrmOperacion.frmAlta;
-            this.ShowDialog();
+            this.Show();
         }
         public void ShowIngresoPedido() {
             this.InvokerForm = null;
             this.OperacionForm = FrmOperacion.frmAlta;
-            this.ShowDialog();
+            this.Show();
         }
 
 
