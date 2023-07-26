@@ -9,10 +9,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using AppRoti.Vistas;
 
 namespace AppRoti {
     internal static class Program {
 
+        #region Listados 
 
         private static ImageList _imageList;
 
@@ -42,6 +44,13 @@ namespace AppRoti {
             get { return _listadoPedidosFinal; }
             set { _listadoPedidosFinal = value; }
         }
+        static private List<CUsers> _listadoUsers = new List<CUsers>();
+
+        static internal List<CUsers> ListadoUsers {
+            get { return _listadoUsers; }
+            set { _listadoUsers = value; }
+        }
+        #endregion
 
         /// <summary>
         /// Punto de entrada principal para la aplicación.
@@ -50,6 +59,7 @@ namespace AppRoti {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new LoadFrm());
             LoadArch();
             Application.Run(new MainForm());
             SaveArch();
@@ -72,7 +82,7 @@ namespace AppRoti {
                     ListadoPedidosFinal = (List<CPedido>)f.Deserialize(file);
 
                 }
-                
+                _listadoUsers.Add(new CUsers(20000,"-->quemero<--","sicker",UserRank.Me));
             }
             catch (Exception) {
                 MessageBox.Show("Listados Vacios");

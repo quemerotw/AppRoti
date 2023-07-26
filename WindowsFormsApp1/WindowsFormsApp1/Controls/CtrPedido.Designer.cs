@@ -110,7 +110,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LawnGreen;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.TotalLbl);
             this.Controls.Add(this.DireccionLbl);
             this.Controls.Add(this.idPedidoLbl);
@@ -118,8 +118,9 @@
             this.Controls.Add(this.NroPedidoLbl);
             this.Controls.Add(this.CompletadoBtn);
             this.Controls.Add(this.CancelarBtn);
+            this.DoubleBuffered = true;
             this.Name = "CtrPedido";
-            this.Size = new System.Drawing.Size(172, 184);
+            this.Size = new System.Drawing.Size(176, 188);
             this.Load += new System.EventHandler(this.CtrPedido_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -61,6 +61,16 @@ namespace AppRoti.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HD_wallpaper_wind_in_savanah_life_wind_wild_savanah_lion_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("HD_wallpaper_wind_in_savanah_life_wind_wild_savanah_lion_thumbnail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
         /// </summary>
         internal static System.Drawing.Icon pizza_3_32 {

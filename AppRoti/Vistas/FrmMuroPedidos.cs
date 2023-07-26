@@ -23,7 +23,7 @@ namespace AppRoti.Vistas
         static internal List<CPedido> listadoPedidos = new List<CPedido>();
  
 
-        public FrmMuroPedidos()
+        public FrmMuroPedidos(BaseForm invoker)
         {
             InitializeComponent();
         }
@@ -133,6 +133,10 @@ namespace AppRoti.Vistas
                 MessageBox.Show(string.Format("Imposible cerrar el muro de pedidos todavia quedan {0} pedidos activos, complete los pedidos y luego cierre",PedidosPanel.Controls.Count),"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 e.Cancel = true;
             }
+        }
+
+        private void PedidosPanel_Paint(object sender, PaintEventArgs e) {
+
         }
     }
 }
