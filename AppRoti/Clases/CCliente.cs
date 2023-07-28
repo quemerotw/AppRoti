@@ -14,11 +14,20 @@ namespace AppRoti.Clases{
         public string Direccion { get; set; }
         public int CantPedidos { get; set; }
 
-        public CCliente(string nombre,string direccion)
+        private string _tel;
+
+        public string Telefono {
+            get { return _tel; }
+            set { _tel = value; }
+        }
+
+
+        public CCliente(string nombre,string direccion,string telefono)
         {
             Id = numConst++;
             this.Direccion = direccion;
             this.Nombres = nombre;
+            this.Telefono = telefono;
         }
 
         public override string ToString() {

@@ -35,6 +35,8 @@
             this.CartaLbl = new System.Windows.Forms.Label();
             this.CancelarBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TelComboBox = new System.Windows.Forms.ComboBox();
+            this.TelefonoLbl = new System.Windows.Forms.Label();
             this.PrecioEnvioNUP = new System.Windows.Forms.NumericUpDown();
             this.ConEnvioChk = new System.Windows.Forms.CheckBox();
             this.DireccionCbo = new System.Windows.Forms.ComboBox();
@@ -56,6 +58,7 @@
             this.CantidadCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalLbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioEnvioNUP)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -69,7 +72,7 @@
             this.ProductosListWv.Location = new System.Drawing.Point(203, 43);
             this.ProductosListWv.Name = "ProductosListWv";
             this.ProductosListWv.ShowGroups = false;
-            this.ProductosListWv.Size = new System.Drawing.Size(358, 199);
+            this.ProductosListWv.Size = new System.Drawing.Size(358, 232);
             this.ProductosListWv.TabIndex = 0;
             this.ProductosListWv.UseCompatibleStateImageBehavior = false;
             this.ProductosListWv.ItemActivate += new System.EventHandler(this.ProductosListWv_ItemActivate);
@@ -78,7 +81,7 @@
             // 
             // AceptarBtn
             // 
-            this.AceptarBtn.Location = new System.Drawing.Point(112, 219);
+            this.AceptarBtn.Location = new System.Drawing.Point(112, 252);
             this.AceptarBtn.Name = "AceptarBtn";
             this.AceptarBtn.Size = new System.Drawing.Size(75, 23);
             this.AceptarBtn.TabIndex = 9;
@@ -106,7 +109,7 @@
             // 
             // CancelarBtn
             // 
-            this.CancelarBtn.Location = new System.Drawing.Point(16, 219);
+            this.CancelarBtn.Location = new System.Drawing.Point(16, 252);
             this.CancelarBtn.Name = "CancelarBtn";
             this.CancelarBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelarBtn.TabIndex = 17;
@@ -116,6 +119,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TelComboBox);
+            this.groupBox1.Controls.Add(this.TelefonoLbl);
             this.groupBox1.Controls.Add(this.PrecioEnvioNUP);
             this.groupBox1.Controls.Add(this.ConEnvioChk);
             this.groupBox1.Controls.Add(this.DireccionCbo);
@@ -124,10 +129,27 @@
             this.groupBox1.Controls.Add(this.ClienteLbl);
             this.groupBox1.Location = new System.Drawing.Point(8, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(185, 108);
+            this.groupBox1.Size = new System.Drawing.Size(189, 135);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Del Cliente";
+            // 
+            // TelComboBox
+            // 
+            this.TelComboBox.FormattingEnabled = true;
+            this.TelComboBox.Location = new System.Drawing.Point(58, 109);
+            this.TelComboBox.Name = "TelComboBox";
+            this.TelComboBox.Size = new System.Drawing.Size(121, 21);
+            this.TelComboBox.TabIndex = 24;
+            // 
+            // TelefonoLbl
+            // 
+            this.TelefonoLbl.AutoSize = true;
+            this.TelefonoLbl.Location = new System.Drawing.Point(6, 112);
+            this.TelefonoLbl.Name = "TelefonoLbl";
+            this.TelefonoLbl.Size = new System.Drawing.Size(49, 13);
+            this.TelefonoLbl.TabIndex = 23;
+            this.TelefonoLbl.Text = "Telefono";
             // 
             // PrecioEnvioNUP
             // 
@@ -211,7 +233,7 @@
             this.groupBox2.Controls.Add(this.RecargoTxt);
             this.groupBox2.Controls.Add(this.DescChk);
             this.groupBox2.Controls.Add(this.DescTxt);
-            this.groupBox2.Location = new System.Drawing.Point(8, 135);
+            this.groupBox2.Location = new System.Drawing.Point(8, 168);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(185, 78);
             this.groupBox2.TabIndex = 19;
@@ -257,6 +279,7 @@
             this.RecargoTxt.Name = "RecargoTxt";
             this.RecargoTxt.Size = new System.Drawing.Size(90, 20);
             this.RecargoTxt.TabIndex = 2;
+            this.RecargoTxt.Text = "0";
             this.RecargoTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RecargoTxt_KeyPress);
             // 
             // DescChk
@@ -277,6 +300,7 @@
             this.DescTxt.Name = "DescTxt";
             this.DescTxt.Size = new System.Drawing.Size(91, 20);
             this.DescTxt.TabIndex = 0;
+            this.DescTxt.Text = "0";
             this.DescTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescTxt_KeyPress);
             // 
             // ProductoContextMenu
@@ -322,9 +346,8 @@
             this.OrdenesListView.Name = "OrdenesListView";
             this.OrdenesListView.RowHeadersVisible = false;
             this.OrdenesListView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.OrdenesListView.Size = new System.Drawing.Size(168, 199);
+            this.OrdenesListView.Size = new System.Drawing.Size(168, 203);
             this.OrdenesListView.TabIndex = 20;
-            
             this.OrdenesListView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.OrdenesListView_UserDeletingRow);
             // 
             // CantidadCol
@@ -359,11 +382,21 @@
             this.Precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Precio.Width = 62;
             // 
+            // TotalLbl
+            // 
+            this.TotalLbl.AutoSize = true;
+            this.TotalLbl.Location = new System.Drawing.Point(569, 253);
+            this.TotalLbl.Name = "TotalLbl";
+            this.TotalLbl.Size = new System.Drawing.Size(40, 13);
+            this.TotalLbl.TabIndex = 21;
+            this.TotalLbl.Text = "Total : ";
+            // 
             // PedidoAM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 262);
+            this.ClientSize = new System.Drawing.Size(747, 287);
+            this.Controls.Add(this.TotalLbl);
             this.Controls.Add(this.OrdenesListView);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -418,5 +451,8 @@
         private System.Windows.Forms.RadioButton EfectivoRadioBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.Label TelefonoLbl;
+        private System.Windows.Forms.ComboBox TelComboBox;
+        private System.Windows.Forms.Label TotalLbl;
     }
 }

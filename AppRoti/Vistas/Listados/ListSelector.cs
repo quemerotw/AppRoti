@@ -22,6 +22,9 @@ namespace AppRoti.Vistas {
         }
 
         private void ListSelector_Load(object sender, EventArgs e) {
+            ClientesGridView.AutoGenerateColumns = false;
+            VentasGridView.AutoGenerateColumns = false;
+            ProdGridView.AutoGenerateColumns = false;
             bindingListCliente = new BindingList<CCliente>(Program.ListadoClientes);
             bindingSourceCliente = new BindingSource(bindingListCliente,null);
             this.ClientesGridView.DataSource = bindingSourceCliente;

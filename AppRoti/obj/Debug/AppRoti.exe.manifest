@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AppRoti.exe" size="346592">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AppRoti.exe" size="348128">
       <assemblyIdentity name="AppRoti" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UnFZdorrnE9RGBFxQpT9n3FxrEYBxUBRo5VgUAZG58o=</dsig:DigestValue>
+        <dsig:DigestValue>Cg68W0jQv8SJE755nfOsdZvW5ipS7VevJwQ8JAWu08c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

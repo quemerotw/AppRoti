@@ -36,6 +36,12 @@ namespace AppRoti.Vistas
             DireccionCbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             DireccionCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            TelComboBox.DataSource = Program.ListadoClientes;
+            TelComboBox.ValueMember = "Telefono";
+            TelComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            TelComboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+
 
             OrdenesListView.AutoGenerateColumns = false;
 
@@ -44,10 +50,7 @@ namespace AppRoti.Vistas
 
             foreach (CProducto prodAux in Program.ListadoProductos) {
                 ListViewItem item = new ListViewItem();
-                item.ImageIndex = 0;
-                if (prodAux.Nombre == "Empanada") {
-                    item.ImageIndex = 1;
-                }
+                item.ImageIndex = prodAux.IndexIconoProducto;
                 item.Name = prodAux.Nombre;
                 item.Text = string.Format("{0} - ${1} \n Stock: {2}", prodAux.Nombre, prodAux.PrecioVenta,prodAux.Stock);
                 item.Tag = prodAux;
@@ -70,6 +73,11 @@ namespace AppRoti.Vistas
                 MessageBox.Show("Por favor seleccione los productos del pedido", "Error, Pedido Vacio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (TelComboBox.Text == "") {
+                MessageBox.Show("Por favor Escriba el numero de telefono", "Error, Telefono Vacio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TelComboBox.Focus();
+                return;
+            }
             if (ClienteCbo.Text == "") {
                 MessageBox.Show("Por favor seleccione el cliente o escriba el nombre de un nuevo cliente", "Error, Cliente Vacio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ClienteCbo.Focus();
@@ -80,7 +88,7 @@ namespace AppRoti.Vistas
                 DireccionCbo.Focus();
                 return;
             }
-            CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text); ;
+            CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text,TelComboBox.Text); ;
             CPedido pedido;
             if (ClienteCbo.SelectedIndex < 0) {
                 if (MessageBox.Show("Crear nuevo cliente?", "cliente nuevo", MessageBoxButtons.OKCancel) == DialogResult.OK) {
@@ -102,6 +110,7 @@ namespace AppRoti.Vistas
             foreach (CProducto aux in OrdenesList) {
                 pedido.DetallePedido.Add(aux);
             }
+            pedido.Cliente.CantPedidos += 1;
             pedido.DetallePedido.Sort((x, y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
             pedido.Subtotal += pedido.CalcularSubtotal();
             pedido.Descuento = 0;
@@ -141,21 +150,25 @@ namespace AppRoti.Vistas
 
 
         private void DescChk_CheckedChanged(object sender, EventArgs e) {
+            this.RefreshProductos();
             DescTxt.Enabled = DescChk.Checked;
         }
 
         private void RecargoChk_CheckedChanged(object sender, EventArgs e) {
+            this.RefreshProductos();
             RecargoTxt.Enabled = RecargoChk.Checked;
         }
 
         private void DescTxt_KeyPress(object sender, KeyPressEventArgs e) {
             if (!char.IsDigit(e.KeyChar) && (((short)e.KeyChar) != 8))
                 e.Handled = true;
+            this.RefreshProductos();
         }
 
         private void RecargoTxt_KeyPress(object sender, KeyPressEventArgs e) {
             if (!char.IsDigit(e.KeyChar) && (((short)e.KeyChar) != 8))
                 e.Handled = true;
+            this.RefreshProductos();
         }
 
         private void CancelarBtn_Click(object sender, EventArgs e) {
@@ -163,6 +176,7 @@ namespace AppRoti.Vistas
         }
 
         private void ConEnvioChk_CheckedChanged(object sender, EventArgs e) {
+            this.RefreshProductos();
             PrecioEnvioNUP.Enabled = ConEnvioChk.Checked;
             DireccionCbo.Enabled = ConEnvioChk.Checked;
         }
@@ -218,13 +232,20 @@ namespace AppRoti.Vistas
         }
 
         private void RefreshProductos() {
+            var total = 0.0;
+            foreach (CProducto item in OrdenesList) {
+                total += item.PrecioVenta;
+            }
+            total += double.Parse(RecargoTxt.Text);
+            total -= double.Parse(DescTxt.Text);
+            if (ConEnvioChk.Checked) {
+                total += (double)PrecioEnvioNUP.Value;
+            }
+            TotalLbl.Text = string.Format("Total :{0}$",total);
             ProductosListWv.Items.Clear();
             foreach (CProducto prodAux in Program.ListadoProductos) {
                 ListViewItem item = new ListViewItem();
-                item.ImageIndex = 0;
-                if (prodAux.Nombre == "Empanada") {
-                    item.ImageIndex = 1;
-                }
+                item.ImageIndex = prodAux.IndexIconoProducto;
                 item.Name = prodAux.Nombre;
                 item.Text = string.Format("{0} - ${1} \n Porciones Restantes: {2}", prodAux.Nombre, prodAux.PrecioVenta, prodAux.Stock);
                 item.Tag = prodAux;
