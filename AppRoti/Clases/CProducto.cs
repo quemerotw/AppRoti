@@ -60,6 +60,15 @@ namespace AppRoti.Clases
             set { _descripcion = value; }
         }
 
+        private double _cantidadVentas;
+
+        public double CantidadVentas {
+            get { return _cantidadVentas; }
+            set { _cantidadVentas = value; }
+        }
+
+        public double TotalVentas { get { return this.CantidadVentas * this.PrecioVenta; } }
+
         public CProducto(string nombre, double precioVenta) {
             Nombre = nombre;
             PrecioVenta = precioVenta;
@@ -85,6 +94,7 @@ namespace AppRoti.Clases
         }
 
         public CProducto GenerarVenta(double cant) {
+            this._cantidadVentas += cant;
             this.Stock -= cant;
             return new CProducto(cant,this._nombre,this._precioVenta*cant,this._precioCosto,this._descripcion,this._isDivisible,this._icoProducto);
         }

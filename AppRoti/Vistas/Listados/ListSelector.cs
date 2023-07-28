@@ -32,5 +32,9 @@ namespace AppRoti.Vistas {
             bindingSourceProducto = new BindingSource(bindingListProducto, null);
             this.ProdGridView.DataSource = bindingSourceProducto;
         }
+
+        private void VentasGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+        }
     }
 }

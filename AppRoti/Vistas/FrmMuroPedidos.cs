@@ -20,6 +20,7 @@ namespace AppRoti.Vistas
         private int row;
         bool aux;
         private CtrPedido contSelect;
+       
 
         static internal List<CPedido> listadoPedidos = new List<CPedido>();
         private Point offset;
@@ -44,13 +45,13 @@ namespace AppRoti.Vistas
             CtrPedido controlAux = (sender as CtrPedido);
             contSelect = controlAux;
             offset = e.Location;
-            PedidosPanel.Controls.Remove(controlAux);
+            this.SuspendLayout();
+            controlAux.SuspendLayout();
+            PedidosPanel.SuspendLayout();
         }
 
         private void ctrPedido1_MouseMove(object sender, MouseEventArgs e) {
             if (aux) {
-                //Control controlAux = (sender as Control);
-                this.Controls.Add(contSelect);
                 PedidosPanel.SendToBack();
                 Point newPos = PedidosPanel.PointToClient(Cursor.Position);
                 newPos.Offset(-offset.X, -offset.Y);
@@ -59,37 +60,12 @@ namespace AppRoti.Vistas
                 int newX = Math.Max(0, Math.Min(PedidosPanel.ClientSize.Width - contSelect.Width, newPos.X));
                 int newY = Math.Max(0, Math.Min(PedidosPanel.ClientSize.Height - contSelect.Height, newPos.Y));
                 contSelect.Location = new Point(newX, newY);
-                //controlAux.Visible = false;
-                //Point m = controlAux.TopLevelControl.PointToClient(Cursor.Position);
-                //m.X -= controlAux.TopLevelControl.Location.X;
-                //m.Y -= controlAux.TopLevelControl.Location.Y;
-                //controlAux.Location = m;
-                /*foreach (Control item in PedidosPanel.Controls) {
-                    if (!item.Equals(controlAux)) {
-                        if (PedidosPanel.GetCellPosition(item) == selec) {
-                            teEncontrePuto = true;
-                            ultimo = item.Location;
-                            controlAux.Location = ultimo;
-                        }
-                    }
-                    if (teEncontrePuto) {
-                        if (PedidosPanel.Size.Width >= ultimo.X + controlAux.Width) {
-                            ultimo.X += controlAux.Size.Width;
-                        }
-                        else {
-                            ultimo.X = 0;
-                            ultimo.Y += controlAux.Size.Height;
-                        }
-                        item.Location = ultimo;
-                    }
-                }*/
             }
         }
 
 
         private void ctrPedido1_MouseUp(object sender, MouseEventArgs e) { 
             CtrPedido controlAux = (sender as CtrPedido);
-            PedidosPanel.Controls.Add(controlAux);
             Point mousePos = PedidosPanel.PointToClient(Cursor.Position);
             // Obtener la columna y fila correspondiente a la posición del puntero
             int newCol = -1;
@@ -101,7 +77,6 @@ namespace AppRoti.Vistas
                     break;
                 }
             }
-
             int newRow = -1;
             int rowTop = 0;
             for (int row = 0; row < PedidosPanel.RowCount; row++) {
@@ -114,7 +89,9 @@ namespace AppRoti.Vistas
             PedidosPanel.SetRow(controlAux, newRow);
             PedidosPanel.SetColumn(controlAux, newCol);
             this.Controls.Remove(contSelect);
-
+            PedidosPanel.ResumeLayout();
+            controlAux.ResumeLayout();
+            this.ResumeLayout();
             //row = PedidosPanel.GetRow(contSelect);
             //col = PedidosPanel.GetColumn(contSelect);
             //PedidosPanel.SetRow(controlAux, row);

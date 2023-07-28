@@ -76,6 +76,7 @@
             this.ClientSize = new System.Drawing.Size(825, 450);
             this.Controls.Add(this.AgregarPedidoBtn);
             this.Controls.Add(this.PedidosPanel);
+            this.DoubleBuffered = true;
             this.Name = "FrmMuroPedidos";
             this.Text = "Muro de pedidos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

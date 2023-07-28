@@ -69,6 +69,13 @@ namespace AppRoti.Clases
             }
             return resultado;
         }
+        public double CalcularTotal {
+            get { 
+            var Total = Subtotal -= Descuento;
+            Total += Recargo;
+            return Total;
+            }
+        }
 
         public WindowsFormsApp1.Controls.CtrPedido CrearControl(CPedido pedido) {
             WindowsFormsApp1.Controls.CtrPedido controlAsoc = new WindowsFormsApp1.Controls.CtrPedido();

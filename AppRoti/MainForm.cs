@@ -36,6 +36,13 @@ namespace AppRoti
             this.Visible = true;
             monthCalendar1.TodayDate = DateTime.Now;
             _usuario.FechaLog = DateTime.Now;
+            if (_usuario.UserRankValue == UserRank.Me) {
+                this.crearUsuariosToolStripMenuItem.Visible = true;
+            }
+            if (_usuario.UserRankValue == UserRank.Visit) {
+                this.CrearProductosBtn.Enabled = false;
+                this.StartShiftBtn.Enabled = false;
+            }
             groupBox1.Text = "Usuario Actual: " + _usuario.Nombre + " Hora Inicio Seccion "+ _usuario.FechaLog.ToString("HH:mm"); 
         }
 

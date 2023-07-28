@@ -28,11 +28,15 @@ namespace clubApp.Views
                     this.Close();
                 }
                 else {
-                    MessageBox.Show("clave");
+                    MessageBox.Show("Clave Erronea");
                 }
             }
             else {
-                MessageBox.Show("Test");
+                MessageBox.Show("Usuario Erroneo");
+                if (MessageBox.Show("Desea entrar como Visitante?", "Usuario no encontrado", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+                    MainForm._usuario = new CUsers(1000, "Invitado", "0", UserRank.Visit);
+                    this.Close();
+                }
             }
         } 
     }

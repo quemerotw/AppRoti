@@ -32,5 +32,6 @@ namespace WindowsFormsApp1.Controls
         {
             this.Dispose();
         }
+       
     }
 }

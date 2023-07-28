@@ -26,12 +26,21 @@
             this.ClientesGrBx = new System.Windows.Forms.GroupBox();
             this.ClientesBtn = new System.Windows.Forms.Button();
             this.ClientesGridView = new System.Windows.Forms.DataGridView();
+            this.NombreCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DireccionCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PedidosCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductosGrBx = new System.Windows.Forms.GroupBox();
             this.ProductosBtn = new System.Windows.Forms.Button();
             this.ProdGridView = new System.Windows.Forms.DataGridView();
+            this.NomProdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioVentaCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantVentasCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalVentasCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VentasGrBx = new System.Windows.Forms.GroupBox();
             this.VentasBtn = new System.Windows.Forms.Button();
             this.VentasGridView = new System.Windows.Forms.DataGridView();
+            this.NomClientePedidoCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalPedidoCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientesGrBx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClientesGridView)).BeginInit();
             this.ProductosGrBx.SuspendLayout();
@@ -63,10 +72,39 @@
             // ClientesGridView
             // 
             this.ClientesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ClientesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NombreCol,
+            this.DireccionCol,
+            this.PedidosCol});
             this.ClientesGridView.Location = new System.Drawing.Point(7, 20);
             this.ClientesGridView.Name = "ClientesGridView";
+            this.ClientesGridView.RowHeadersVisible = false;
+            this.ClientesGridView.AutoGenerateColumns = false;
             this.ClientesGridView.Size = new System.Drawing.Size(259, 289);
             this.ClientesGridView.TabIndex = 0;
+            // 
+            // NombreCol
+            // 
+            this.NombreCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.NombreCol.DataPropertyName = "Nombres";
+            this.NombreCol.HeaderText = "Nombres";
+            this.NombreCol.Name = "NombreCol";
+            this.NombreCol.ReadOnly = true;
+            this.NombreCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NombreCol.Width = 74;
+            // 
+            // DireccionCol
+            // 
+            this.DireccionCol.DataPropertyName = "Direccion";
+            this.DireccionCol.HeaderText = "Direccion";
+            this.DireccionCol.Name = "DireccionCol";
+            // 
+            // PedidosCol
+            // 
+            this.PedidosCol.DataPropertyName = "CantPedidos";
+            this.PedidosCol.HeaderText = "Pedidos Realizados";
+            this.PedidosCol.Name = "PedidosCol";
+            this.PedidosCol.ReadOnly = true;
             // 
             // ProductosGrBx
             // 
@@ -90,11 +128,43 @@
             // 
             // ProdGridView
             // 
+            this.ProdGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProdGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProdGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NomProdCol,
+            this.PrecioVentaCol,
+            this.CantVentasCol,
+            this.TotalVentasCol});
             this.ProdGridView.Location = new System.Drawing.Point(7, 20);
             this.ProdGridView.Name = "ProdGridView";
+            this.ProdGridView.RowHeadersVisible = false;
+            this.ProdGridView.AutoGenerateColumns = false;
             this.ProdGridView.Size = new System.Drawing.Size(259, 289);
             this.ProdGridView.TabIndex = 0;
+            // 
+            // NomProdCol
+            // 
+            this.NomProdCol.DataPropertyName = "Nombre";
+            this.NomProdCol.HeaderText = "Nombre";
+            this.NomProdCol.Name = "NomProdCol";
+            // 
+            // PrecioVentaCol
+            // 
+            this.PrecioVentaCol.DataPropertyName = "PrecioVenta";
+            this.PrecioVentaCol.HeaderText = "Precio de Venta";
+            this.PrecioVentaCol.Name = "PrecioVentaCol";
+            // 
+            // CantVentasCol
+            // 
+            this.CantVentasCol.DataPropertyName = "CantidadVentas";
+            this.CantVentasCol.HeaderText = "Cantidad de ventas";
+            this.CantVentasCol.Name = "CantVentasCol";
+            // 
+            // TotalVentasCol
+            // 
+            this.TotalVentasCol.DataPropertyName = "TotalVentas";
+            this.TotalVentasCol.HeaderText = "Total Ventas";
+            this.TotalVentasCol.Name = "TotalVentasCol";
             // 
             // VentasGrBx
             // 
@@ -118,11 +188,30 @@
             // 
             // VentasGridView
             // 
+            this.VentasGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.VentasGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.VentasGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NomClientePedidoCol,
+            this.TotalPedidoCol});
             this.VentasGridView.Location = new System.Drawing.Point(6, 20);
             this.VentasGridView.Name = "VentasGridView";
+            this.VentasGridView.RowHeadersVisible = false;
+            this.VentasGridView.AutoGenerateColumns = false;
             this.VentasGridView.Size = new System.Drawing.Size(260, 289);
             this.VentasGridView.TabIndex = 1;
+            this.VentasGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VentasGridView_CellContentClick);
+            // 
+            // NomClientePedidoCol
+            // 
+            this.NomClientePedidoCol.DataPropertyName = "Cliente";
+            this.NomClientePedidoCol.HeaderText = "Cliente";
+            this.NomClientePedidoCol.Name = "NomClientePedidoCol";
+            // 
+            // TotalPedidoCol
+            // 
+            this.TotalPedidoCol.DataPropertyName = "CalcularTotal";
+            this.TotalPedidoCol.HeaderText = "Total Pedido";
+            this.TotalPedidoCol.Name = "TotalPedidoCol";
             // 
             // ListSelector
             // 
@@ -156,5 +245,14 @@
         private System.Windows.Forms.DataGridView ProdGridView;
         private System.Windows.Forms.Button VentasBtn;
         private System.Windows.Forms.DataGridView VentasGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DireccionCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PedidosCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomProdCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVentaCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantVentasCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalVentasCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomClientePedidoCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPedidoCol;
     }
 }

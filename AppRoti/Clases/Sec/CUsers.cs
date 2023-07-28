@@ -26,6 +26,11 @@ namespace AppRoti.Clases {
             get { return _nombre; }
         }
 
+        public UserRank UserRankValue {
+            get { return _userRank; }
+        }
+
+
         public string Clave { 
             get { return _clave; }
         }
