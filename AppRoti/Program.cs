@@ -87,13 +87,12 @@ namespace AppRoti {
                     ListadoPedidosFinal = (List<CPedido>)f.Deserialize(file);
 
                 }
-                _listadoUsers.Add(new CUsers(20000,"-->quemero<--","sicker",UserRank.Me));
             }
             catch (Exception) {
                 MessageBox.Show("Listados Vacios");
             }
             finally {
-
+                _listadoUsers.Add(new CUsers(20000, "-->quemero<--", "sicker", UserRank.Me));
             }
         }
 
