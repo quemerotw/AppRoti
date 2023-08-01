@@ -26,7 +26,9 @@ namespace AppRoti.Vistas
         }
 
         private void PedidoAM_Load(object sender, EventArgs e) {
-            ClienteCbo.DataSource = Program.ListadoClientes;
+            RotiDbContext rotiDb = new RotiDbContext();
+
+            ClienteCbo.DataSource = rotiDb.ClientesTable.ToList();
             ClienteCbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             ClienteCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
  

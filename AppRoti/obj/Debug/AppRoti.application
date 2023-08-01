@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="AppRoti.exe.manifest" size="15631">
+    <dependentAssembly dependencyType="install" codebase="AppRoti.exe.manifest" size="12244">
       <assemblyIdentity name="AppRoti.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LqfF9vrLJ75CN+9DRRAN60VxcRvG78o1yk78bBo1GRk=</dsig:DigestValue>
+        <dsig:DigestValue>iv3A1jysSzNIFHd4EeRqXnAoKqBvk74Da/+ct7txh6M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

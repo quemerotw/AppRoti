@@ -66,15 +66,20 @@ namespace AppRoti {
         }
 
         static private void LoadArch() {
+            RotiDbContext db = new RotiDbContext();
             Program.ImageList = new ImageList();
             Program.ImageList.ImageSize = new Size(32, 32);
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.pizza_3_32);
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.taco_32);
             BinaryFormatter f = new BinaryFormatter();
             try {
-                using (FileStream file = new FileStream("archClientes.pds", FileMode.Open)) {
+                /*using (FileStream file = new FileStream("archClientes.pds", FileMode.Open)) {
                     ListadoClientes = (List<CCliente>)f.Deserialize(file);
-                }
+                    foreach (CCliente item in ListadoClientes) {
+                        db.ClientesTable.Add(item);
+                        db.SaveChanges();
+                    }
+                */
                 using (FileStream file = new FileStream("archProductos.pds", FileMode.Open)) {
                     ListadoProductos = (List<CProducto>)f.Deserialize(file);
                 }
