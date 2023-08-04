@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Deployment.Internal;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,61 +14,54 @@ using AppRoti.Clases.Orm;
 
 namespace AppRoti.Clases 
 {
-    [Serializable]
-    internal class CPedido : BaseClass {
-        private static int _numPedido=1;
 
-        private DateTime _fecha;
+
+    public class CPedido : BaseClass {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public int Id { get; set; }
 
         public DateTime Fecha {
-            get { return _fecha; }
+            get; set;
         }
 
-
-        public static int NumPedido {
-            get { return _numPedido; }
-        }
-
-        private double _recargo;
 
         public double Recargo {
-            get { return _recargo; }
-            set { _recargo = value; }
+            get; set; 
         }
 
-        private double _descuento;
 
         public double Descuento {
-            get { return _descuento; }
-            set { _descuento = value; }
+            get;
+            set;
         }
 
-        private double _subTotal;
 
         public double Subtotal {
-            get { return _subTotal; }
-            set { _subTotal = value; }
+            get;
+            set;
         }
 
-        public CCliente Cliente { get;}
+        public CCliente Cliente { get; set; }
 
-        private List<CProducto> _detallePedido;
 
-        public List<CProducto> DetallePedido {
-            get { return _detallePedido; }
-            set { _detallePedido = value; }
+        public List<CDetallePedido> DetallePedido {
+            get;
+            set;
+        }
+
+        public CPedido()
+        {      
         }
 
         public CPedido(CCliente cliente) {
-            string _nombre = string.Format("pedido{0}", _numPedido);
-            _detallePedido = new List<CProducto>();
-            _numPedido++;
+            DetallePedido = new List<CDetallePedido>();
             Cliente = cliente;
         }
         public double CalcularSubtotal() {
             double resultado = 0;
-            foreach (CProducto item in this.DetallePedido) {
-                resultado += item.PrecioVenta;
+            foreach (CDetallePedido item in this.DetallePedido) {
+                resultado += item.Producto.PrecioVenta;
             }
             return resultado;
         }
@@ -87,9 +83,9 @@ namespace AppRoti.Clases
                 controlAsoc.Controls.Find("DireccionLbl", false)[0].Visible = true;
                 (controlAsoc.Controls.Find("DireccionLbl", false)[0] as Label).Text += " " + (pedido as CPedidoDelivery).Direccion;
             }
-            controlAsoc.Name = string.Format("ctrPedido-{0}", CPedido.NumPedido);
+            controlAsoc.Name = string.Format("ctrPedido-{0}", Id);
             controlAsoc.Size = new System.Drawing.Size(176, 190);
-            (controlAsoc.Controls.Find("NroPedidoLbl", false)[0] as Label).Text += string.Format("{0} - hora {1}:{2}", CPedido.NumPedido, DateTime.Now.TimeOfDay.Hours, DateTime.Now.TimeOfDay.Minutes);
+            (controlAsoc.Controls.Find("NroPedidoLbl", false)[0] as Label).Text += string.Format("{0} - hora {1}:{2}", Id, DateTime.Now.TimeOfDay.Hours, DateTime.Now.TimeOfDay.Minutes);
             (controlAsoc.Controls.Find("idPedidoLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Cliente.ToString());
             controlAsoc.Tag = pedido;
             (controlAsoc.Controls.Find("CancelarBtn", false)[0] as Button).Tag = pedido;

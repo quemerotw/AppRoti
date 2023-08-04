@@ -28,7 +28,9 @@ namespace AppRoti.Clases {
 			set { _direccion = value; }
 		}
 
+		public CPedidoDelivery() {
 
+		}
 
 		public CPedidoDelivery(CCliente cliente, string direccion):base(cliente) {
 			this._direccion = direccion;

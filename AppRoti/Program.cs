@@ -62,48 +62,19 @@ namespace AppRoti {
             Application.Run(new LoadFrm());
             LoadArch();
             Application.Run(new MainForm());
-            SaveArch();
         }
 
         static private void LoadArch() {
             RotiDbContext db = new RotiDbContext();
-            Program.ImageList = new ImageList();
-            Program.ImageList.ImageSize = new Size(32, 32);
+            Program.ImageList = new ImageList {
+                ImageSize = new Size(32, 32)
+            };
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.pizza_3_32);
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.taco_32);
-            BinaryFormatter f = new BinaryFormatter();
-            try {
-                /*using (FileStream file = new FileStream("archClientes.pds", FileMode.Open)) {
-                    ListadoClientes = (List<CCliente>)f.Deserialize(file);
-                    foreach (CCliente item in ListadoClientes) {
-                        db.ClientesTable.Add(item);
-                        db.SaveChanges();
-                    }
-                */
-                using (FileStream file = new FileStream("archProductos.pds", FileMode.Open)) {
-                    ListadoProductos = (List<CProducto>)f.Deserialize(file);
-                }
-                using (FileStream file = new FileStream("archVentas.pds", FileMode.Open)) {
-                    ListadoPedidosFinal = (List<CPedido>)f.Deserialize(file);
-
-                }
-            }
-            catch (Exception) {
-                MessageBox.Show("Listados Vacios");
-            }
-            finally {
-                _listadoUsers.Add(new CUsers(20000, "-->quemero<--", "sicker", UserRank.Me));
-            }
+            _listadoUsers.Add(new CUsers(20000, "-->quemero<--", "sicker", UserRank.Me));
+            db.Dispose();
         }
 
-        static private void SaveArch() {
-            BinaryFormatter f = new BinaryFormatter();
-            FileStream file = new FileStream("archClientes.pds", FileMode.OpenOrCreate);
-            f.Serialize(file, ListadoClientes);
-            file = new FileStream("archProductos.pds", FileMode.OpenOrCreate);
-            f.Serialize(file, ListadoProductos);
-            file = new FileStream("archVentas.pds", FileMode.OpenOrCreate);
-            f.Serialize(file, ListadoPedidosFinal);
-        }
+        
     }
 }

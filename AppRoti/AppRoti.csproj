@@ -103,6 +103,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\CDetallePedido.cs" />
     <Compile Include="Clases\Orm\BaseClass.cs" />
     <Compile Include="Clases\CCliente.cs" />
     <Compile Include="Clases\CPedido.cs" />

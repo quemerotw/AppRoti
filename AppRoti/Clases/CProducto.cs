@@ -1,14 +1,18 @@
 ﻿using AppRoti.Clases.Orm;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AppRoti.Clases
 {
+    [Table("Producto")]
     [Serializable]
     public class CProducto : BaseClass {
+        public int Id {get; set;}
 
         private int _icoProducto;
 
@@ -68,6 +72,11 @@ namespace AppRoti.Clases
         }
 
         public double TotalVentas { get { return this.CantidadVentas * this.PrecioVenta; } }
+
+        public CProducto()
+        {
+                
+        }
 
         public CProducto(string nombre, double precioVenta) {
             Nombre = nombre;

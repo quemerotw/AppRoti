@@ -9,11 +9,10 @@ using AppRoti.Clases.Orm;
 
 namespace AppRoti.Clases{
     [Serializable]
-    [Table("ClientesTable")]
+    [Table("Cliente")]
     public class CCliente : BaseClass {
-        [Key]
+        
         public int Id { get; set; }
-        [Required]
         public string Nombres { get; set; }
         public string Direccion { get; set; }
         public int CantPedidos { get; set; }

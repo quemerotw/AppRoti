@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppRoti.Clases;
+using AppRoti.Vistas.Creadores;
 
 namespace AppRoti.Vistas
 {
@@ -27,18 +28,20 @@ namespace AppRoti.Vistas
 
         private void PedidoAM_Load(object sender, EventArgs e) {
             RotiDbContext rotiDb = new RotiDbContext();
+            List<CCliente> listadoClientes = rotiDb.ClientesTable.ToList(); ;
 
-            ClienteCbo.DataSource = rotiDb.ClientesTable.ToList();
+
+            ClienteCbo.DataSource = listadoClientes;
             ClienteCbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             ClienteCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
  
 
-            DireccionCbo.DataSource = Program.ListadoClientes;
+            DireccionCbo.DataSource = listadoClientes; 
             DireccionCbo.ValueMember = "Direccion";
             DireccionCbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             DireccionCbo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            TelComboBox.DataSource = Program.ListadoClientes;
+            TelComboBox.DataSource = listadoClientes;
             TelComboBox.ValueMember = "Telefono";
             TelComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             TelComboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -49,7 +52,7 @@ namespace AppRoti.Vistas
 
             ProductosListWv.View = View.LargeIcon;
             ProductosListWv.LargeImageList = Program.ImageList;
-
+            Program.ListadoProductos = rotiDb.ProductoTable.ToList();
             foreach (CProducto prodAux in Program.ListadoProductos) {
                 ListViewItem item = new ListViewItem();
                 item.ImageIndex = prodAux.IndexIconoProducto;
@@ -60,6 +63,8 @@ namespace AppRoti.Vistas
             }
             DireccionCbo.Text = "";
             ClienteCbo.Text = "";
+            TelComboBox.Text = "";
+            rotiDb.Dispose();
         }
 
         private void ProductosListWv_ItemActivate(object sender, EventArgs e) {
@@ -67,6 +72,7 @@ namespace AppRoti.Vistas
         }
 
         private void AceptarBtn_Click(object sender, EventArgs e) {
+            RotiDbContext db = new RotiDbContext();
             if (_half) {
                 MessageBox.Show("Hay Una mitad de pizza suelta","Error, Completar El Pedido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -94,7 +100,7 @@ namespace AppRoti.Vistas
             CPedido pedido;
             if (ClienteCbo.SelectedIndex < 0) {
                 if (MessageBox.Show("Crear nuevo cliente?", "cliente nuevo", MessageBoxButtons.OKCancel) == DialogResult.OK) {
-                    Program.ListadoClientes.Add(cliente);
+                    db.ClientesTable.Add(cliente);
                 }
             }
             else {
@@ -103,17 +109,26 @@ namespace AppRoti.Vistas
             if (ConEnvioChk.Checked) {
                 pedido = new CPedidoDelivery(cliente, cliente.Direccion);
                 CProducto envio = new CProducto("Envio", (double)PrecioEnvioNUP.Value);
+                var detalle = new CDetallePedido();
+                detalle.Producto = envio;
+                detalle.Pedido = pedido;
                 (pedido as CPedidoDelivery).PrecioEnvio = 0;
-                pedido.DetallePedido.Add(envio);
+                pedido.DetallePedido.Add(detalle);
+                db.DetallesTable.Add(detalle);
             }
             else {
                 pedido = new CPedido(cliente);
             }
             foreach (CProducto aux in OrdenesList) {
-                pedido.DetallePedido.Add(aux);
+                var detalle = new CDetallePedido();
+                detalle.Producto = aux;
+                detalle.Pedido = pedido;
+                pedido.DetallePedido.Add(detalle);
+                db.DetallesTable.Add(detalle);
             }
+            pedido.Fecha = DateTime.Now.Date;
             pedido.Cliente.CantPedidos += 1;
-            pedido.DetallePedido.Sort((x, y) => y.PrecioVenta.CompareTo(x.PrecioVenta));
+            pedido.DetallePedido.Sort((x, y) => y.Producto.PrecioVenta.CompareTo(x.Producto.PrecioVenta));
             pedido.Subtotal += pedido.CalcularSubtotal();
             pedido.Descuento = 0;
             if (FormComplete != null) {
@@ -124,6 +139,7 @@ namespace AppRoti.Vistas
                     FormComplete(pedido, new EventArgDom { ObjProcess = pedido, Status = CompleteStatus.error, Msj = "Err" });
                 }
             }
+            db.SaveChanges();
             this.Close();
         }
 

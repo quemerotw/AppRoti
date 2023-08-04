@@ -102,12 +102,14 @@ namespace AppRoti.Vistas
 
         internal void f_FormComplete(object sender, EventArgDom ev) {
             if (ev.Status == CompleteStatus.completed) {
+                RotiDbContext db = new RotiDbContext();
                 CPedido pedido;
                 pedido = ev.ObjProcess as CPedido;
                 CtrPedido controlAsoc = pedido.CrearControl(pedido);
                 controlAsoc = AsignarEventos(controlAsoc);
                 controlAsoc.Anchor = AnchorStyles.Top;
                 listadoPedidos.Add(pedido);
+                db.PedidosTable.Add(pedido);
                 PedidosPanel.Controls.Add(controlAsoc);
             }
             else {
