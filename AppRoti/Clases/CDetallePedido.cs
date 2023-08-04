@@ -9,6 +9,17 @@ namespace AppRoti.Clases {
         public int Id { get; set; }
         public virtual CPedido Pedido { get; set; }
         public virtual CProducto Producto { get; set; }
-        public int Cantidad { get; set; }
+        public double Cantidad { get; set; }
+
+        public CDetallePedido()
+        {
+              
+        }
+
+        public CDetallePedido(double cant,CProducto prod)
+        {
+            this.Producto = prod;
+            this.Cantidad = cant;
+        }
     }
 }

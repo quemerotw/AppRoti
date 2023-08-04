@@ -78,11 +78,6 @@ namespace AppRoti.Clases
                 
         }
 
-        public CProducto(string nombre, double precioVenta) {
-            Nombre = nombre;
-            PrecioVenta = precioVenta;
-        }
-
         public CProducto(double stock, string nombre, double precioVenta, double precioCosto, string descripcion, bool isDivisible,int iconIndex) {
             Stock = stock;
             _nombre = nombre;
@@ -100,12 +95,6 @@ namespace AppRoti.Clases
 
         public double CalcularGanancia() {
             return this.PrecioVenta - this.PrecioCosto;
-        }
-
-        public CProducto GenerarVenta(double cant) {
-            this._cantidadVentas += cant;
-            this.Stock -= cant;
-            return new CProducto(cant,this._nombre,this._precioVenta*cant,this._precioCosto,this._descripcion,this._isDivisible,this._icoProducto);
         }
     }
 }

@@ -17,8 +17,9 @@ namespace AppRoti.Vistas
     public partial class PedidoAM : BaseForm {
         public override event FormEvent FormComplete;
         internal CPedido _pedidoModif = null;
-        private List<CProducto> OrdenesList= new List<CProducto>();
-        private BindingList<CProducto> _bindingList;
+        private List<CDetallePedido> OrdenesList= new List<CDetallePedido>();
+        private List<CProducto> listadoProductos = new List<CProducto>();
+        private BindingList<CDetallePedido> _bindingList;
         private BindingSource _bindingSource;
         private bool _half = false;
 
@@ -52,8 +53,8 @@ namespace AppRoti.Vistas
 
             ProductosListWv.View = View.LargeIcon;
             ProductosListWv.LargeImageList = Program.ImageList;
-            Program.ListadoProductos = rotiDb.ProductoTable.ToList();
-            foreach (CProducto prodAux in Program.ListadoProductos) {
+            listadoProductos = rotiDb.ProductoTable.ToList();
+            foreach (CProducto prodAux in listadoProductos) {
                 ListViewItem item = new ListViewItem();
                 item.ImageIndex = prodAux.IndexIconoProducto;
                 item.Name = prodAux.Nombre;
@@ -96,41 +97,35 @@ namespace AppRoti.Vistas
                 DireccionCbo.Focus();
                 return;
             }
-            CCliente cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text,TelComboBox.Text); ;
+            CCliente cliente = (ClienteCbo.SelectedItem as CCliente);
             CPedido pedido;
-            if (ClienteCbo.SelectedIndex < 0) {
+            if (cliente == null) {
+                cliente = new CCliente(ClienteCbo.Text, DireccionCbo.Text, TelComboBox.Text);
                 if (MessageBox.Show("Crear nuevo cliente?", "cliente nuevo", MessageBoxButtons.OKCancel) == DialogResult.OK) {
                     db.ClientesTable.Add(cliente);
                 }
             }
             else {
-                cliente = ClienteCbo.SelectedItem as CCliente;
+                cliente = db.ClientesTable.Find(cliente.Id);
             }
             if (ConEnvioChk.Checked) {
                 pedido = new CPedidoDelivery(cliente, cliente.Direccion);
-                CProducto envio = new CProducto("Envio", (double)PrecioEnvioNUP.Value);
-                var detalle = new CDetallePedido();
-                detalle.Producto = envio;
-                detalle.Pedido = pedido;
-                (pedido as CPedidoDelivery).PrecioEnvio = 0;
-                pedido.DetallePedido.Add(detalle);
-                db.DetallesTable.Add(detalle);
+                (pedido as CPedidoDelivery).PrecioEnvio = (double)PrecioEnvioNUP.Value;
             }
             else {
                 pedido = new CPedido(cliente);
             }
-            foreach (CProducto aux in OrdenesList) {
-                var detalle = new CDetallePedido();
-                detalle.Producto = aux;
-                detalle.Pedido = pedido;
-                pedido.DetallePedido.Add(detalle);
-                db.DetallesTable.Add(detalle);
+            foreach (CDetallePedido aux in OrdenesList) {
+                pedido.DetallePedido.Add(aux);
             }
             pedido.Fecha = DateTime.Now.Date;
             pedido.Cliente.CantPedidos += 1;
             pedido.DetallePedido.Sort((x, y) => y.Producto.PrecioVenta.CompareTo(x.Producto.PrecioVenta));
             pedido.Subtotal += pedido.CalcularSubtotal();
             pedido.Descuento = 0;
+            db.PedidosTable.Add(pedido);
+            db.SaveChanges();
+            db.Dispose();
             if (FormComplete != null) {
                 if (true) { // implementar mensaje de error
                     FormComplete(pedido, new EventArgDom { ObjProcess = pedido, Status = CompleteStatus.completed });
@@ -139,7 +134,6 @@ namespace AppRoti.Vistas
                     FormComplete(pedido, new EventArgDom { ObjProcess = pedido, Status = CompleteStatus.error, Msj = "Err" });
                 }
             }
-            db.SaveChanges();
             this.Close();
         }
 
@@ -199,20 +193,56 @@ namespace AppRoti.Vistas
             DireccionCbo.Enabled = ConEnvioChk.Checked;
         }
 
+        //private void ProductosListWv_MouseDoubleClick(object sender, MouseEventArgs e) {
+        //    if (e.Button == MouseButtons.Left) {
+        //        RotiDbContext rotiDb = new RotiDbContext();
+        //        CProducto productoSeleccionado = rotiDb.ProductoTable.Find((ProductosListWv.FocusedItem.Tag as CProducto).Id);
+        //        if (productoSeleccionado.Stock < 1) {
+        //            MessageBox.Show("no hay mas "+productoSeleccionado.Nombre);
+        //            return;
+        //        }
+        //        CDetallePedido det = new CDetallePedido();
+        //        det.Cantidad = 1;
+        //        det.Producto= productoSeleccionado;
+        //        OrdenesList.Add(det);
+        //        rotiDb.Dispose();
+        //        this.RefreshProductos();
+        //        _bindingList = new BindingList<CDetallePedido>(OrdenesList);
+        //        _bindingSource = new BindingSource(_bindingList, null);
+        //        OrdenesListView.DataSource = _bindingSource;
+        //    }
+        //}
         private void ProductosListWv_MouseDoubleClick(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
-                CProducto productoSeleccionado = ProductosListWv.FocusedItem.Tag as CProducto;
+                RotiDbContext rotiDb = new RotiDbContext();
+                CProducto productoSeleccionado = rotiDb.ProductoTable.Find((ProductosListWv.FocusedItem.Tag as CProducto).Id);
                 if (productoSeleccionado.Stock < 1) {
-                    MessageBox.Show("no hay mas "+productoSeleccionado.Nombre);
+                    MessageBox.Show("No hay más " + productoSeleccionado.Nombre);
+                    rotiDb.Dispose();
                     return;
                 }
-                OrdenesList.Add(productoSeleccionado.GenerarVenta(1));
+
+                // Buscar el producto seleccionado en la lista de productos existentes
+                CProducto productoExistente = listadoProductos.FirstOrDefault(p => p.Id == productoSeleccionado.Id);
+
+                if (productoExistente != null) {
+                    // Crear una nueva instancia de CDetallePedido utilizando el producto existente
+                    CDetallePedido det = new CDetallePedido(1, productoExistente);
+                    OrdenesList.Add(det);
+                }
+                else {
+                    // Si no se encuentra el producto en la lista, mostrar un mensaje de error
+                    MessageBox.Show("Error: Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                rotiDb.Dispose();
                 this.RefreshProductos();
-                _bindingList = new BindingList<CProducto>(OrdenesList);
+                _bindingList = new BindingList<CDetallePedido>(OrdenesList);
                 _bindingSource = new BindingSource(_bindingList, null);
                 OrdenesListView.DataSource = _bindingSource;
             }
         }
+
 
         private void ProductosListWv_MouseClick(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
@@ -236,23 +266,24 @@ namespace AppRoti.Vistas
                 MessageBox.Show("no hay mas " + productoSeleccionado.Nombre);
                 return;
             }
-            OrdenesList.Add(productoSeleccionado.GenerarVenta(0.5));
+            CDetallePedido det = new CDetallePedido(1, productoSeleccionado);
+            OrdenesList.Add(det);
             this.RefreshProductos();
-            _bindingList = new BindingList<CProducto>(OrdenesList);
+            _bindingList = new BindingList<CDetallePedido>(OrdenesList);
             _bindingSource = new BindingSource(_bindingList,null);
             OrdenesListView.DataSource = _bindingSource;
         }
 
 
         private void OrdenesListView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e) {
-            Program.ListadoProductos.Find(x => x.Nombre == e.Row.Cells[1].Value.ToString()).Stock += double.Parse(e.Row.Cells[0].Value.ToString());
+            listadoProductos.Find(x => x.Nombre == e.Row.Cells[1].Value.ToString()).Stock += double.Parse(e.Row.Cells[0].Value.ToString());
             this.RefreshProductos();
         }
 
         private void RefreshProductos() {
             var total = 0.0;
-            foreach (CProducto item in OrdenesList) {
-                total += item.PrecioVenta;
+            foreach (CDetallePedido item in OrdenesList) {
+                total += item.Producto.PrecioVenta;
             }
             total += double.Parse(RecargoTxt.Text);
             total -= double.Parse(DescTxt.Text);
@@ -261,7 +292,7 @@ namespace AppRoti.Vistas
             }
             TotalLbl.Text = string.Format("Total :{0}$",total);
             ProductosListWv.Items.Clear();
-            foreach (CProducto prodAux in Program.ListadoProductos) {
+            foreach (CProducto prodAux in listadoProductos) {
                 ListViewItem item = new ListViewItem();
                 item.ImageIndex = prodAux.IndexIconoProducto;
                 item.Name = prodAux.Nombre;

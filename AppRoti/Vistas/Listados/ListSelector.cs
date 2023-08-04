@@ -22,7 +22,7 @@ namespace AppRoti.Vistas {
         }
 
         private void ListSelector_Load(object sender, EventArgs e) {
-            ClientesGridView.AutoGenerateColumns = false;
+            /*ClientesGridView.AutoGenerateColumns = false;
             VentasGridView.AutoGenerateColumns = false;
             ProdGridView.AutoGenerateColumns = false;
             bindingListCliente = new BindingList<CCliente>(Program.ListadoClientes);
@@ -33,7 +33,7 @@ namespace AppRoti.Vistas {
             this.VentasGridView.DataSource = bindingSourcePedido;
             bindingListProducto = new BindingList<CProducto>(Program.ListadoProductos);
             bindingSourceProducto = new BindingSource(bindingListProducto, null);
-            this.ProdGridView.DataSource = bindingSourceProducto;
+            this.ProdGridView.DataSource = bindingSourceProducto;*/
         }
 
         private void VentasGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) {

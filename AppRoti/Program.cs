@@ -23,27 +23,6 @@ namespace AppRoti {
             set { _imageList = value; }
         }
 
-
-        static private List<CCliente> _listadoClientes = new List<CCliente>();
-
-        static internal List<CCliente> ListadoClientes {
-            get { return _listadoClientes; }
-            set { _listadoClientes = value; }
-        }
-
-        static private List<CProducto> _listadoProductos = new List<CProducto>();
-
-        static internal List<CProducto> ListadoProductos {
-            get { return _listadoProductos; }
-            set { _listadoProductos = value; }
-        }
-
-        static private List<CPedido> _listadoPedidosFinal = new List<CPedido>();
-
-        static internal List<CPedido> ListadoPedidosFinal {
-            get { return _listadoPedidosFinal; }
-            set { _listadoPedidosFinal = value; }
-        }
         static private List<CUsers> _listadoUsers = new List<CUsers>();
 
         static internal List<CUsers> ListadoUsers {

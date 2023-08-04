@@ -64,7 +64,10 @@ namespace AppRoti
         private void Fp_FormComplete(object sender, EventArgDom ev) {
             if (ev.Status == CompleteStatus.completed) {
                 var x = ev.ObjProcess as CProducto;
-                Program.ListadoProductos.Add(x);
+                RotiDbContext db = new RotiDbContext();
+                db.ProductoTable.Add(x);
+                db.SaveChanges();
+                db.Dispose();
                 MessageBox.Show("Producto Agregado","Exito",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             else {
