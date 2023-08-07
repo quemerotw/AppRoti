@@ -191,49 +191,26 @@ namespace AppRoti.Vistas
             DireccionCbo.Enabled = ConEnvioChk.Checked;
         }
 
-        //private void ProductosListWv_MouseDoubleClick(object sender, MouseEventArgs e) {
-        //    if (e.Button == MouseButtons.Left) {
-        //        RotiDbContext rotiDb = new RotiDbContext();
-        //        CProducto productoSeleccionado = rotiDb.ProductoTable.Find((ProductosListWv.FocusedItem.Tag as CProducto).Id);
-        //        if (productoSeleccionado.Stock < 1) {
-        //            MessageBox.Show("no hay mas "+productoSeleccionado.Nombre);
-        //            return;
-        //        }
-        //        CDetallePedido det = new CDetallePedido();
-        //        det.Cantidad = 1;
-        //        det.Producto= productoSeleccionado;
-        //        OrdenesList.Add(det);
-        //        rotiDb.Dispose();
-        //        this.RefreshProductos();
-        //        _bindingList = new BindingList<CDetallePedido>(OrdenesList);
-        //        _bindingSource = new BindingSource(_bindingList, null);
-        //        OrdenesListView.DataSource = _bindingSource;
-        //    }
-        //}
+        
         private void ProductosListWv_MouseDoubleClick(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
-                RotiDbContext rotiDb = new RotiDbContext();
                 CProducto productoSeleccionado = rotiDb.ProductoTable.Find((ProductosListWv.FocusedItem.Tag as CProducto).Id);
                 if (productoSeleccionado.Stock < 1) {
                     MessageBox.Show("No hay más " + productoSeleccionado.Nombre);
-                    rotiDb.Dispose();
                     return;
                 }
 
-                // Buscar el producto seleccionado en la lista de productos existentes
-                CProducto productoExistente = listadoProductos.FirstOrDefault(p => p.Id == productoSeleccionado.Id);
-
-                if (productoExistente != null) {
+                if (productoSeleccionado != null) {
                     // Crear una nueva instancia de CDetallePedido utilizando el producto existente
-                    CDetallePedido det = new CDetallePedido(1, productoExistente);
+                    CDetallePedido det = new CDetallePedido(1, productoSeleccionado);
+                    productoSeleccionado.Stock -= 1;
                     OrdenesList.Add(det);
                 }
                 else {
                     // Si no se encuentra el producto en la lista, mostrar un mensaje de error
                     MessageBox.Show("Error: Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                rotiDb.Dispose();
+                rotiDb.SaveChanges();
                 this.RefreshProductos();
                 _bindingList = new BindingList<CDetallePedido>(OrdenesList);
                 _bindingSource = new BindingSource(_bindingList, null);
@@ -274,7 +251,8 @@ namespace AppRoti.Vistas
 
 
         private void OrdenesListView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e) {
-            listadoProductos.Find(x => x.Nombre == e.Row.Cells[1].Value.ToString()).Stock += double.Parse(e.Row.Cells[0].Value.ToString());
+            rotiDb.ProductoTable.Find((e.Row.Cells[1].Value as CProducto).Id).Stock += double.Parse(e.Row.Cells[0].Value.ToString());
+            rotiDb.SaveChanges();
             this.RefreshProductos();
         }
 
@@ -290,6 +268,7 @@ namespace AppRoti.Vistas
             }
             TotalLbl.Text = string.Format("Total :{0}$",total);
             ProductosListWv.Items.Clear();
+            listadoProductos = rotiDb.ProductoTable.ToList();
             foreach (CProducto prodAux in listadoProductos) {
                 ListViewItem item = new ListViewItem();
                 item.ImageIndex = prodAux.IndexIconoProducto;

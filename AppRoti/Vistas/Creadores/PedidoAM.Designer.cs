@@ -57,7 +57,6 @@
             this.OrdenesListView = new System.Windows.Forms.DataGridView();
             this.CantidadCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalLbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioEnvioNUP)).BeginInit();
@@ -340,8 +339,7 @@
             this.OrdenesListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrdenesListView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CantidadCol,
-            this.Nombre,
-            this.Precio});
+            this.Nombre});
             this.OrdenesListView.Location = new System.Drawing.Point(567, 43);
             this.OrdenesListView.Name = "OrdenesListView";
             this.OrdenesListView.RowHeadersVisible = false;
@@ -353,9 +351,9 @@
             // CantidadCol
             // 
             this.CantidadCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CantidadCol.DataPropertyName = "Stock";
+            this.CantidadCol.DataPropertyName = "Cantidad";
             this.CantidadCol.Frozen = true;
-            this.CantidadCol.HeaderText = "Cant";
+            this.CantidadCol.HeaderText = "Cantidad";
             this.CantidadCol.Name = "CantidadCol";
             this.CantidadCol.ReadOnly = true;
             this.CantidadCol.Width = 30;
@@ -363,24 +361,13 @@
             // Nombre
             // 
             this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.DataPropertyName = "Producto";
             this.Nombre.Frozen = true;
-            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.HeaderText = "Producto";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
             this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Nombre.Width = 80;
-            // 
-            // Precio
-            // 
-            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Precio.DataPropertyName = "PrecioVenta";
-            this.Precio.Frozen = true;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            this.Precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Precio.Width = 62;
+            this.Nombre.Width = 140;
             // 
             // TotalLbl
             // 
@@ -446,11 +433,9 @@
         private System.Windows.Forms.DataGridView OrdenesListView;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioCol;
         private System.Windows.Forms.RadioButton TransferRadioButton;
         private System.Windows.Forms.RadioButton EfectivoRadioBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.Label TelefonoLbl;
         private System.Windows.Forms.ComboBox TelComboBox;
         private System.Windows.Forms.Label TotalLbl;

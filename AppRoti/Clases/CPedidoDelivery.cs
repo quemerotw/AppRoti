@@ -35,5 +35,9 @@ namespace AppRoti.Clases {
 		public CPedidoDelivery(CCliente cliente, string direccion):base(cliente) {
 			this._direccion = direccion;
         }
+
+        public override double CalcularTotal() {
+            return base.CalcularTotal() + this.PrecioEnvio;
+        }
     }
 }

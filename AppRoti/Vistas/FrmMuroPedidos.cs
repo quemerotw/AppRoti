@@ -141,5 +141,9 @@ namespace AppRoti.Vistas
         private void FrmMuroPedidos_Load(object sender, EventArgs e) {
 
         }
+
+        private void FinishShiftButton_Click(object sender, EventArgs e) {
+            new CierreTurno().Show();
+        }
     }
 }

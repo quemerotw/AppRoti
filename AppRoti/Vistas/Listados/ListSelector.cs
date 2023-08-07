@@ -17,7 +17,7 @@ namespace AppRoti.Vistas {
         BindingSource bindingSourcePedido;
         BindingList<CProducto> bindingListProducto;
         BindingSource bindingSourceProducto;
-        RotiDbContext rotiDb = Program.RotiDbInstance;
+        readonly RotiDbContext rotiDb = Program.RotiDbInstance;
 
         public ListSelector() {
             InitializeComponent();

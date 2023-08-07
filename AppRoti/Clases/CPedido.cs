@@ -67,24 +67,19 @@ namespace AppRoti.Clases
             }
             return resultado;
         }
-        public double CalcularTotal {
-            get { 
+
+        public virtual double CalcularTotal() {
             var Total = Subtotal -= Descuento;
             Total += Recargo;
             return Total;
-            }
         }
+
 
         public WindowsFormsApp1.Controls.CtrPedido CrearControl(CPedido pedido) {
             WindowsFormsApp1.Controls.CtrPedido controlAsoc = new WindowsFormsApp1.Controls.CtrPedido();
             controlAsoc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             controlAsoc.BackColor = System.Drawing.Color.LawnGreen;
             controlAsoc.Location = new System.Drawing.Point(0, 0);
-            if (pedido is CPedidoDelivery) {
-                controlAsoc.BackColor = Color.Gold;
-                controlAsoc.Controls.Find("DireccionLbl", false)[0].Visible = true;
-                (controlAsoc.Controls.Find("DireccionLbl", false)[0] as Label).Text += " " + (pedido as CPedidoDelivery).Direccion;
-            }
             controlAsoc.Name = string.Format("ctrPedido-{0}", Id);
             controlAsoc.Size = new System.Drawing.Size(176, 190);
             (controlAsoc.Controls.Find("NroPedidoLbl", false)[0] as Label).Text += string.Format("{0} - hora {1}:{2}", Id, DateTime.Now.TimeOfDay.Hours, DateTime.Now.TimeOfDay.Minutes);
@@ -94,7 +89,12 @@ namespace AppRoti.Clases
             
             (controlAsoc.Controls.Find("CompletadoBtn", false)[0] as Button).Tag = pedido;
             (controlAsoc.Controls.Find("DetalleList", true)[0] as ListBox).DataSource = pedido.DetallePedido;
-            (controlAsoc.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.Subtotal + pedido.Descuento);
+            (controlAsoc.Controls.Find("TotalLbl", false)[0] as Label).Text += string.Format("{0}", pedido.CalcularTotal());
+            if (pedido is CPedidoDelivery) {
+                controlAsoc.BackColor = Color.Gold;
+                controlAsoc.Controls.Find("DireccionLbl", false)[0].Visible = true;
+                (controlAsoc.Controls.Find("DireccionLbl", false)[0] as Label).Text += " " + (pedido as CPedidoDelivery).Direccion;
+            }
             return controlAsoc;
         }
     }
