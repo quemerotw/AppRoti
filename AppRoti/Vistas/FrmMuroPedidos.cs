@@ -52,7 +52,6 @@ namespace AppRoti.Vistas
 
         private void ctrPedido1_MouseMove(object sender, MouseEventArgs e) {
             if (aux) {
-                PedidosPanel.SendToBack();
                 Point newPos = PedidosPanel.PointToClient(Cursor.Position);
                 newPos.Offset(-offset.X, -offset.Y);
 
@@ -92,10 +91,6 @@ namespace AppRoti.Vistas
             PedidosPanel.ResumeLayout();
             controlAux.ResumeLayout();
             this.ResumeLayout();
-            //row = PedidosPanel.GetRow(contSelect);
-            //col = PedidosPanel.GetColumn(contSelect);
-            //PedidosPanel.SetRow(controlAux, row);
-            //PedidosPanel.SetColumn(controlAux, col);
             aux = false;
         }
 
@@ -120,11 +115,12 @@ namespace AppRoti.Vistas
             controlAsoc.MouseUp += ctrPedido1_MouseUp;
             controlAsoc.MouseDown += ctrPedido1_MouseDown;
             (controlAsoc.Controls.Find("CancelarBtn", false)[0] as Button).MouseClick += BtnCancelarPedido_MouseClick;
-            (controlAsoc.Controls.Find("CompletadoBtn", false)[0] as Button).MouseClick += BtnAceptarPedido_MouseClick;
+            (controlAsoc.Controls.Find("CompletadoBtn", false)[0] as Button).MouseClick += BtnCompletarPedido_MouseClick;
             return controlAsoc;
         }
 
-        private void BtnAceptarPedido_MouseClick(object sender, MouseEventArgs e) {
+        private void BtnCompletarPedido_MouseClick(object sender, MouseEventArgs e) {
+            CPedido pedAux = (CPedido)(sender as Button).Tag;
         }
 
         private void BtnCancelarPedido_MouseClick(object sender, MouseEventArgs e) {

@@ -12,9 +12,27 @@ using System.Xml.Serialization;
 using AppRoti.Vistas;
 
 namespace AppRoti {
+
+    
+
+
     internal static class Program {
 
         #region Listados 
+
+        private static RotiDbContext _rotiDb;
+
+        public static RotiDbContext RotiDbInstance {
+            get {
+                if (_rotiDb == null) {
+                    return new RotiDbContext();
+                }
+                else {
+                    return _rotiDb;
+                }
+            }
+        }
+
 
         private static ImageList _imageList;
 
@@ -44,14 +62,12 @@ namespace AppRoti {
         }
 
         static private void LoadArch() {
-            RotiDbContext db = new RotiDbContext();
             Program.ImageList = new ImageList {
                 ImageSize = new Size(32, 32)
             };
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.pizza_3_32);
             Program.ImageList.Images.Add(AppRoti.Properties.Resources.taco_32);
             _listadoUsers.Add(new CUsers(20000, "-->quemero<--", "sicker", UserRank.Me));
-            db.Dispose();
         }
 
         

@@ -17,23 +17,25 @@ namespace AppRoti.Vistas {
         BindingSource bindingSourcePedido;
         BindingList<CProducto> bindingListProducto;
         BindingSource bindingSourceProducto;
+        RotiDbContext rotiDb = Program.RotiDbInstance;
+
         public ListSelector() {
             InitializeComponent();
         }
 
         private void ListSelector_Load(object sender, EventArgs e) {
-            /*ClientesGridView.AutoGenerateColumns = false;
+            ClientesGridView.AutoGenerateColumns = false;
             VentasGridView.AutoGenerateColumns = false;
             ProdGridView.AutoGenerateColumns = false;
-            bindingListCliente = new BindingList<CCliente>(Program.ListadoClientes);
+            bindingListCliente = new BindingList<CCliente>(rotiDb.ClientesTable.ToList());
             bindingSourceCliente = new BindingSource(bindingListCliente,null);
             this.ClientesGridView.DataSource = bindingSourceCliente;
-            bindingListPedido = new BindingList<CPedido>(Program.ListadoPedidosFinal);
+            bindingListPedido = new BindingList<CPedido>(rotiDb.PedidosTable.ToList());
             bindingSourcePedido = new BindingSource(bindingListPedido, null);
             this.VentasGridView.DataSource = bindingSourcePedido;
-            bindingListProducto = new BindingList<CProducto>(Program.ListadoProductos);
+            bindingListProducto = new BindingList<CProducto>(rotiDb.ProductoTable.ToList());
             bindingSourceProducto = new BindingSource(bindingListProducto, null);
-            this.ProdGridView.DataSource = bindingSourceProducto;*/
+            this.ProdGridView.DataSource = bindingSourceProducto;
         }
 
         private void VentasGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) {

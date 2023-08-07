@@ -30,6 +30,7 @@ namespace AppRoti.Clases
             get; set; 
         }
 
+        public bool Completado { get; set; }
 
         public double Descuento {
             get;
@@ -56,6 +57,7 @@ namespace AppRoti.Clases
 
         public CPedido(CCliente cliente) {
             DetallePedido = new List<CDetallePedido>();
+            Completado = false;
             Cliente = cliente;
         }
         public double CalcularSubtotal() {
